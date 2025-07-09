@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Form</title>
+</head>
+
+<body>
+    <h2>Job Application Form</h2>
+
+    <form action="#" method="post" enctype="multipart/form-data">
+        <label for="fullname">FullName: </label> <br>
+        <input type="text" name="fullname" id="fullname" placeholder="Bishal Mohapatra" required minlength="3"
+            maxlength="10"> <br> <br>
+
+        <label for="email">Email: </label> <br>
+        <input type="email" name="name" id="email" placeholder="bishal@gmail.com" required> <br> <br>
+
+        <label for="password">Password:</label> <br>
+        <input type="password" name="pass" id="password" required minlength="8" maxlength="20"> <br> <br>
+
+        <label for="phone">Phone Number :</label> <br>
+        <input type="tel" name="ph" id="phone" required placeholder="9437010139"> <br><br>
+
+        <label for="age">Age: </label> <br>
+        <input type="number" name="age" id="age" required min="16" max="40" placeholder="22"> <br> <br>
+
+        <label for="dob">Date Of Birth: </label> <br>
+        <input type="date" name="dob" id="dob" required> <br> <br>
+
+        <label for="rate">Rate Yourself: </label> <br>
+        <input type="range" name="rating" id="rate" step="2" min="0" max="10" value="10"> <br> <br>
+
+        <label for="resume">Upload Resume: </label> <br>
+        <input type="file" name="resume" id="resume" required accept=".pdf, .doc, .docx" multiple> <br> <br>
+
+        <label>Gender: </label> <br>
+        <label for="male">Male</label>
+        <input type="radio" name="gender" id="male" required value="MALE">
+        <label for="female">Female</label>
+        <input type="radio" name="gender" id="female" value="FEMALE">
+        <label for="others">Others</label>
+        <input type="radio" name="gender" id="others" value="OTHERS"> <br> <br>
+
+        <label for="country">Country: </label> <br>
+        <select name="country" id="country" required>
+            <option value="IN">India</option>
+            <option value="US">United States</option>
+            <option value="CA">Canada</option>
+        </select> <br> <br>
+
+        <label for="skill">Skill: </label>
+        <input type="text" list="skills" id="skill" name="skill" placeholder="Type a skill">
+        <datalist id="skills">
+            <option value="HTML"></option>
+            <option value="CSS"></option>
+            <option value="Javascript"></option>
+            <option value="Java"></option>
+            <option value="Python"></option>
+        </datalist> <br> <br>
+
+        <input type="checkbox" name="terms" id="terms" required>
+        <label for="terms">I agree to the terms and conditions</label> <br> <br>
+
+        <!-- <input type="submit" value="Submit"> -->
+        <button type="reset">Reset</button>
+        <button>Submit</button>
+    </form>
+
+    <a href="./about.html">About Us</a>
+</body>
+
+</html>
