@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Selectors Playground</title>
+    <link rel="stylesheet" href="./styles2.css">
+</head>
+
+<body>
+
+    <h1>CSS Selectors Demo</h1>
+
+    <div class="container">
+
+        <div id="intro">
+            <p>This is an introduction paragraph.</p>
+            <p class="highlight">This is a highlighted paragraph.</p>
+        </div>
+
+        <div class="box">
+            <h2>Universal and Type Selectors</h2>
+            <p>This paragraph uses a type selector.</p>
+        </div>
+
+        <div class="box special" id="unique-box">
+            <h2>Class, ID, Group Selectors</h2>
+            <p class="highlight">This is styled by class and group selectors.</p>
+        </div>
+
+        <div class="nested">
+            <div>
+                <p>This is inside a div - descendant selector.</p>
+                <p>This is a direct child - child selector.</p>
+            </div>
+        </div>
+
+        <div>
+            <h3>Adjacent and General Sibling</h3>
+            <p>This is directly after h3 (adjacent).</p>
+            <p>This is also a sibling (general).</p>
+        </div>
+
+        <div>
+            <input type="text" placeholder="Attribute Selector" />
+            <input type="password" placeholder="Not styled" />
+        </div>
+
+        <ul>
+            <li>First item</li>
+            <li>Second item</li>
+            <li>Third item</li>
+        </ul>
+
+        <button class="hover-button">Hover over me</button>
+
+        <p class="pseudo">This paragraph has pseudo-elements. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Necessitatibus, ea aliquid. Rem esse neque delectus error porro provident quae quibusdam?</p>
+
+    </div>
+</body>
+
+</html>
