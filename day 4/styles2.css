@@ -15,3 +15,82 @@
 
 
 
+/* universal selector */
+* {
+    font-family: sans-serif;
+}
+
+
+/* element selector */
+h1 {
+    color: blue;
+}
+
+p {
+    color: brown;
+}
+
+
+/* class selector */
+.highlight {
+    background-color: yellow;
+}
+
+
+/* ID selector */
+#unique-box {
+    border: 2px solid blue;
+}
+
+
+/* Group Selector */
+h1,
+.highlight,
+#unique-box {
+    font-style: italic;
+    font-size: 32px;
+}
+
+
+/* Descendant Selector */
+.nested p {
+    color: green;
+}
+
+
+/* Child Selector */
+.nested>p {
+    color: red;
+}
+
+.nested>div>p {
+    color: aqua;
+}
+
+
+/* Adjacent Sibiling Selector */
+h3+p {
+    color: rebeccapurple;
+}
+
+/* general sibling selector */
+h3~p {
+    color: violet;
+}
+
+
+/* attribute selector */
+input[type="text"] {
+    border: 2px solid purple;
+}
+
+
+/* pseudo classes */
+.hover-button:hover {
+    background-color: lightblue;
+}
+
+input:focus {
+    outline: 3px solid orange;
+}
+
