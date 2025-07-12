@@ -94,3 +94,32 @@ input:focus {
     outline: 3px solid orange;
 }
 
+li:first-child {
+    color: darkgreen;
+}
+
+li:last-child {
+    color: darkred;
+}
+
+li:nth-child(2) {
+    color: darkblue;
+}
+
+
+/* pseudo elements */
+.pseudo::before {
+    content: '👉';
+}
+
+.pseudo::after {
+    content: '👈';
+}
+
+.pseudo::first-line {
+    color: navy;
+}
+
+.pseudo::first-letter {
+    text-decoration: overline 2px wavy;
+}
