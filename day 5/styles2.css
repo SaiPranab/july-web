@@ -1,0 +1,14 @@
+body {
+    color: yellowgreen;
+    font-family: cursive;
+}
+
+ul {
+    font-size: 28px;
+    font-weight: 900;
+    font-style: italic;
+}
+
+button {
+    font-family: inherit;
+}
