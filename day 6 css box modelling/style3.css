@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+}
+
+p {
+    background-color: greenyellow;
+    width: 300px;
+    height: 100px;
+    padding: 25px;
+    box-sizing: border-box;
+    border: 10px solid green;
+    margin: 20px;
+}
+
+.span {
+    background-color: royalblue;
+    width: 300px;
+    height: 200px;
+    /* display: none; */
+
+    padding: 20px;
+    border: 2px solid red;
+
+    /* display: block; */
+    /* display: inline-block; */
+    margin: 50px;
+}
+
+div {
+    background-color: rosybrown;
+    padding: 25px;
+}
