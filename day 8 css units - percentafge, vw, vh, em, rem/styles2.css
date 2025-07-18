@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+}
+
+div {
+    background-color: violet;
+    width: 50vw;
+    height: 50vh;
+    padding: 5vw;
+    border: 1vw solid red;
+
+    /* fontsize - 20px */
+    font-size: 2em; /*40px */
+}
+
+p {
+    background-color: chartreuse;
+    width: 50%;
+    height: 50%;
+    margin: 10%;
+
+    /* font-size - 40px  */
+    font-size: 3em; /* 120px*/
+    /* this is called as snowball effect */
+
+    /* font-size: 3rem; */
+    /* (rem) => root em => always relates the font size of the root element */
+}
+
+body {
+    /* font-size: 20px; */
+    /* fontsize - 10px */
+    font-size: 2em; /* 20px*/
+}
+
+html {
+    font-size: 10px;
+}

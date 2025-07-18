@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+}
+
+p {
+    background-color: chartreuse;
+    /* width: 500px; */
+    width: 50%;
+    height: 50%;
+
+    padding: 10%; 
+    /* it relates to the parent element width */
+    margin: 10%;
+
+    /* border: 10% solid red; */
+
+    font-size: 200%;
+    /* It realates tot he parent element font size */
+}
+
+div {
+    /* width: 400px; */
+    width: 50%;
+    height: 400px;
+    /* height: 50%; */
+
+    font-size: 30px;
+
+
+    /* viewport width, height */
+    width: 50vw;
+    height: 25vh;
+    padding: 10vw;
+    border: 1vh solid red;
+    font-size: 3vh;
+}
