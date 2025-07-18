@@ -1,0 +1,76 @@
+.html-element {
+    /* background-color: chartreuse;
+  position: relative; */
+
+    /* top: 10px;
+  left: 20px;
+  right: -20px;
+  bottom: 100px; */
+
+    /* inset: 20px;
+  position: unset; */
+}
+
+.css-element {
+    /* background-color: aqua; */
+    /* position: absolute; */
+
+    /* top: 5px;
+  left: 20px; */
+    /* right: 5px; */
+    /* bottom: 5px; */
+
+    /* inset: 5px;
+  position: unset; */
+}
+
+ul {
+    /* background-color: brown; */
+    /* position: relative; */
+}
+
+body {
+    /* position: relative; */
+    /* background-color: greenyellow; */
+}
+
+.js-element {
+    background-color: violet;
+    position: fixed;
+
+    top: 10px;
+    left: 10px;
+    right: 10px;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    margin: 16px;
+    padding: 16px;
+    font-size: 25px;
+    border-radius: 10px;
+    color: white;
+    margin-bottom: -100px;
+}
+
+.red-box {
+    background-color: red;
+    margin-left: 16px;
+
+    position: relative;
+    z-index: 1;
+}
+
+.green-box {
+    background-color: green;
+    margin-left: 32px;
+
+    position: relative;
+    z-index: 3;
+}
+
+.blue-box {
+    background-color: blue;
+    margin-left: 48px;
+}
