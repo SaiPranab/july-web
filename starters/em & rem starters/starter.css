@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+}
+
+div {
+  background-color: violet;
+  width: 50vw;
+  height: 50vh;
+  padding: 5vw;
+  border: 1vw solid red;
+}
+
+p {
+  background-color: chartreuse;
+  width: 50%;
+  height: 50%;
+  margin: 10%;
+}
