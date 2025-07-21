@@ -1,0 +1,42 @@
+.square {
+    background-color: black;
+    width: 300px;
+    height: 300px;
+    border: 20px solid blue;
+    margin: 10px 30px;
+}
+
+/* @media print {
+    .square {
+        background-color: hotpink;
+        border: 20px solid red;
+    }
+}
+
+@media screen {
+    .square {
+        background-color: chartreuse;
+    }
+}
+
+@media all {
+     .square {
+        background-color: yellow;
+        border: 20px solid green;
+    }
+} */
+
+/* @media (orientation: landscape) {
+    .square {
+        background-color: yellow;
+        border: 20px solid green;
+    }
+} */
+
+@media (width <= 600px
+) {
+    .square {
+        background-color: yellow;
+        border: 20px solid green;
+    }
+}
