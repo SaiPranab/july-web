@@ -28,4 +28,3 @@ function A() { // outer function
 
 A()
 console.log("program ended")
-
