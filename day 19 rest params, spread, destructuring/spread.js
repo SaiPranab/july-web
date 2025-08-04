@@ -42,11 +42,29 @@ console.log(arr3)
 console.log(arr4)
 
 // --------------------------------
+let abc = "xyz"
+
 const user = {
     name: 'Biswa Bhusan Pradhan',
     age: 24,
+    address: {
+        state: 'Odisha',
+        pin: 751007
+    }
 }
 
-const copiedUser = { ...user, city: 'BBSR' }
+// const copiedUser = { ...user, city: 'BBSR' }
+// console.log(user)
+// console.log(copiedUser)
+
+const copyUser = { ...user }
+// copyUser.address.state = "Jharkhand"
 console.log(user)
-console.log(copiedUser)
+console.log(copyUser)
+
+// SHALLOW COPY
+
+
+
+// DEEP COPY
+// json.parse(), json.stringify()
