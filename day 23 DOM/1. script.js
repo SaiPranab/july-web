@@ -44,3 +44,98 @@ for (let i = 0; i < allImages.length; i++) {
 // (3) ['css-image', 'js-image', 'html-image']
 // document.querySelector("#my-first-image-id").title
 // 'Frontend Roadmap'
+
+
+
+//  ============================ 09.08.2025 =========================
+//  ===================== HOW TO APPLY STYLES USING JS ====================
+const links = document.querySelectorAll('a')
+// console.log(links)
+// links[0].style.color='teal'
+// links[1].style.color='teal'
+// links[2].style.color='teal'
+// links[3].style.color='teal'
+
+// for (let i = 0; i < links.length; i++) {
+//     links[i].style.color='red'
+// }
+
+// for (const link of links) {
+//     link.style.color= 'green'
+// }
+
+// links.forEach((link) => {
+//     link.style.color = "cyan"
+//     link.style.textDecoration = 'none'
+//     link.style.fontWeight = '700'
+//     link.style.fontFamily = 'cursive'
+//     link.style.fontSize = '18px'
+// })
+
+// links.forEach((link) => {
+//     link.style.cssText = `
+//         color: green;
+//         text-decoration: none;
+//         font-size: 18px;
+//         font-family: cursive;
+//         font-weight: 700;
+//     `
+// })
+
+// links.forEach((link) => link.setAttribute('class', 'cyan-link'))
+// links.forEach((link) => link.setAttribute('class', 'border-link')) // because for the second time when we add class attribute it overrites the previous class attr value
+
+// links.forEach(link => link.className = 'cyan-link')
+// links.forEach(link => link.className = 'border-link')
+
+
+// ====================== ACTUAL WAY OF ADDING & REMOVING CLASSESS ======================
+// links.forEach(link => console.dir(link.classList)) 
+links.forEach(link => link.classList.add('cyan-link'))
+links.forEach(link => link.classList.add('border-link'))
+links.forEach(link => link.classList.remove('border-link'))
+
+// links.forEach(link => link.classList.toggle('border-link'))
+// undefined
+// links.forEach(link => link.classList.toggle('border-link'))
+
+// undefined
+// links.forEach(link => link.classList.toggle('border-link'))
+
+// undefined
+// links.forEach(link => link.classList.toggle('border-link'))
+
+// undefined
+// links.forEach(link => link.classList.toggle('border-link'))
+
+// undefined
+// links.forEach(link => link.classList.toggle('border-link'))
+
+// undefined
+// links.forEach(link => link.classList.toggle('border-link'))
+
+// undefined
+// links.forEach(link => link.classList.toggle('border-link'))
+
+// undefined
+// links.forEach(link => link.classList.toggle('border-link'))
+
+// undefined
+// links.forEach(link => link.classList.toggle('border-link'))
+
+// undefined
+// links.forEach(link => link.classList.toggle('border-link'))
+
+// undefined
+// links.forEach(link => link.classList.toggle('border-link'))
+
+// undefined
+// links.forEach(link => link.classList.toggle('border-link'))
+
+// undefined
+// links.forEach(link => link.classList.toggle('border-link'))
+
+// undefined
+// links.forEach(link => link.classList.toggle('border-link'))
+
+// undefined

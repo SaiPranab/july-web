@@ -1,0 +1,12 @@
+.cyan-link {
+    color: cyan;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: cursive;
+    font-weight: 700;
+}
+
+.border-link {
+    border: 2px solid coral;
+}
+
