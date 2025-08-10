@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>appendChild & append</title>
+    <style>
+        .container {
+            color: green;
+            border: 2px solid black;
+            padding: 10px;
+        }
+
+        .card {
+            width: 70%;
+            height: 80px;
+            background-color: aqua;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-size: 36px;
+            border: 2px solid blueviolet;
+        }
+
+        h1{
+            font-size: 1rem;
+        }
+    </style>
+</head>
+
+<body style="font-family: cursive;">
+    <h1>appendChild & append</h1>
+    <div class="container">
+        <div class="card">1</div>
+    </div>
+    <h2>prepend</h2>
+
+    <script>
+        const container = document.querySelector('.container')
+        const card = document.querySelector('.card')
+        const h1 = document.querySelector('h1')
+        const h2 = document.querySelector('h2')
+        // container.appendChild(h1)
+    </script>
+</body>
+
+</html>

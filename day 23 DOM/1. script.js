@@ -91,9 +91,9 @@ const links = document.querySelectorAll('a')
 
 // ====================== ACTUAL WAY OF ADDING & REMOVING CLASSESS ======================
 // links.forEach(link => console.dir(link.classList)) 
-links.forEach(link => link.classList.add('cyan-link'))
-links.forEach(link => link.classList.add('border-link'))
-links.forEach(link => link.classList.remove('border-link'))
+// links.forEach(link => link.classList.add('cyan-link'))
+// links.forEach(link => link.classList.add('border-link'))
+// links.forEach(link => link.classList.remove('border-link'))
 
 // links.forEach(link => link.classList.toggle('border-link'))
 // undefined
@@ -139,3 +139,12 @@ links.forEach(link => link.classList.remove('border-link'))
 // links.forEach(link => link.classList.toggle('border-link'))
 
 // undefined
+
+
+
+
+
+
+/** ============================ 10.08.2025 ============================ */
+/** ======== Accessing ParentElement, Sibiling Element, Children ====== */
+
