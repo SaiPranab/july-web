@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="font-family: cursive;">
+    <h1>DOM Events</h1>
+    <p>- DOM events are somethings that happen on a web page which our code can notice. </p>
+    <p>- These can be caused by the user (by clicking, typing, or hovering) or by the browser.</p>
+    <p>- There are several types of DOM Events eg:</p>
+    <ul style="margin-top: -10px;">
+        <li>Mouse Events</li>
+        <li>Keyboard Events</li>
+        <li>Form Events</li>
+        <li>Document Events</li>
+        <li>Drag & Drop Events etc.</li>
+    </ul>
+
+    <h1>DOM Event Listeners</h1>
+    <p>- A DOM event listener is a function that waits for an event to happen and then reacts to it.
+
+    <div style="border: 1px solid black; padding: 5px; background-color: lightgray; border-radius: 5px;">
+        <h4 style="line-height: 0px;">Ex:-</h4>
+        <p>- Events are like signals: something just happened.</p>
+        <p>- Listeners are like peoples: they notice the event and do something in response.</p>
+    </div>
+
+    <p>- There are 3 ways in which we can add an event listener</p>
+    <ul style="margin-top: -10px;">
+        <li>by using <b>Inline HTML attributes</b></li>
+        <ul>
+            <li>Only one handler per event type</li>
+        </ul>
+        <li>by using <b>event properties (like onclick)</b></li>
+        <ul>
+            <li>Only one handler per event type</li>
+            <li>Overwriting occurs if you assign again</li>
+        </ul>
+        <li>by using <b>'addEventListener'</b></li>
+        <ul>
+            <li>Multiple listeners allowed</li>
+        </ul>
+    </ul>
+
+    <h1>Event Object</h1>
+    <p>- In JavaScript, an <b>Event Object</b> is a special object that is automatically passed to event handler
+        functions when an event occurs.</p>
+    <p>- It contains information about the event and provides methods and properties to interact with it.</p>
+    <p>- Key properties & methods</p>
+    <ul style="margin-top: -10px;">
+        <li>type</li>
+        <li>target</li>
+        <li>preventDefault()</li>
+        <li>stopPropagation()</li>
+        <li>clientX, clientY</li>
+        <li>key, code, keycode</li>
+    </ul>
+    </p>
+
+
+    <!-- ======================= CODE STARTS HERE ====================== -->
+    <h1 onDblclick="handleOnClick()" ondblclick="console.log('Hello')">Heading 1</h1>
+    <script>
+        function handleOnClick() {
+            console.log('Heading Clicked') 
+            console.log('h1 clicked')
+        }
+    </script>
+
+        
+    <!-- 2nd way of adding event listener -->
+    <h2>Heading 2</h2>
+    <script>
+        const sayHii = () => console.log("Hii Everyone")
+        const sayHello = () => console.log("Hello Everyone")
+
+        const h2 = document.querySelector('h2')
+        h2.ondblclick = sayHii
+        h2.ondblclick = sayHello
+    </script>
+
+
+    <!-- 3rd way of adding event listener -->
+    <h3>Heading 3</h3>
+    <script>
+        const sayHii1 = () => console.log("Hii Everyone")
+        const sayHello1 = () => console.log("Hello Everyone")
+
+        const h3 = document.querySelector('h3')
+        // h3.addEventListener('dblclick', sayHii1())  // -> do not use parenthesis
+        h3.addEventListener('dblclick', sayHii1)
+        h3.addEventListener('dblclick', sayHello1)
+    </script>
+
+
+    <!-- ----------------------------------------------- -->
+    <h4 class="heading">Heading 4</h4>
+    <script>
+        const h4 = document.querySelector('.heading')
+        h4.addEventListener('click', (e) => {
+            console.log(e)
+            console.log('Heading 4 clicked')
+        })
+    </script>
+</body>
+
+</html>
