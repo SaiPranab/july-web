@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interactive Event Cards</title>
+    <style>
+        body {
+            font-family: cursive;
+        }
+
+        section {
+            text-align: center;
+            margin: 20px;
+        }
+
+        h2 {
+            cursor: grab;
+        }
+
+        .card-btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .container {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #f0a500;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Adding Event Listeners:- Mouse Events, Scroll & Wheel Events, Touch Events, Pointer Events, Drag Events</h1>
+
+    <section>
+        <h2 draggable="true">Drag Me!</h2>
+        <button class="card-btn">Add Cards <span style="background-color: red;">+</span></button>
+        <div class="container"></div>
+    </section>
+
+    <script>
+        const h2 = document.querySelector('h2')
+        const addCardBtn = document.querySelector('.card-btn')
+        const container = document.querySelector('.container')
+
+        let count = 1;
+        const createCard = (e) => {
+            // console.log(e.type)
+
+            const newCard = document.createElement('div')
+            newCard.innerText = `${count++} ( ${e.type} )`
+            newCard.classList.add('card')
+            container.append(newCard)
+        }
+
+        // Mouse Events
+        // addCardBtn.addEventListener('click', createCard)
+        // addCardBtn.addEventListener('dblclick', createCard)
+        // addCardBtn.addEventListener('mousedown', createCard)
+        // addCardBtn.addEventListener('mouseup', createCard)
+        // addCardBtn.addEventListener('mouseenter', createCard)
+        // addCardBtn.addEventListener('mouseleave', createCard)
+        // addCardBtn.addEventListener('mousemove', createCard)
+
+        // Scroll events
+        // document.addEventListener('scroll', createCard)
+
+        // Wheel events
+
+        // Touch events
+        // addCardBtn.addEventListener('touchstart', createCard)
+        // addCardBtn.addEventListener('touchend', createCard)
+        // addCardBtn.addEventListener('touchmove', createCard)
+
+        // Pointer Events
+        // addCardBtn.addEventListener('pointerenter', createCard)
+        // addCardBtn.addEventListener('pointermove', createCard)
+        // addCardBtn.addEventListener('pointerleave', createCard)
+
+        // Drag events
+        h2.addEventListener('drag', createCard)
+    </script>
+</body>
+
+</html>
