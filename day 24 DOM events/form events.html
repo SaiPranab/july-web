@@ -15,12 +15,25 @@
 
 <body>
     <form action="/form-submit">
-        <input type="text" placeholder="enter username">
+        <input type="text" placeholder="enter username" name="username">
+
+        <!-- // =================== 14.08.2025 =========================== -->
+        <br> <br>
+        <label>
+            Choose an ice cream flavor
+            <select class="ice-cream" name="flavor">
+                <option value="">Select One...</option>
+                <option value="butterscotch">Butter Scotch</option>
+                <option value="chocolate">Chocolate</option>
+                <option value="vanila">Vanila</option>
+            </select>
+        </label>
+        <br> <br>
         <button>Click</button>
     </form>
 
     <script>
-        const form = document.querySelector('form')
+        // const form = document.querySelector('form')
 
         // form.addEventListener('submit', (e) => {
         //     e.preventDefault()
@@ -42,7 +55,34 @@
         input.addEventListener("blur", () => {
             console.log("Focus removed from from input field")
         })
+        input.addEventListener('input', (e) => {
+            // console.log("input event occured in the input")
+            console.log(e.target.value)
+        })
+        input.addEventListener('change', (e) => {
+            console.log("change event occured in the input")
+            console.log(e.target.value)
+        })
 
+        // =================== 14.08.2025 ===========================
+        const selectElement = document.querySelector('.ice-cream')
+        selectElement.addEventListener('change', (e) => {
+            console.log("change event occurred")
+            // console.log(e)
+            console.log(e.type, e.target.value)
+        })
+
+        const form = document.querySelector('form')
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+
+            const formData = new FormData(form)
+            console.log('formData', formData)
+
+            for (const [key, value] of formData.entries()) {
+                console.log(`${key} : ${value}`)
+            }
+        })
     </script>
 </body>
 
