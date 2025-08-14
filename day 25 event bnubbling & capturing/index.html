@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Bubbling and Capturing</title>
+    <style>
+        div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .green {
+            width: 400px;
+            height: 300px;
+            background-color: green;
+        }
+
+        .pink {
+            width: 300px;
+            height: 200px;
+            background-color: hotpink;
+        }
+
+        .blue {
+            width: 200px;
+            height: 100px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body style="font-family: cursive">
+    <h1 style="margin-bottom: -5px;">Event Bubbling</h1>
+    <p>- <b>EventBubbling</b> happens when an event happens on a child element then it <b>propagates or bubble up</b> to
+        the ancestor elements</p>
+    <p>- For example, if we click a button inside a div, the click event first happens on the button, then <b>"bubbles
+            up"</b> to the div, and then to the whole <b>document</b>. </p>
+    <p>- for stopping the event bubbling we have to use <b>stopPropagation</b> method of event object.</p>
+
+    <h1 style="margin-bottom: -5px;">Event Capturing</h1>
+    <p>- <b>Event Capturing</b> happens when an event starts from the <b>topmost ancestor</b> (like the document) and
+        travels <b>downward</b> to the target element.</p>
+    <p>- For example, if we click a button inside a div, the event is first captured by the <b>document</b>, then passed
+        to the <b>div</b>, and finally reaches the <b>button</b> where the actual click happened.</p>
+
+
+
+    <h1>Event Bubbling and Event Capturing</h1>
+    <div class="green">
+        <div class="pink">
+            <div class="blue">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const green = document.querySelector('.green')
+        const pink = document.querySelector('.pink')
+        const blue = document.querySelector('.blue')
+
+        green.addEventListener('click', (e) => {
+            console.log("Green Event Listener")
+        }, {capture: true, once: true})
+
+        pink.addEventListener('click', (e) => {
+            console.log("Pink Event Listener")
+        }, {capture: true})
+
+        blue.addEventListener('click', (e) => {
+            console.log("Blue Event Listener")
+
+            // e.stopPropagation()
+        }, {capture: true})
+
+        document.body.addEventListener('click', (e) => {
+            console.log("Body Event Listener")
+        }, {capture: true})
+
+        document.children[0].addEventListener('click', (e) => {
+            console.log("HTML Event Listener")
+        }, {capture: true})
+
+        document.addEventListener('click', (e) => {
+            console.log("Document Event Listener")
+        }, {capture: true})
+
+        window.addEventListener('click', (e) => {
+            console.log("Window Event Listener")
+
+            // e.stopPropagation()
+        }, {capture: true})
+    </script>
+</body>
+
+</html>
