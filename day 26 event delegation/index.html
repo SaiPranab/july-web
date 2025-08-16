@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Delegation Party 🎉</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    .party {
+      border: 2px dashed #333;
+      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      max-width: 600px;
+    }
+
+    .hat {
+      width: 60px;
+      height: 60px;
+      background-color: #ffcc00;
+      border: 2px solid #000;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+
+    .hat:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+
+<body style="font-family: cursive;">
+  <h1>Event Delegation</h1>
+  <p>- Event delegation is a technique in JavaScript where a single event listener is added to a parent element to
+    manage events for multiple child elements.</p>
+  <p>- Instead of adding separate event listeners to each child element, the parent element's event listener handles the
+    events as they <b>bubble up</b> from the child elements.</p>
+
+  <h1>🎩 Welcome to the Hat Party!</h1>
+  <p>Click a hat to greet the guest. Event Delegation handles it all!</p>
+
+  <div class="party">
+    <!-- Hats will be generated here -->
+  </div>
+
+  <script>
+    const party = document.querySelector('.party')
+
+    for (let i = 1; i <= 30; i++) {
+        const hat = document.createElement('div')
+        hat.innerText = i;
+        hat.classList.add('hat')
+        // hat.addEventListener('click', (e) => {
+        //     console.log("div clicked")
+        // })
+        party.append(hat)
+    }
+
+    party.addEventListener('click', (e) => {
+        // console.log(e)
+        console.log("parent clicked for the hat", e.target.innerText)
+    })
+  </script>
+</body>
+
+</html>
