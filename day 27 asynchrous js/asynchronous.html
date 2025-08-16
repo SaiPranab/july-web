@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="font-family: cursive;">
+    <h1>Asynchronous Programming</h1>
+    <p>- Asynchronous Javascripts is an ability to <b>handle multiple operations without blocking the execution of the
+            main thread.</b></p>
+    <p>- As JS is single-threaded means it can only do one task at a time</p>
+    <p>- But with <b>Asynchronous Programming</b> we can schedule tasks to be executed later by JS engine.</p>
+
+    <h1>Callback Hell</h1>
+    <p><b>Callback hell</b> is a situation in  javascript where multiple nested callbacks are used to handle asynchrnous operations</p>
+    <p>It occurs when one callback depends on the result of the previous callback, which leads to deeply nested callback functions</p>
+    <script>
+        // console.log(1)
+        // console.log(2)
+        // console.log(3)
+
+        // console.log(4)
+        // // setTimeout(() => {
+        // //     console.log(5)
+        // // }, 2000)
+        // // alert("Hello JS")
+        // console.log(6)
+
+        // ======================== CALLBACK HELL ==============================
+        // console.log("Making A Refreshing Tea for everyone")
+
+        // setTimeout(() => {
+        //     console.log("Boil water")
+        // }, 1000)
+        // setTimeout(() => {
+        //     console.log("Add Tea leaves")
+        // }, 2000)
+        // setTimeout(() => {
+        //     console.log("Pour into cups")
+        // },3000)
+
+
+        // setTimeout(() => {
+        //     console.log("Boil water")
+
+        //     setTimeout(() => {
+        //         console.log("Add Tea leaves")
+
+        //         setTimeout(() => {
+        //             console.log("Pour into cups")
+        //         }, 1000)
+        //     }, 1000)
+        // }, 1000)
+
+
+        // function makeTea(step, delay) {
+        //     setTimeout(() => {
+        //         console.log(step)
+        //     }, delay)
+        // }
+        // makeTea("Boil Water", 1000)
+        // makeTea("Add Tea leaves", 2000)
+        // makeTea("Pour into cups", 3000)
+
+
+        // function makeTea(step, delay, nextStep) {
+        //     setTimeout(() => {
+        //         console.log(step)
+
+        //         if(nextStep) {
+        //             nextStep() // error -> nextStep is not a function
+        //         }
+        //     }, delay)
+        // }
+        // makeTea("Boil Water", 1000, () => {
+        //     makeTea("Add Tea leaves", 1000, () => {
+        //         makeTea("Pour into cups", 1000)      
+        //     })
+        // })
+
+
+        // ===================== ANOTHER EXAMPLE FOR CALLBACK HELL
+        // function sendEmail() {
+        //     let serverStatus =  Math.round(Math.random() * 10 + 1)
+
+        //     setTimeout(() => {
+        //         if(serverStatus > 4) {
+        //             console.log("Email sent successfully")
+        //         } else {
+        //             console.log("Email failed:Server busy")
+        //         }
+        //     })
+        // }
+        // sendEmail()
+
+
+        function sendEmail(success, failure) {
+            let serverStatus = Math.round(Math.random() * 10 + 1)
+
+            setTimeout(() => {
+                if (serverStatus > 4) {
+                    success()
+                } else {
+                    failure()
+                }
+            }, 1000)
+        }
+        // function success() {
+        //     console.log("Email sent successfully")
+        // }
+        // function failure() {
+        //     console.log("Email failed:Server busy")
+        // }
+        // sendEmail(success, failure)
+        // sendEmail(function () {
+        //     console.log("Email sent successfully")
+        // }, () => {
+        //     console.log("Email failed:Server busy")
+        // })
+
+        sendEmail(
+        () => {
+            console.log("Email - 1 sent successfully")
+
+            sendEmail(
+                () => {
+                    console.log("Email - 2 sent successfully")
+
+                     sendEmail(
+                        () => {
+                            console.log("Email - 3 sent successfully")
+                        }, 
+                        () => {
+                            console.log("Email - 3 failed: server busy")
+                        }
+                    )
+                }, 
+                () => {
+                    console.log("Email - 2 failed: server busy")
+                }
+            )
+        },  
+        () => {
+            console.log("Email - 1 failed : Server busy")
+        })
+
+    </script>
+</body>
+
+</html>
