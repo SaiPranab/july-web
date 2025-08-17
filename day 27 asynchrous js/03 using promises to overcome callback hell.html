@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function sendEmail() {
+            return new Promise((resolve, reject) => {
+                let serverStatus = Math.round(Math.random() * 10 + 1)
+
+                setTimeout(() => {
+                    if (serverStatus > 4) {
+                        resolve("Email sent successfully " + serverStatus)
+                    } else {
+                        reject("Email failed : Server busy " + serverStatus)
+                    }
+                }, 1000)
+            })
+        }
+
+        // sendEmail()
+        //     .then((res) => {
+        //         console.log( res)
+        //     })
+        //     .catch((err) => {
+        //         console.log(err)
+        //     })
+
+        // sendEmail()
+        //     .then(() => {
+        //         console.log("Promise 1 resolved")
+
+        //         sendEmail()
+        //             .then(() => {
+        //                 console.log("Promise 2 resolved")
+
+        //                 sendEmail()
+        //                     .then(() => {
+        //                         console.log("Promise 3 resolved")
+        //                     })
+        //                     .catch(() => {
+        //                         console.log("Promise 3 rejected")
+        //                     })
+        //             })
+        //             .catch(() => {
+        //                 console.log("Promise 2 rejected")
+        //             })
+        //     })
+        //     .catch(() => {
+        //         console.log("Promise 1 rejected")
+        //     })
+
+        // PROMISE CHAINING
+        sendEmail()
+            .then(() => {
+                console.log("Promise 1 resolved")
+                return sendEmail()
+            })
+            .then(() => {
+                console.log("Promise 2 resolved")
+                return sendEmail()
+            })
+            .then(() => {
+                console.log("Promise 3 resolved")
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    </script>
+</body>
+
+</html>
