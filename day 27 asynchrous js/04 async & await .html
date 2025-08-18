@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="font-family: cursive;">
+    <h1>Async function</h1>
+    <p>- An async function is a function that always returns a Promise</p>
+
+    <script>
+        function A() {
+        }
+
+        async function B() {
+        }
+
+        async function C() {
+            return new Promise(() => { })
+        }
+
+        async function D() {
+            // xyz
+            return "hello"
+        }
+        D()
+            .then((res) => {
+                console.log("Promise was resolved", res)
+            })
+            .catch((err) => {
+                console.log("Promise was rejected", err)
+            })
+    </script>
+
+
+
+    <h1>await keyword</h1>
+    <p>- The await keyword is used within async function to pause the execution untill a Promise is settled (resolved or
+        rejected).</p>
+
+    <script>
+        function wait() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log("Set Timeout completed")
+                    resolve()
+                }, 2000)
+            })
+        }
+
+        async function f1() {
+            console.log("start")
+            await wait()
+            console.log("end")
+        }
+        f1()
+
+        // ===============================================
+        function doStep(step, delay) {
+            return new Promise((resolve, reject) => {
+                const number = Math.floor(Math.random() * 10 + 1)
+                if (number > 4) {
+                    reject("Insufficient Ingredient")
+                }
+
+                setTimeout(() => {
+                    console.log(step)
+                    resolve(`${step} done`)
+                }, delay)
+            })
+        }
+
+        async function makeTea() {
+            try {
+                await doStep("Boil water", 1000)
+                await doStep("Add Tea leaves", 1000)
+                await doStep("Pour into cup", 1000)
+            }
+            catch (err) {
+                console.log("error", err)
+            }
+        }
+    </script>
+</body>
+
+</html>
