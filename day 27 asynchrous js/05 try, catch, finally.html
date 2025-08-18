@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>try, catch & finally keyword</h1>
+
+    <script>
+        class AppError extends Error {
+            constructor(msg) {
+                super(msg)
+            }
+        }
+
+        function f1() {
+            const number = Math.floor(Math.random() * 10 + 1)
+            if (number > 4) {
+                // skjgfhjksfgjkb()
+                
+                // throw new Error("Viswanatha is a very silent guy")
+
+                throw new AppError("Viswanatha is a very silent guy")
+            }
+
+            console.log("Hello Hello")
+        }
+
+        try {
+            f1()
+        }
+        catch (err) {
+            console.log("error occurred:-", err)
+        }
+        finally {
+            console.log("finally excuted")
+        }
+    </script>
+</body>
+
+</html>
