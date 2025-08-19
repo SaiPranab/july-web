@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>fetch API</h1>
+
+    <script>
+        // fetch('https://dummyjson.com/posts/30')
+        //     .then((res) => {
+        //         // console.log("promise resolved")
+        //         // console.log(res)
+        //         // console.log(res.json()) // it extract the json fromt he readable stream
+        //         return res.json()
+        //     })
+        //     .then((data) => {
+        //         console.log(data)
+        //     })
+        //     .catch(() => {
+        //         console.log("Some error occured")
+        //     })
+
+
+        
+        // JSON.parse() // It converts the json obj into javascript obj
+        // const json = `{
+        //     "id": 30,
+        //     "title": "Things aren't going well at all",
+        //     "body": "Things aren't going well at all with mom today. She is just a limp noodle and wants to sleep all the time. I sure hope that things get better soon.",
+        //     "tags": [
+        //         "american",
+        //         "love",
+        //         "fiction"
+        //     ],
+        //     "reactions": {
+        //         "likes": 465,
+        //         "dislikes": 30
+        //     },
+        //     "views": 3558,
+        //     "userId": 177
+        // }`
+        // const obj = JSON.parse(json)
+        // console.log(obj)
+
+        
+        
+        // // JSON.stringify() // It converts the javascript obj into json obj
+        // const jsonObj = JSON.stringify(obj)
+        // console.log(jsonObj)
+
+
+        async function getPostById(postId) {
+            const res = await fetch(`https://dummyjson.com/posts/${postId}`)
+            // console.log(res)
+            const data = await res.json()
+            console.log(data)
+        }
+    </script>
+</body>
+</html>
