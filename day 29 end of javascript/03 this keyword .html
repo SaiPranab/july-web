@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>this <span>keyword</span> in JS</h1>
+
+    <script>
+        // console.log(this)
+
+        // function f1() {
+        //     console.log(this) // window 
+        // }
+        // window.f1()
+        // f1()
+
+        
+        const student = {
+            name: "Sai",
+            printThis() {
+                console.log(this) // student obj
+            },
+            getFullName () {
+                console.log("Full name is ", this.name)
+                const lastName = "Patra"
+                
+                function getLastName() {
+                    console.log(this)
+                }
+
+                getLastName()
+            },
+            sayHello : () => {
+                console.log(this)
+            }
+        }
+        // printThis()
+        // student.printThis()
+        // student.getFullName()
+        student.sayHello()
+
+
+        // ============================== EVENT LISTENER
+        const h1 = document.querySelector('h1')
+        h1.addEventListener('click', function (e) {
+            console.log('h1 clicked', this)
+            console.dir(this)
+            console.log(e.target)
+        })
+    </script>
+</body>
+</html>

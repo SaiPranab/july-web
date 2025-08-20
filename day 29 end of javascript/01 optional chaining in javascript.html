@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Optional Chaining Operator</h1>
+
+    <script>
+        const student = {
+            roll: 101,
+            age: 22,
+
+            // address: {
+            //     state: "Odisha"
+            // }
+        }
+
+        console.log(student)
+        // console.log(student.address) 
+        // console.log(student.address.city)
+
+        // console.log(student.address)
+        // console.log(student.address && student.address.city)
+
+
+        console.log(student?.address)
+        console.log(student?.address?.city)
+        console.log(student.address?.['city'])
+    </script>
+</body>
+</html>
