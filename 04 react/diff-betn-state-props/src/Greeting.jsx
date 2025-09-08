@@ -1,7 +1,9 @@
 import { useState } from "react"
 
-export default function Greeting({ name }) {
-    console.log("Child Component")
+export default function Greeting({ name, children }) {
+    // console.log("Child Component")
+
+    console.log(children)
 
     const [clickCount, setClickCount] = useState(0)
     return (
@@ -9,6 +11,10 @@ export default function Greeting({ name }) {
             <h2>Hello, {name}</h2>
             <p>You clicked the button {clickCount} times</p>
             <button onClick={() => setClickCount((prev) => prev + 1)}>Click Here..</button>
+
+            <div style={{marginTop: '10px', padding: '10px', backgroundColor: '#f06969ff'}}>
+                {children}
+            </div>
         </div>
     )
 } 
