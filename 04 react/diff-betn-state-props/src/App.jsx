@@ -13,7 +13,7 @@ function App() {
     <div style={{ padding: '20px' }}>
       <h1>React Props Vs States</h1>
 
-      <button onClick={() => setShowGreeting(!showGreeting)}>
+      <button className='button' onClick={() => setShowGreeting(!showGreeting)}>
         { showGreeting ? 'Hide' : 'Show'}
       </button>
 
