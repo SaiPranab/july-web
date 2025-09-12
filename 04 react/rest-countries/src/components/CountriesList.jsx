@@ -1,15 +1,25 @@
-export default function CountriesList(){
-    return (
-        <>
-            <div className="countries-container">
-                <a className="country-card" href="#"></a>
-                <div className="flag-container">
-                    <img src="image" alt="image" />
-                </div>
-                <div className="card-text">
+import React from 'react'
+import countriesData from '../countriesData.js'
+import CountryCard from './CountryCard.jsx'
 
-                </div>
-            </div>
-        </>
-    )
+export default function CountriesList() {
+  // console.log('.....................', countriesData)
+  console.log('.....................', countriesData[0])
+  return (
+    <div className="countries-container">
+      { 
+        countriesData.map(
+          (country, idx) => 
+            <CountryCard 
+              key={idx}
+              flag={country.flags.svg}
+              name={country.name.common}
+              population={country.population}
+              region={country.region}
+              capital={country.capital[0]}
+            /> 
+        )
+      }
+    </div>
+  )
 }
