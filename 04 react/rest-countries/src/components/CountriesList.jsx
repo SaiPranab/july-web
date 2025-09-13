@@ -1,17 +1,35 @@
 import React, { useState } from 'react'
-import countriesData from '../countriesData.js'
 import CountryCard from './CountryCard.jsx'
 
 export default function CountriesList({ query }) {
+  // let countriesData = []
+  const [countriesData, setCountriesData] = useState([])
+
+  if(countriesData.length === 0) {
+    fetch('https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital')
+      .then((res) => {
+        return res.json()
+      })
+      .then((data) => {
+        // console.log('data', data)
+        // countriesData = data
+        setCountriesData(data)
+      })
+  }
+
+  console.log('countriesData', countriesData)
+
   const filteredCountries = countriesData.filter((country) => 
             country.name.common.toLowerCase().includes(query))
 
   return (
     <>
-    {/* <input type="text" onChange={(e) => setQuery(e.target.value)} /> */}
+    <button onClick={() => {setCountriesData([])}}>Remove All Countries</button>
+
     <div className="countries-container">
       { 
-        filteredCountries.map(
+        // filteredCountries.map(
+        countriesData.map(
           (country, idx) => 
             <CountryCard 
               key={idx}
