@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import countriesData from '../countriesData.js'
 import CountryCard from './CountryCard.jsx'
 
-export default function CountriesList() {
-  // console.log('.....................', countriesData)
-  console.log('.....................', countriesData[0])
+export default function CountriesList({ query }) {
+  const filteredCountries = countriesData.filter((country) => 
+            country.name.common.toLowerCase().includes(query))
+
   return (
+    <>
+    {/* <input type="text" onChange={(e) => setQuery(e.target.value)} /> */}
     <div className="countries-container">
       { 
-        countriesData.map(
+        filteredCountries.map(
           (country, idx) => 
             <CountryCard 
               key={idx}
@@ -21,5 +24,6 @@ export default function CountriesList() {
         )
       }
     </div>
+    </>
   )
 }
