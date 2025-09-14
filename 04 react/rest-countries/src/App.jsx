@@ -17,9 +17,7 @@ function App() {
           <SelectMenu />
         </div>
 
-        {query === 'unmount' ? "Component is hidden" : "Component is visible"}
-        <br />
-        {query !== 'unmount' && <CountriesList query={query} />}
+        <CountriesList query={query} />
       </main>
     </>
   )
