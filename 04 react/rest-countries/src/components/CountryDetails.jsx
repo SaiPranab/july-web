@@ -7,6 +7,8 @@ export default function CountryDetails() {
     const params = useParams()
     const countryName = params.country
 
+    const [notFound, setNotFound] = useState(false)
+
     const [countryData, setCountryData] = useState(null)
     useEffect(() => {
         fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
@@ -30,8 +32,13 @@ export default function CountryDetails() {
         })
         .catch((err) => {
             console.log("error occurred", err)
+            setNotFound(true)
         })
     }, [])
+
+    if(notFound) {
+        return <h1>Country Not Found</h1>
+    }
 
     return countryData === null ? <h2>loading....</h2> :
     (
