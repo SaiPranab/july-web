@@ -31,6 +31,8 @@ main {
 a {
     text-decoration-line: none;
     color: inherit;
+    display: inline-block;
+    margin: 5px 4px;
 }
 
 .header-container {

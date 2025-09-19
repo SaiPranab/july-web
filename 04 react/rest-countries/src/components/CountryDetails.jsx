@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
 import './CountryDetails.css'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 export default function CountryDetails() {
-    // const countryName = new URLSearchParams(location.search).get('name')
     const params = useParams()
     const countryName = params.country
 
@@ -27,14 +26,31 @@ export default function CountryDetails() {
                 capital: data.capital.join(', '),
                 tld: data.tld.join(', '),
                 currencies: Object.values(data.currencies).map(curr => curr.name).join(", "),
-                languages: Object.values(data.languages).join(', ')
+                languages: Object.values(data.languages).join(', '),
+                borders: [],
             })
+
+            if(!data.borders) {
+                data.borders = []
+            }
+
+            data.borders.map((border) => {
+                fetch(`https://restcountries.com/v3.1/alpha/${border}`)
+                    .then((res) => {
+                        return res.json();
+                    })
+                    .then(([borderCountry]) => {
+                        // console.log("countryyyyyyyyyyyyyyyyy", borderCountry.name.common)
+                        console.log('countryDataaaaaaaaaaaaaaaaaaa', countryData)
+                        setCountryData((prev) => ({...prev, borders: [...prev.borders, borderCountry.name.common]}) )
+                    })
+                })
         })
         .catch((err) => {
             console.log("error occurred", err)
             setNotFound(true)
         })
-    }, [])
+    }, [countryName])
 
     if(notFound) {
         return <h1>Country Not Found</h1>
@@ -88,7 +104,7 @@ export default function CountryDetails() {
                             </p>
                         </div>
                         <div className="border-countries">
-                            <b>Border Countries: </b>&nbsp;
+                            <b>Border Countries: {countryData.borders.map((border) => <Link to={`/${border}`} > {border} </Link>)} </b>&nbsp;
                         </div>
                     </div>
                 </div>
