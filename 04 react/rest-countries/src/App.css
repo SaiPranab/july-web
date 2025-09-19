@@ -172,3 +172,9 @@ a {
         flex-direction: column;
     }
 }
+
+/* CountriesList Shimmer UI */
+.shimmer-card {
+    height: 314px;
+    background-color: #c7c7c7;
+}
