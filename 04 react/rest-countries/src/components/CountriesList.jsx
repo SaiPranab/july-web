@@ -18,9 +18,12 @@ export default function CountriesList({ query }) {
   const filteredCountries = countriesData.filter((country) =>
     country.name.common.toLowerCase().includes(query))
 
+  if(!countriesData.length) {
+    return <CountryListShimmer />
+  }
+
   return (
     <>
-      <CountryListShimmer />
       <div className="countries-container">
         {
           filteredCountries.map(

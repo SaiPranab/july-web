@@ -176,5 +176,26 @@ a {
 /* CountriesList Shimmer UI */
 .shimmer-card {
     height: 314px;
-    background-color: #c7c7c7;
+    background-color: var(--elements-color);
+    --shimmer-color: #c7c7c7;
+}
+
+.shimmer-card .flag-container {
+    background-color: var(--shimmer-color);
+}
+
+.shimmer-card .card-title {
+    height: 32px;
+    background-color: var(--shimmer-color);
+    border-radius: 2px;
+}
+
+.shimmer-card p {
+    height: 22px;
+    background-color: var(--shimmer-color);
+    border-radius: 2px;
+}
+
+.shimmer-card p:last-child {
+    width: 60%;
 }
