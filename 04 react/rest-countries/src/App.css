@@ -17,10 +17,10 @@ main, header {
     color: var(--text-color);
 }
 
-main.dark, header.dark {
-    --background-color: hsl(207, 26%, 17%); 
+main.dark, header.dark, body.dark {
+    --background-color: hsl(209, 26%, 17%); 
     --text-color: white;
-    --elements-color: hsl(209, 23%, 22%);
+    --elements-color: hsl(208, 23%, 22%);
 }
 
 main {
@@ -174,10 +174,14 @@ a {
 }
 
 /* CountriesList Shimmer UI */
-.shimmer-card {
+body .shimmer-card {
     height: 314px;
     background-color: var(--elements-color);
     --shimmer-color: #c7c7c7;
+}
+
+body.dark .shimmer-card {
+    --shimmer-color: #475a6c;
 }
 
 .shimmer-card .flag-container {
