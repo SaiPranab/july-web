@@ -17,7 +17,7 @@ main, header {
     color: var(--text-color);
 }
 
-main.dark, header.dark, body.dark {
+main.dark, header.dark {
     --background-color: hsl(209, 26%, 17%); 
     --text-color: white;
     --elements-color: hsl(208, 23%, 22%);

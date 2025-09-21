@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './CountryDetails.css'
 import { Link, useParams } from 'react-router-dom'
+import { ThemeContext } from '../store/ThemeContext'
 
 export default function CountryDetails() {
     const params = useParams()
@@ -9,6 +10,8 @@ export default function CountryDetails() {
     const [notFound, setNotFound] = useState(false)
 
     const [countryData, setCountryData] = useState(null)
+
+    const {isDark} = useContext(ThemeContext)
     useEffect(() => {
         fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
         .then((res) => {
@@ -58,7 +61,7 @@ export default function CountryDetails() {
 
     return countryData === null ? <h2>loading....</h2> :
     (
-        <main>
+        <main className={`${isDark ? "dark" : ""}`}>
             <div className="country-details-container">
                 <span className="back-button" onClick={() => history.back()} >
                     <i className="fa-solid fa-arrow-left"></i>&nbsp; Back
