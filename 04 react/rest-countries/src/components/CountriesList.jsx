@@ -16,7 +16,8 @@ export default function CountriesList({ query }) {
   }, [])
 
   const filteredCountries = countriesData.filter((country) =>
-    country.name.common.toLowerCase().includes(query))
+    country.name.common.toLowerCase().includes(query) || country.region.toLowerCase().includes(query)
+  )
 
   if(!countriesData.length) {
     return <CountryListShimmer />
