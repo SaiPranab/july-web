@@ -10,3 +10,9 @@ export interface ExpenseError {
   category: string,
   amount: string
 }
+
+// export interface ValidationsRules {
+//   title: [{}],
+//   category: [{}],
+//   amount: []
+// }
