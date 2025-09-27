@@ -1,10 +1,19 @@
+import { useState, type FormEvent } from "react"
 import type { Expense } from "../model"
 
 interface ExpenseFormProps {
   expenses: Expense[]
 }
 
-function ExpenseTable({expenses}: ExpenseFormProps) {
+function ExpenseTable({ expenses }: ExpenseFormProps) {
+  const [selectedCategory, setSelectedCategory] = useState<string>('')
+
+  const filteredExpenses: Expense[] = expenses.filter(prevExpense =>
+    prevExpense.category.toLowerCase().includes(selectedCategory))
+
+  const total = filteredExpenses.reduce((acc, current) => {
+    return acc + parseInt(current.amount)
+  }, 0)
   return (
     <>
       <table className="expense-table">
@@ -12,7 +21,7 @@ function ExpenseTable({expenses}: ExpenseFormProps) {
           <tr>
             <th>Title</th>
             <th>
-              <select>
+              <select onChange={(e: FormEvent) => setSelectedCategory((e.target as HTMLSelectElement).value)}>
                 <option value="">All</option>
                 <option value="grocery">Grocery</option>
                 <option value="clothes">Clothes</option>
@@ -52,7 +61,7 @@ function ExpenseTable({expenses}: ExpenseFormProps) {
         </thead>
         <tbody>
           {
-            expenses.map(expense => (
+            filteredExpenses.map(expense => (
               <tr key={expense.id}>
                 <td>{expense.title}</td>
                 <td>{expense.category}</td>
@@ -60,11 +69,17 @@ function ExpenseTable({expenses}: ExpenseFormProps) {
               </tr>
             ))
           }
-          <tr>
-            <th>Total</th>
-            <th></th>
-            <th>₹8100</th>
-          </tr>
+          {
+            filteredExpenses.length === 0 ?
+              <tr style={{ textAlign: 'center' }}>
+                <i>No expenses found</i>
+              </tr> :
+              <tr>
+                <th>Total</th>
+                <th></th>
+                <th>₹{total}</th>
+              </tr>
+          }
         </tbody>
       </table>
     </>
