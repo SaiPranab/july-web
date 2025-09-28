@@ -7,6 +7,7 @@ interface ExpenseFormProps {
 
 function ExpenseTable({ expenses }: ExpenseFormProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('')
+  const [sortingCallback, setSortingCallback] = useState<(a: Expense, b: Expense) => number>(() => () => 0)
 
   const filteredExpenses: Expense[] = expenses.filter(prevExpense =>
     prevExpense.category.toLowerCase().includes(selectedCategory))
@@ -38,6 +39,8 @@ function ExpenseTable({ expenses }: ExpenseFormProps) {
                   width="10"
                   viewBox="0 0 384 512"
                   className="arrow up-arrow"
+                  // onClick={() => setExpenses([...expenses.sort((a, b) => parseInt(a.amount) - parseInt(b.amount))])}
+                  onClick={() => setSortingCallback(() => (a: Expense, b: Expense) => parseInt(a.amount) - parseInt(b.amount))}
                 >
                   <title>Ascending</title>
                   <path
@@ -49,6 +52,8 @@ function ExpenseTable({ expenses }: ExpenseFormProps) {
                   width="10"
                   viewBox="0 0 384 512"
                   className="arrow down-arrow"
+                  // onClick={() => setExpenses([...expenses.sort((a, b) => parseInt(b.amount) - parseInt(a.amount))])}
+                  onClick={() => setSortingCallback(() => (a: Expense, b: Expense) => parseInt(b.amount) - parseInt(a.amount))}
                 >
                   <title>Descending</title>
                   <path
@@ -61,13 +66,15 @@ function ExpenseTable({ expenses }: ExpenseFormProps) {
         </thead>
         <tbody>
           {
-            filteredExpenses.map(expense => (
-              <tr key={expense.id}>
-                <td>{expense.title}</td>
-                <td>{expense.category}</td>
-                <td>₹{expense.amount}</td>
-              </tr>
-            ))
+            filteredExpenses
+              .sort(sortingCallback)
+              .map(expense => (
+                <tr key={expense.id}>
+                  <td>{expense.title}</td>
+                  <td>{expense.category}</td>
+                  <td>₹{expense.amount}</td>
+                </tr>
+              ))
           }
           {
             filteredExpenses.length === 0 ?
@@ -76,7 +83,14 @@ function ExpenseTable({ expenses }: ExpenseFormProps) {
               </tr> :
               <tr>
                 <th>Total</th>
-                <th></th>
+                <th style={{ textAlign: 'center' }}>
+                  <button
+                    style={{ padding: '5px 30px', fontFamily: 'inherit', fontSize: 'inherit' }}
+                    onClick={() => setSortingCallback(() => () => 0)}
+                  >
+                    Clear
+                  </button>
+                </th>
                 <th>₹{total}</th>
               </tr>
           }
