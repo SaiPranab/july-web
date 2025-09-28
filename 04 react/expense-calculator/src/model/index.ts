@@ -10,3 +10,8 @@ export interface ExpenseError {
   category: string,
   amount: string
 }
+
+export interface MenuPosition {
+  left: number, 
+  top: number
+}

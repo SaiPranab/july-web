@@ -1,13 +1,28 @@
-import { useState, type FormEvent } from "react"
-import type { Expense } from "../model"
+import { useState, type Dispatch, type FormEvent, type SetStateAction } from "react"
+import type { Expense, MenuPosition } from "../model"
+import ContextMenu from "./ContextMenu"
 
 interface ExpenseFormProps {
-  expenses: Expense[]
+  expenses: Expense[],
+  setExpenses: Dispatch<SetStateAction<Expense[]>>
 }
 
-function ExpenseTable({ expenses }: ExpenseFormProps) {
+function ExpenseTable({ expenses, setExpenses }: ExpenseFormProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('')
   const [sortingCallback, setSortingCallback] = useState<(a: Expense, b: Expense) => number>(() => () => 0)
+  const [menuPosition, setMenuPosition] = useState<MenuPosition>({ left: -10000, top: -10000 })
+  const [rowId, setRowId] = useState<string>('')
+
+  function handleContextMenu(e: any, expenseId: string) {
+    e.preventDefault()
+
+    setMenuPosition({
+      left: e.clientX + 2,
+      top: e.clientY + 2
+    })
+
+    setRowId(expenseId)
+  }
 
   const filteredExpenses: Expense[] = expenses.filter(prevExpense =>
     prevExpense.category.toLowerCase().includes(selectedCategory))
@@ -17,7 +32,8 @@ function ExpenseTable({ expenses }: ExpenseFormProps) {
   }, 0)
   return (
     <>
-      <table className="expense-table">
+      <ContextMenu menuPosition={menuPosition} rowId={rowId} setExpenses={setExpenses} setMenuPosition={setMenuPosition}/>
+      <table className="expense-table" onClick={() => setMenuPosition({ left: -10000, top: -10000 })}>
         <thead>
           <tr>
             <th>Title</th>
@@ -69,7 +85,7 @@ function ExpenseTable({ expenses }: ExpenseFormProps) {
             filteredExpenses
               .sort(sortingCallback)
               .map(expense => (
-                <tr key={expense.id}>
+                <tr key={expense.id} onContextMenu={(e: any) => handleContextMenu(e, expense.id)}>
                   <td>{expense.title}</td>
                   <td>{expense.category}</td>
                   <td>₹{expense.amount}</td>
