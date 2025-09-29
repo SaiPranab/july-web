@@ -5,9 +5,12 @@ import ContextMenu from "./ContextMenu"
 interface ExpenseFormProps {
   expenses: Expense[],
   setExpenses: Dispatch<SetStateAction<Expense[]>>
+  setExpense: Dispatch<SetStateAction<Expense>>
+  setEditingRowId: Dispatch<SetStateAction<string>>
 }
 
-function ExpenseTable({ expenses, setExpenses }: ExpenseFormProps) {
+function ExpenseTable({ expenses, setExpenses, setExpense, setEditingRowId }: ExpenseFormProps) {
+  console.log("rendering ExpenseTable")
   const [selectedCategory, setSelectedCategory] = useState<string>('')
   const [sortingCallback, setSortingCallback] = useState<(a: Expense, b: Expense) => number>(() => () => 0)
   const [menuPosition, setMenuPosition] = useState<MenuPosition>({ left: -10000, top: -10000 })
@@ -32,8 +35,20 @@ function ExpenseTable({ expenses, setExpenses }: ExpenseFormProps) {
   }, 0)
   return (
     <>
-      <ContextMenu menuPosition={menuPosition} rowId={rowId} setExpenses={setExpenses} setMenuPosition={setMenuPosition}/>
-      <table className="expense-table" onClick={() => setMenuPosition({ left: -10000, top: -10000 })}>
+      <ContextMenu
+        menuPosition={menuPosition}
+        rowId={rowId}
+        expenses={expenses}
+        setExpenses={setExpenses}
+        setMenuPosition={setMenuPosition}
+        setExpense={setExpense}
+        setEditingRowId={setEditingRowId}
+      />
+      <table className="expense-table" onClick={() => {
+        if (menuPosition.left !== -10000) {
+          setMenuPosition({ left: -10000, top: -10000 })
+        }
+      }}>
         <thead>
           <tr>
             <th>Title</th>
