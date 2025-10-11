@@ -1,20 +1,17 @@
-import { useState, type FormEvent } from "react"
+import { useState, type Dispatch, type FormEvent, type SetStateAction } from "react"
 import type { Expense, ExpenseError } from "../model";
 import Input from "./Input";
 import Select from "./Select";
 
 interface ExpenseFormProps {
-  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>;
+  setExpenses: React.Dispatch<React.SetStateAction<Expense[]>>,
+  expense: Expense,
+  setExpense: Dispatch<SetStateAction<Expense>>
+  editingRowId: string
+  setEditingRowId: Dispatch<SetStateAction<string>>
 }
 
-function ExpenseForm({ setExpenses }: ExpenseFormProps) {
-  console.log('rendering')
-  const [expense, setExpense] = useState<Expense>({
-    id: '',
-    title: '',
-    category: '',
-    amount: ''
-  })
+function ExpenseForm({ setExpenses, expense, setExpense, editingRowId, setEditingRowId }: ExpenseFormProps) {
   const [errors, setErrors] = useState<ExpenseError>({
     title: '',
     category: '',
@@ -69,6 +66,28 @@ function ExpenseForm({ setExpenses }: ExpenseFormProps) {
 
     const errorData: ExpenseError = validate(expense)
     if (Object.values(errorData).some(val => val !== '')) return
+
+    if(editingRowId) {
+      setExpenses(prevExpenses => {
+        return prevExpenses.map(prevExpense => {
+          if(prevExpense.id === editingRowId) {
+            return {...expense}
+          }
+
+          return prevExpense
+        })
+      })
+
+      setExpense({
+        id: '',
+        title: '',
+        category: '',
+        amount: ''
+      })
+
+      setEditingRowId('')
+      return  
+    }
 
     const newExpense: Expense = {
       id: crypto.randomUUID(),
@@ -132,7 +151,7 @@ function ExpenseForm({ setExpenses }: ExpenseFormProps) {
           onChange={handleChange}
           error={errors.amount}
         />
-        <button className="add-btn">Add</button>
+        <button className="add-btn">{editingRowId ? "Save" : "Add"}</button>
       </form>
     </>
   )
