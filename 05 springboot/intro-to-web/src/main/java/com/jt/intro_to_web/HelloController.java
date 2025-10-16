@@ -5,7 +5,14 @@ import java.io.PrintWriter;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HelloController {
@@ -27,5 +34,31 @@ public class HelloController {
     model.addAttribute("name1", "Java Technocrat");
     model.addAttribute("phone", "9437056780");
     return "contact";
+  }
+
+  @RequestMapping("/form")
+  public String form() {
+    return "form";
+  }
+
+  // @RequestMapping("/submit")
+  // public String submit(@RequestParam(name = "user", defaultValue = "Java Technocrat") String username,
+  //                                   @RequestParam String password, Model model) {
+  //   System.out.println("Submit method");
+  //   System.out.println("Username is :- " + username);
+  //   System.out.println("Password is :- " + password);
+
+  //   model.addAttribute("user", username);
+  //   model.addAttribute("pass", password);
+  //   return "details";
+  // }
+
+  // @RequestMapping(path = "/submit", method = RequestMethod.POST)
+  @PostMapping("/submit")
+  public String submit1(@ModelAttribute LoginCredentials credentials, Model model) {
+
+    model.addAttribute("user", credentials.getUsername());
+    model.addAttribute("pass", credentials.getPassword());
+    return "details";
   }
 }
