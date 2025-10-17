@@ -1,6 +1,8 @@
 package com.jt.intro_to_web;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -42,15 +44,16 @@ public class HelloController {
   }
 
   // @RequestMapping("/submit")
-  // public String submit(@RequestParam(name = "user", defaultValue = "Java Technocrat") String username,
-  //                                   @RequestParam String password, Model model) {
-  //   System.out.println("Submit method");
-  //   System.out.println("Username is :- " + username);
-  //   System.out.println("Password is :- " + password);
+  // public String submit(@RequestParam(name = "user", defaultValue = "Java
+  // Technocrat") String username,
+  // @RequestParam String password, Model model) {
+  // System.out.println("Submit method");
+  // System.out.println("Username is :- " + username);
+  // System.out.println("Password is :- " + password);
 
-  //   model.addAttribute("user", username);
-  //   model.addAttribute("pass", password);
-  //   return "details";
+  // model.addAttribute("user", username);
+  // model.addAttribute("pass", password);
+  // return "details";
   // }
 
   // @RequestMapping(path = "/submit", method = RequestMethod.POST)
@@ -60,5 +63,15 @@ public class HelloController {
     model.addAttribute("user", credentials.getUsername());
     model.addAttribute("pass", credentials.getPassword());
     return "details";
+  }
+
+  @GetMapping("/multi-submit")
+  public String submit2(Model model) {
+    LoginCredentials credential1 = new LoginCredentials("JT", "1234");
+    LoginCredentials credential2 = new LoginCredentials("JavaTechnocrat", "5678");
+    LoginCredentials credential3 = new LoginCredentials("Sai", "3456");
+
+    model.addAttribute("credentials", List.of(credential1, credential2, credential3));
+    return "credentials";
   }
 }

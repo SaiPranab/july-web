@@ -21,4 +21,19 @@ public class LoginCredentials {
     System.out.println("Mapping password");
     this.password = password;
   }
+
+  // public LoginCredentials() {
+  // }
+
+  public LoginCredentials(String username, String password) {
+    this.username = username;
+    this.password = password;
+  }
+
+  @Override
+  public String toString() {
+    return "LoginCredentials [username=" + username + ", password=" + password + "]";
+  }
+
+  
 }
