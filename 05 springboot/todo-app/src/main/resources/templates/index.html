@@ -21,7 +21,8 @@
 
       <ul>
         <li th:each="todo : ${todos}" th:class="${todo.completed} ? 'checked' : '' ">
-          <span th:text="${todo.task}" th:onclick="| handleClick(${todo.id}) |"></span>
+          <span th:text="${todo.task}" th:onclick="| handleToggle(${todo.id}) |"></span>
+          <span class="delete-btn" th:onclick="| handleDelete(${todo.id}) |">✂</span>
         </li>
       </ul>
     </div>
