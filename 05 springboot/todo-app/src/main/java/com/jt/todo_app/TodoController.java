@@ -1,6 +1,6 @@
 package com.jt.todo_app;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,14 +11,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import lombok.RequiredArgsConstructor;
+
 @Controller
+@RequiredArgsConstructor
 public class TodoController {
-  private final List<Todo> todos;
+  private final List<Todo> todos ;
   private static int idCounter = 0;
 
-  public TodoController(List<Todo> todos) {
-    this.todos = todos;
-  }
+  // public TodoController(List<Todo> todos) {
+  //   this.todos = todos;
+  // }
 
   @GetMapping
   public String home(Model model) {
@@ -39,11 +42,7 @@ public class TodoController {
   @GetMapping("/toggle/{id}")
   public String toggleTodoById(@PathVariable int id) {
     Optional<Todo> optTodo = getTodoById(id);
-    // if(optTodo.isPresent()) {
-    // Todo todo = optTodo.get();
-    // todo.setCompleted(!todo.isCompleted());
-    // }
-    optTodo.ifPresent((todo) -> todo.setCompleted(!todo.isCompleted()) );
+    optTodo.ifPresent((todo) -> todo.setCompleted(!todo.isCompleted()));
     return "redirect:/";
   }
 
@@ -54,13 +53,6 @@ public class TodoController {
   }
 
   private Optional<Todo> getTodoById(int id) {
-    // for (Todo todo : todos) {
-    //   if (todo.getId() == id) {
-    //     return Optional.of(todo);
-    //   }
-    // }
-    // return Optional.empty();
-    
     return todos.stream().filter(todo -> todo.getId() == id).findFirst();
   }
 }
