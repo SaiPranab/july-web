@@ -1,8 +1,4 @@
-package com.jt.todo_app;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+package com.jt.todo_app.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,48 +7,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.jt.todo_app.service.TodoService;
+
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
 public class TodoController {
-  private final List<Todo> todos ;
-  private static int idCounter = 0;
-
-  // public TodoController(List<Todo> todos) {
-  //   this.todos = todos;
-  // }
+  private final TodoService service;
 
   @GetMapping
   public String home(Model model) {
-    model.addAttribute("todos", todos);
+    model.addAttribute("todos", service.getTodos());
     return "index";
   }
 
   @PostMapping("/add")
   public String addTodo(@RequestParam String task) {
-    if (task != null && !task.isEmpty() && !task.isBlank()) {
-      Todo todo = new Todo(++idCounter, task, false);
-      todos.add(todo);
-    }
-
+    service.createTodo(task);
     return "redirect:/";
   }
 
   @GetMapping("/toggle/{id}")
   public String toggleTodoById(@PathVariable int id) {
-    Optional<Todo> optTodo = getTodoById(id);
-    optTodo.ifPresent((todo) -> todo.setCompleted(!todo.isCompleted()));
+    service.toggleTodoById(id);
     return "redirect:/";
   }
 
   @GetMapping("/delete/{id}")
   public String deleteById(@PathVariable int id) {
-    getTodoById(id).ifPresent((todo) -> todos.remove(todo));
+    service.deleteTodoById(id);
     return "redirect:/";
-  }
-
-  private Optional<Todo> getTodoById(int id) {
-    return todos.stream().filter(todo -> todo.getId() == id).findFirst();
   }
 }

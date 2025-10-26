@@ -1,4 +1,4 @@
-package com.jt.todo_app;
+package com.jt.todo_app.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
