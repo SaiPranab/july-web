@@ -24,7 +24,7 @@
       <a href="/form" class="btn btn-primary">ADD Blog</a>
     </div>
 
-    <div class="p-3 shadow-lg my-3 cursor-pointer d-flex justify-content-between" data-th-each="blog : ${blogs}"
+    <div class="p-3 shadow-lg my-3 cursor-pointer d-flex justify-content-between rounded-3" data-th-each="blog : ${blogs}"
       style="cursor:pointer;">
 
       <h3 data-th-text="${blog.heading}" data-th-onClick="|onHeadingClick(${blog.id})|"></h3>
