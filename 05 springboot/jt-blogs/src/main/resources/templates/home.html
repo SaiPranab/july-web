@@ -24,14 +24,14 @@
       <a href="/form" class="btn btn-primary">ADD Blog</a>
     </div>
 
-    <div class="p-3 shadow-lg my-3 cursor-pointer d-flex justify-content-between rounded-3" data-th-each="blog : ${blogs}"
+    <div class="p-3 shadow-lg my-3 cursor-pointer d-flex justify-content-between rounded-3" data-th-each="blog, details : ${blogs}"
       style="cursor:pointer;">
 
-      <h3 data-th-text="${blog.heading}" data-th-onClick="|onHeadingClick(${blog.id})|"></h3>
+      <h3 data-th-text="| ${details.index +1}. ${blog.heading} |" data-th-onClick="|onHeadingClick(${blog.id})|"></h3>
 
       <div>
-        <a data-th-href="|edit?id={blog.id}|" class="me-4 text-decoration-none">✏️</a>
-        <a data-th-href="|delete?id={blog.id}|" class="text-decoration-none">🗑️</a>
+        <a data-th-href="|edit?id=${blog.id}|" class="me-4 text-decoration-none">✏️</a>
+        <a data-th-href="|delete?id=${blog.id}|" class="text-decoration-none">🗑️</a>
       </div>
     </div>
   </section>
