@@ -38,4 +38,10 @@ public class BlogService {
         String query = "DELETE FROM %s WHERE id=?".formatted(BLOGS_TABLE);
         jdbcTemplate.update(query, id);
     }
+
+    public Blog getBlogById(String id) {
+        String query = "SELECT * FROM %s WHERE id=?".formatted(BLOGS_TABLE);
+        return jdbcTemplate.queryForObject(query, 
+                                new BeanPropertyRowMapper<>(Blog.class), id);
+    }
 }

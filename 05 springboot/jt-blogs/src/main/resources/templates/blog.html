@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head data-th-replace="~{/common/fragment::head}"></head>
+
+<body>
+  <header data-th-replace="~{/common/fragment::header}"></header>
+
+  <section class="container">
+    <div class="container-fluid mt-3 shadow-lg rounded-3 p-3">
+      <h2 class="text-center" data-th-text="${blog.heading}">Heading 1</h2>
+      <hr>
+      <p class="pb-1 fw-medium" data-th-text="${blog.description}">Description 1</p>
+    </div>
+
+    <div class="mt-2">
+      <a href="/" class="btn btn-primary">Back</a>
+    </div>
+  </section>
+</body>
+
+</html>
