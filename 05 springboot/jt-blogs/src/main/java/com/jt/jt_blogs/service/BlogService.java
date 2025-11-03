@@ -44,4 +44,13 @@ public class BlogService {
         return jdbcTemplate.queryForObject(query, 
                                 new BeanPropertyRowMapper<>(Blog.class), id);
     }
+
+    public void updateBlog(Blog blog) {
+        int id = blog.getId();
+        String heading = blog.getHeading();
+        String description = blog.getDescription();
+
+        String query = "UPDATE %s SET heading = ?, description = ? WHERE id = ?".formatted(BLOGS_TABLE);
+        jdbcTemplate.update(query, heading, description, id);
+    }
 }

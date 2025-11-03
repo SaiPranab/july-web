@@ -6,15 +6,17 @@
 <body>
   <header data-th-replace="~{/common/fragment::header}"></header>
 
-  <section class="container mt-3 shadow-lg rounded-3 p-3">
-    <form action="/add-blog" method="post">
+  <section class="container mt-3 shadow-lg rounded-3 p-3" data-th-object="${blog}">
+    <form action="/update-blog" method="post">
+      <input hidden data-th-value="*{id}" name="id">
+
       <div class="mb-3">
         <label for="heading" class="form-label">heading</label>
-        <input type="text" class="form-control" id="heading" name="heading">
+        <input type="text" class="form-control" id="heading" name="heading" data-th-value="*{heading}">
       </div>
       <div class="mb-3">
         <label for="description" class="form-label">Description</label>
-        <textarea type="text" class="form-control" id="description" rows="3" name="description"></textarea>
+        <textarea type="text" class="form-control" id="description" rows="3" name="description" data-th-text="*{description}"></textarea>
       </div>
 
       <div>
