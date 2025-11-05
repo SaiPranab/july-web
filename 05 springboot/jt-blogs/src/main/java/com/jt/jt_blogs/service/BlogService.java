@@ -41,8 +41,8 @@ public class BlogService {
 
     public Blog getBlogById(String id) {
         String query = "SELECT * FROM %s WHERE id=?".formatted(BLOGS_TABLE);
-        return jdbcTemplate.queryForObject(query, 
-                                new BeanPropertyRowMapper<>(Blog.class), id);
+        return jdbcTemplate.queryForObject(query,
+                new BeanPropertyRowMapper<>(Blog.class), id);
     }
 
     public void updateBlog(Blog blog) {
