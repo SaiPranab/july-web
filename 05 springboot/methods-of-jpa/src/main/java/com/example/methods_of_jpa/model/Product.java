@@ -29,5 +29,5 @@ public class Product {
 
   private String productBrand;
 
-  private double productPrice;
+  private Double productPrice;
 }
