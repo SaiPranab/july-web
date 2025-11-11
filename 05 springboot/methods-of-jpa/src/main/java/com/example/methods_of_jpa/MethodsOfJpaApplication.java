@@ -54,11 +54,9 @@ public class MethodsOfJpaApplication {
 			// System.out.println(".................... " +
 			// productRepository.existsById("f3c93d7d-ed9a-42c1-a541-1460726c89fd"));
 
-
 			// Delete
 			// productRepository.deleteById("f3c93d7d-ed9a-42c1-a541-1460726c89fd");
 
-			
 			// FIND ALL (SELECT) -> for extracting multiple rows
 			// var existingProducts = productRepository.findAll();
 			// existingProducts.forEach(System.out::println);
@@ -67,37 +65,70 @@ public class MethodsOfJpaApplication {
 			// System.out.println(p);
 			// }
 
-			// var sortedProductsByProductName = productRepository.findAll(Sort.by(Direction.DESC, "productName"));
+			// var sortedProductsByProductName =
+			// productRepository.findAll(Sort.by(Direction.DESC, "productName"));
 			// sortedProductsByProductName.forEach(System.out::println);
 
-			// var productsByPage = productRepository.findAll(PageRequest.of(0, 6));  // pageNumber (0 - based indexing), pageSize (number of data available in that page)
-			// var productsByPage = productRepository.findAll(PageRequest.of(0, 6, Sort.by(Direction.ASC, "productName")));
+			// var productsByPage = productRepository.findAll(PageRequest.of(0, 6)); //
+			// pageNumber (0 - based indexing), pageSize (number of data available in that
+			// page)
+			// var productsByPage = productRepository.findAll(PageRequest.of(0, 6,
+			// Sort.by(Direction.ASC, "productName")));
 			// productsByPage.forEach(System.out::println);
 
-
-			// FIND BY ID (SELECT) -> for extractin a single row 
-			// var existingProduct = productRepository.findById("f9fbe308-6d07-4aa3-a403-3e1f4dd9c593").orElseThrow(); // NoSuchElementException
+			// FIND BY ID (SELECT) -> for extractin a single row
+			// var existingProduct =
+			// productRepository.findById("f9fbe308-6d07-4aa3-a403-3e1f4dd9c593").orElseThrow();
+			// // NoSuchElementException
 			// System.out.println("/////////////////////" + existingProduct);
-
 
 			// UPDATE
 			// var optProduct = productRepository.findById("f9fbe308-6d07-4aa3-a403");
 			// if(optProduct.isPresent()) {
-			// 	var existingProduct = optProduct.get();
-			// 	existingProduct.setProductPrice(existingProduct.getProductPrice() + 123);
-			// 	productRepository.save(existingProduct);
+			// var existingProduct = optProduct.get();
+			// existingProduct.setProductPrice(existingProduct.getProductPrice() + 123);
+			// productRepository.save(existingProduct);
 			// } else {
-			// 	System.out.println("No Product Found");
+			// System.out.println("No Product Found");
 			// }
+
+			/**
+			 * Above emthods are already given by JPA Repository, but if we want to execute
+			 * some custom SQL query
+			 * - Custom Query Methods (Query methods created by us)
+			 * - JPQL (Java Persistence Query Language)
+			 * - Native Query or Plain SQL
+			 */
+
+			// ====================== Query Methods ================
+			// var productByName = productRepository.findByProductName("Iphone 17 pro
+			// max").orElseThrow();
+			// System.out.println("////////////////////////" + productByName);
+
+			// var productsInRange = productRepository.findAllByProductPriceBetween(2000,
+			// 5000);
+			// productsInRange.forEach(System.out::println);
+
+			// var productsGreaterThan4002 =
+			// productRepository.findAllByProductPriceGreaterThan(4002);
+			// productsGreaterThan4002.forEach(System.out::println);
+
+			// var productsGreaterThanEquals4002 =
+			// productRepository.findAllByProductPriceGreaterThanEqual(4002);
+			// productsGreaterThanEquals4002.forEach(System.out::println);
+
+			// var productsGreaterThanEquals4002Sorted = productRepository
+			// .findAllByProductPriceGreaterThanEqual(4002, Sort.by(Direction.DESC,
+			// "productPrice"));
+			// productsGreaterThanEquals4002Sorted.forEach(System.out::println);
+
+			// var productByPriceAndBrand = productRepository
+			// .findByProductPriceAndProductBrand(150000.99, "Apple");
+			// System.out.println("//////////////////////// " + productByPriceAndBrand);
+			
+			var productsHavingBrandNull = productRepository.findAllByProductNameIsNotNull();
+			productsHavingBrandNull.forEach(System.out::println);
 		};
-
-
-		/**
-		 * Above emthods are already given by JPA Repository, but if we want to execute some custom SQL query
-		 * - Custom Query Methods (Query methods created by us)
-		 * - JPQL (Java Persistence Query Language)
-		 * - Native Query or Plain SQL
-		 */
 	}
 
 	private List<Product> getProducts() {
