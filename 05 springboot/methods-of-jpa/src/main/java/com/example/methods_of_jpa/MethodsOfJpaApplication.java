@@ -12,15 +12,20 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 
+import com.example.methods_of_jpa.model.Order;
 import com.example.methods_of_jpa.model.Product;
+import com.example.methods_of_jpa.repository.OrderRepository;
 import com.example.methods_of_jpa.repository.ProductRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @SpringBootApplication
 @RequiredArgsConstructor
 public class MethodsOfJpaApplication {
 	private final ProductRepository productRepository;
+	private final OrderRepository orderRepository;
+	private final OrderService orderService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MethodsOfJpaApplication.class, args);
@@ -125,11 +130,45 @@ public class MethodsOfJpaApplication {
 			// var productByPriceAndBrand = productRepository
 			// .findByProductPriceAndProductBrand(150000.99, "Apple");
 			// System.out.println("//////////////////////// " + productByPriceAndBrand);
-			
-			var productsHavingBrandNull = productRepository.findAllByProductNameIsNotNull();
-			productsHavingBrandNull.forEach(System.out::println);
+
+			// var productsHavingBrandNull =
+			// productRepository.findAllByProductNameIsNotNull();
+			// productsHavingBrandNull.forEach(System.out::println);
+
+			// =========================== JPQL =========================
+			// var product1 = productRepository.getProduct1(150000.99, "Apple");
+			// System.out.println("////////////////////////////" + product1);
+
+			// var product2 = productRepository.getProduct2(150000.99, "Apple");
+			// System.out.println("////////////////////////////" + product2);
+
+			// var product3 = productRepository.getProduct3(150000.99, "Apple");
+			// System.out.println("////////////////////////////" + product3);
+
+			// var affectedRows = productRepository.updateProduct(250000.99, "Apple");
+			// System.out.println("////////////////////////////-> " + affectedRows);
+
+			orderService.placeOrder("35538a31-2997-4941-9ba2-9aac7f490194", 25);
 		};
 	}
+
+	// @Transactional
+	// private void placeOrder(String productId, int quantity) {
+	// var product = productRepository.findById(productId).orElseThrow();
+
+	// // reduce stock
+	// product.setQuantity(product.getQuantity() - quantity);
+	// productRepository.save(product);
+
+	// if(true) throw new RuntimeException();
+
+	// // place order
+	// var order = Order.builder()
+	// .productId(productId)
+	// .quantity(quantity)
+	// .build();
+	// orderRepository.save(order);
+	// }
 
 	private List<Product> getProducts() {
 		return IntStream.range(1, 10)
