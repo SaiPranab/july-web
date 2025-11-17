@@ -1,15 +1,12 @@
-package com.example.many_to_one;
+package com.example.many_to_many;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,13 +17,12 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @Entity
-public class Teacher {
+public class Course {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int teacherId;
+  private int courseId;
+  private String courseName;
 
-  private String teacherName;
-
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher", fetch = FetchType.EAGER)
-  private List<Subject> subjects = new ArrayList<>();
+  // @ManyToMany
+  // private List<Course> courses;
 }

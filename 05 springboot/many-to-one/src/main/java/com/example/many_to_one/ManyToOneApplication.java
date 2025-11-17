@@ -55,23 +55,31 @@ public class ManyToOneApplication {
 			// subjectRepository.deleteAll(List.of(existingSubject1));
 
 			// =================== Bi-directional mapping =====================
-			var sub1 = Subject.builder().subjectName("C").build();
-			var sub2 = Subject.builder().subjectName("C++").build();
-			var sub3 = Subject.builder().subjectName("Java").build();
-			var sub4 = Subject.builder().subjectName("Python").build();
-			var sub5 = Subject.builder().subjectName("Javascript").build();
-			var sub6 = Subject.builder().subjectName(".NET").build();
+			// var sub1 = Subject.builder().subjectName("C").build();
+			// var sub2 = Subject.builder().subjectName("C++").build();
+			// var sub3 = Subject.builder().subjectName("Java").build();
+			// var sub4 = Subject.builder().subjectName("Python").build();
+			// var sub5 = Subject.builder().subjectName("Javascript").build();
+			// var sub6 = Subject.builder().subjectName(".NET").build();
 
-			var teacher1 = new Teacher();
-			teacher1.setTeacherName("Rashmi Sir");
-			var subjectsForTeacher1 = teacher1.getSubjects();
-			subjectsForTeacher1.add(sub1);
-			subjectsForTeacher1.add(sub2);
-			teacher1.setSubjects(subjectsForTeacher1);
+			// var teacher1 = new Teacher();
+			// teacher1.setTeacherName("Rashmi Sir");
+			// var subjectsForTeacher1 = teacher1.getSubjects();
+			// subjectsForTeacher1.add(sub1);
+			// subjectsForTeacher1.add(sub2);
+			// teacher1.setSubjects(subjectsForTeacher1);
 
-			sub1.setTeacher(teacher1);
-			sub2.setTeacher(teacher1);
-			teacherRepository.save(teacher1);
+			// sub1.setTeacher(teacher1);
+			// sub2.setTeacher(teacher1);
+			// teacherRepository.save(teacher1);
+
+			var existingTeacher = teacherRepository.findById(1).orElseThrow();
+			existingTeacher.setTeacherName("Rashmi SIr 1");
+			List<Subject> existingSubjects = existingTeacher.getSubjects();
+			var firstSubject = existingSubjects.remove(0);
+			firstSubject.setSubjectName("C1");
+			existingSubjects.add(0, firstSubject);
+			teacherRepository.save(existingTeacher);
 		};
 	}
 }
