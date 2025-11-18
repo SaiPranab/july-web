@@ -3,6 +3,7 @@ package com.example.many_to_many;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,6 +24,6 @@ public class Course {
   private int courseId;
   private String courseName;
 
-  // @ManyToMany
-  // private List<Course> courses;
+  @ManyToMany(mappedBy = "courses", fetch = FetchType.EAGER)
+  private List<Student> students;
 }
