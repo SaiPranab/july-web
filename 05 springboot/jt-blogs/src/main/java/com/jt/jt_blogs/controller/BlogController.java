@@ -34,19 +34,19 @@ public class BlogController {
   }
 
   @GetMapping("/delete")
-  public String deleteBlog(@RequestParam int id) {
+  public String deleteBlog(@RequestParam String id) {
     service.deleteBlogById(id);
     return "redirect:/";
   }
 
   @GetMapping("/blog/{id}")
-  public String getBlog(@PathVariable int id, Model model) {
+  public String getBlog(@PathVariable String id, Model model) {
     model.addAttribute("blog", service.getBlogById(id));
     return "blog";
   }
 
   @GetMapping("/edit")
-  public String editBlog(@RequestParam int id, Model model) {
+  public String editBlog(@RequestParam String id, Model model) {
     model.addAttribute("blog", service.getBlogById(id));
     return "edit-blog";
   }
