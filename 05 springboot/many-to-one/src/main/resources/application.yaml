@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: many-to-one
+
+  datasource:
+    url: jdbc:mysql://localhost/sb_oct
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
