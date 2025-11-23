@@ -1,12 +1,14 @@
 package com.jt.sms.service;
 
 import com.jt.sms.dto.StudentRequestDTO;
+import com.jt.sms.exception.StudentNotFoundException;
 import com.jt.sms.model.Student;
 import com.jt.sms.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -22,11 +24,20 @@ public class StudentService {
     }
 
     public Student getStudent(String id) {
-        return repository.findById(id).orElseThrow();
+        return repository.findById(id)
+                .orElseThrow(() -> new StudentNotFoundException("Student Not Found With id " + id));
     }
 
     public Student getStudentByRoll(int roll) {
-        return repository.findByRoll(roll).orElseThrow();
+//        try {
+//            return repository.findByRoll(roll).orElseThrow();
+//        } catch (NoSuchElementException e) {
+//            System.out.println("Student Not Found");
+//            return null;
+//        }
+
+        return repository.findByRoll(roll)
+                .orElseThrow(() -> new StudentNotFoundException("Student Not Found with roll " + roll));
     }
 
     public Student deleteStudentById(String id) {
