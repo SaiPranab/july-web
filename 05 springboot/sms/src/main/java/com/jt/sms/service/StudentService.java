@@ -1,10 +1,12 @@
 package com.jt.sms.service;
 
-import com.jt.sms.dto.StudentRequestDTO;
+import com.jt.sms.dto.StudentDTO;
 import com.jt.sms.exception.StudentNotFoundException;
+import com.jt.sms.mapper.StudentMapper;
 import com.jt.sms.model.Student;
 import com.jt.sms.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,20 +17,31 @@ import java.util.NoSuchElementException;
 public class StudentService {
     private final StudentRepository repository;
 
-    public List<Student> getStudents() {
-        return repository.findAll();
+    public List<StudentDTO> getStudents() {
+        List<StudentDTO> studentDTOS = repository.findAll()
+                .stream()
+//                .map(student -> StudentMapper.convertStudentToStudentDTO(student))
+                .map(StudentMapper :: convertStudentToStudentDTO)
+                .toList();
+
+        return studentDTOS;
     }
 
-    public Student saveStudent(Student newStudent) {
-        return repository.save(newStudent);
+    public StudentDTO saveStudent(StudentDTO dto){
+        Student newStudent = StudentMapper.convertStudentDTOToStudent(dto);
+        Student savedStudent = repository.save(newStudent);
+
+        return StudentMapper.convertStudentToStudentDTO(savedStudent);
     }
 
-    public Student getStudent(String id) {
-        return repository.findById(id)
+    public StudentDTO getStudent(String id) {
+        Student existingStudent = repository.findById(id)
                 .orElseThrow(() -> new StudentNotFoundException("Student Not Found With id " + id));
+
+        return StudentMapper.convertStudentToStudentDTO(existingStudent);
     }
 
-    public Student getStudentByRoll(int roll) {
+    public StudentDTO getStudentByRoll(int roll) {
 //        try {
 //            return repository.findByRoll(roll).orElseThrow();
 //        } catch (NoSuchElementException e) {
@@ -36,32 +49,40 @@ public class StudentService {
 //            return null;
 //        }
 
-        return repository.findByRoll(roll)
+        Student existingStudent = repository.findByRoll(roll)
                 .orElseThrow(() -> new StudentNotFoundException("Student Not Found with roll " + roll));
+
+        return StudentMapper.convertStudentToStudentDTO(existingStudent);
     }
 
-    public Student deleteStudentById(String id) {
-        Student existingStudent = getStudent(id);
-        repository.delete(existingStudent);
-        return existingStudent;
+    public StudentDTO deleteStudentById(String id) {
+        StudentDTO existingStudentDTO = getStudent(id);
+        repository.deleteById(id);
+        return existingStudentDTO;
     }
 
-    public Student updateStudentById(String id, Student updatedStudent) {
+    public StudentDTO updateStudentById(String id, StudentDTO dto) {
         getStudent(id);
-        updatedStudent.setId(id);
-        return repository.save(updatedStudent);
+
+        Student toBeUpdated = StudentMapper.convertStudentDTOToStudent(dto);
+        toBeUpdated.setId(id);
+        Student updatedStudent = repository.save(toBeUpdated);
+
+        return StudentMapper.convertStudentToStudentDTO(updatedStudent);
     }
 
-    public Student partialUpdateStudentById(String id, StudentRequestDTO updatedStudent) {
-        System.out.println(updatedStudent);
-        Student existingStudent = getStudent(id);
+    public StudentDTO partialUpdateStudentById(String id, StudentDTO dto) {
+        StudentDTO existingStudentDTO = getStudent(id);
+        Student existingStudent = StudentMapper.convertStudentDTOToStudent(dto);
+        existingStudent.setId(id);
 
-        if(updatedStudent.getRoll() != null) existingStudent.setRoll(updatedStudent.getRoll());
-        if(updatedStudent.getName() != null) existingStudent.setName(updatedStudent.getName());
-        if(updatedStudent.getEmail() != null) existingStudent.setEmail(updatedStudent.getEmail());
-        if(updatedStudent.getFee() != null) existingStudent.setFee(updatedStudent.getFee());
-        if(updatedStudent.getPhoneNumber() != null) existingStudent.setPhoneNumber(updatedStudent.getPhoneNumber());
+        if(dto.getRoll() != null) existingStudent.setRoll(dto.getRoll());
+        if(dto.getName() != null) existingStudent.setName(dto.getName());
+        if(dto.getEmail() != null) existingStudent.setEmail(dto.getEmail());
+        if(dto.getFee() != null) existingStudent.setFee(dto.getFee());
+        if(dto.getPhoneNumber() != null) existingStudent.setPhoneNumber(dto.getPhoneNumber());
 
-        return repository.save(existingStudent);
+        Student updatedStudent = repository.save(existingStudent);
+        return StudentMapper.convertStudentToStudentDTO(updatedStudent);
     }
 }

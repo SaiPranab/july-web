@@ -3,7 +3,7 @@ package com.jt.sms.dto;
 import lombok.Data;
 
 @Data
-public class StudentRequestDTO {
+public class StudentDTO {
     private Integer roll;
     private String name;
     private String email;

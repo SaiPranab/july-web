@@ -1,7 +1,6 @@
 package com.jt.sms.controller;
 
-import com.jt.sms.dto.StudentRequestDTO;
-import com.jt.sms.model.Student;
+import com.jt.sms.dto.StudentDTO;
 import com.jt.sms.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,40 +14,40 @@ public class StudentController {
     private final StudentService service;
 
     @GetMapping("/students")
-    public List<Student> getStudents() {
+    public List<StudentDTO> getStudents() {
         return service.getStudents();
     }
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public Student createStudent(@RequestBody Student newStudent) {
-        return service.saveStudent(newStudent);
+    public StudentDTO createStudent(@RequestBody StudentDTO dto) {
+        return service.saveStudent(dto);
     }
 
     @GetMapping("/student/{id}")
-    public Student getStudent(@PathVariable String id) {
+    public StudentDTO getStudent(@PathVariable String id) {
         return service.getStudent(id);
     }
 
     @GetMapping("/student/roll/{roll}")
-    public Student getStudentByRoll(@PathVariable int roll) {
+    public StudentDTO getStudentByRoll(@PathVariable int roll) {
         return service.getStudentByRoll(roll);
     }
 
     @DeleteMapping("/student/delete/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Student deleteById(@PathVariable String id) {
+    public StudentDTO deleteById(@PathVariable String id) {
         return service.deleteStudentById(id);
     }
 
     @PutMapping("/student/update/{id}")
-    public Student updateStudent(@PathVariable String id, @RequestBody Student student                    ){
-        return service.updateStudentById(id, student);
+    public StudentDTO updateStudent(@PathVariable String id, @RequestBody StudentDTO dto                    ){
+        return service.updateStudentById(id, dto);
     }
 
     @PatchMapping("/student/update-by-field/{id}")
-    public Student updateStudentPatch(@PathVariable String id,
-                                      @RequestBody StudentRequestDTO student) {
+    public StudentDTO updateStudentPatch(@PathVariable String id,
+                                      @RequestBody StudentDTO student) {
         return service.partialUpdateStudentById(id, student);
     }
 }
