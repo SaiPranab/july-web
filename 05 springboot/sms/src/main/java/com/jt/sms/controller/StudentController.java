@@ -2,6 +2,7 @@ package com.jt.sms.controller;
 
 import com.jt.sms.dto.StudentDTO;
 import com.jt.sms.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class StudentController {
 
     @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public StudentDTO createStudent(@RequestBody StudentDTO dto) {
+    public StudentDTO createStudent(@RequestBody @Valid StudentDTO dto) {
         return service.saveStudent(dto);
     }
 
