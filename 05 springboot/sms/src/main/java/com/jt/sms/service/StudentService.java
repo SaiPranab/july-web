@@ -35,9 +35,10 @@ public class StudentService {
     }
 
     public StudentDTO getStudent(String id) {
-        Student existingStudent = repository.findById(id)
-                .orElseThrow(() -> new StudentNotFoundException("Student Not Found With id " + id));
+//        Student existingStudent = repository.findById(id)
+//                .orElseThrow(() -> new StudentNotFoundException("Student Not Found With id " + id));
 
+        Student existingStudent = getStudentById(id);
         return StudentMapper.convertStudentToStudentDTO(existingStudent);
     }
 
@@ -62,7 +63,8 @@ public class StudentService {
     }
 
     public StudentDTO updateStudentById(String id, StudentDTO dto) {
-        getStudent(id);
+//        getStudent(id);
+        getStudentById(id);
 
         Student toBeUpdated = StudentMapper.convertStudentDTOToStudent(dto);
         toBeUpdated.setId(id);
@@ -72,9 +74,11 @@ public class StudentService {
     }
 
     public StudentDTO partialUpdateStudentById(String id, StudentDTO dto) {
-        StudentDTO existingStudentDTO = getStudent(id);
-        Student existingStudent = StudentMapper.convertStudentDTOToStudent(dto);
-        existingStudent.setId(id);
+//        StudentDTO existingStudentDTO = getStudent(id);
+//        Student existingStudent = StudentMapper.convertStudentDTOToStudent(dto);
+//        existingStudent.setId(id);
+
+        Student existingStudent = getStudentById(id);
 
         if(dto.getRoll() != null) existingStudent.setRoll(dto.getRoll());
         if(dto.getName() != null) existingStudent.setName(dto.getName());
@@ -85,4 +89,10 @@ public class StudentService {
         Student updatedStudent = repository.save(existingStudent);
         return StudentMapper.convertStudentToStudentDTO(updatedStudent);
     }
+
+    private Student getStudentById(String id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new StudentNotFoundException("Student Not Found With id " + id));
+    }
+
 }
