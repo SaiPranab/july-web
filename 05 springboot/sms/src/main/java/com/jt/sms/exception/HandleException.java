@@ -73,7 +73,7 @@ public class HandleException {
         });
 
         ProblemDetail problemDetail = ProblemDetail
-                .forStatusAndDetail(HttpStatus.BAD_REQUEST, joiner.toString());
+                .forStatusAndDetail(HttpStatus.UNPROCESSABLE_ENTITY, joiner.toString());
         problemDetail.setProperty("timestamp", LocalDateTime.now());
         return problemDetail;
     }
