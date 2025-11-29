@@ -1,14 +1,14 @@
 package com.jt.sms.controller;
 
 import com.jt.sms.dto.StudentDTO;
-import com.jt.sms.service.StudentService;
+import com.jt.sms.service.IStudentService;
+import com.jt.sms.service.impl.StudentServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
     description = "This controller manages CRUD operation for Students"
 )
 public class StudentController {
-    private final StudentService service;
+    private final IStudentService service;
 
     @Operation(summary = "Get All Students", description = "Fetch All Students")
     @GetMapping("/students")

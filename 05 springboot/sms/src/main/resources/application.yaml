@@ -26,3 +26,11 @@ logging:
   level:
     root: INFO
     'com.jt.sms.controller.TeacherController': DEBUG
+
+
+# Actuators
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

@@ -1,28 +1,18 @@
 package com.jt.sms.controller;
 
-import com.jt.sms.dto.StudentDTO;
 import com.jt.sms.model.Teacher;
-import com.jt.sms.service.StudentService;
-import com.jt.sms.service.TeacherService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
+import com.jt.sms.service.ITeacherService;
+import com.jt.sms.service.impl.TeacherServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/teacher")
 @Slf4j
 public class TeacherController {
-    private final TeacherService service;
+    private final ITeacherService service;
 //    private Logger logger = LoggerFactory.getLogger(TeacherController.class);
 
     @PostMapping("/create")
@@ -38,6 +28,7 @@ public class TeacherController {
         log.info("INFO -> Saving1 teacher " + newTeacher);
         log.warn("WARN -> Saving1 teacher " + newTeacher);
         log.error("ERROR -> Saving1 teacher " + newTeacher);
+
         return service.saveTeacher(newTeacher);
     }
 

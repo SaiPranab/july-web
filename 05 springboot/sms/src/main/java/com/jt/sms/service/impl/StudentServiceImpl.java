@@ -1,20 +1,19 @@
-package com.jt.sms.service;
+package com.jt.sms.service.impl;
 
 import com.jt.sms.dto.StudentDTO;
 import com.jt.sms.exception.StudentNotFoundException;
 import com.jt.sms.mapper.StudentMapper;
 import com.jt.sms.model.Student;
 import com.jt.sms.repository.StudentRepository;
+import com.jt.sms.service.IStudentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
-public class StudentService {
+public class StudentServiceImpl implements IStudentService {
     private final StudentRepository repository;
 
     public List<StudentDTO> getStudents() {

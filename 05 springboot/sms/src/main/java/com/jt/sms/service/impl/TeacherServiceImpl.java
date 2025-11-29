@@ -1,7 +1,8 @@
-package com.jt.sms.service;
+package com.jt.sms.service.impl;
 
 import com.jt.sms.model.Teacher;
 import com.jt.sms.repository.TeacherRepository;
+import com.jt.sms.service.ITeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
-public class TeacherService {
+public class TeacherServiceImpl implements ITeacherService {
     private final TeacherRepository repository;
 
     public Teacher saveTeacher(Teacher newTeacher) {
