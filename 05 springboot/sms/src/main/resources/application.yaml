@@ -1,0 +1,36 @@
+server:
+  port: 1200
+
+spring:
+  application:
+    name: sms
+
+  datasource:
+    url: jdbc:postgresql://localhost/sb_oct
+    username: postgres
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+
+
+# Root level logging
+logging:
+  level:
+    root: INFO
+    'com.jt.sms.controller.TeacherController': DEBUG
+
+
+# Actuators
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
