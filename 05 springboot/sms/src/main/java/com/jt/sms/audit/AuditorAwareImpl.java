@@ -8,6 +8,7 @@ import java.util.Optional;
 
 @Component("auditorAwareImpl")
 public class AuditorAwareImpl implements AuditorAware<String> {
+
     @Override
     public Optional<String> getCurrentAuditor() {
         // get security context
