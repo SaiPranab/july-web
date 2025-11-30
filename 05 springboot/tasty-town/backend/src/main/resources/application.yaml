@@ -1,4 +1,5 @@
-
+server:
+  port: 2066
 
 spring:
   application:
@@ -7,20 +8,26 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost/sb_oct
     username: postgres
-    password: lion
+    password: root
 
   jpa:
     hibernate:
       ddl-auto: update
-
     show-sql: true
     properties:
       hibernate:
         format_sql: true
 
-
-
-# Root level logging
+#ROOT LEVEL LOGGING
 logging:
   level:
     root: INFO
+    'com.jt.sms.controller.TeacherController': DEBUG
+#INFO is default
+
+#ACTUATORs
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

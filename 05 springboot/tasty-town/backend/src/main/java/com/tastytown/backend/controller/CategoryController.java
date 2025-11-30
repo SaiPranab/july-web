@@ -4,14 +4,11 @@ import java.util.List;
 
 // import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import com.tastytown.backend.model.Category;
 import com.tastytown.backend.service.ICategoryService;
@@ -22,9 +19,11 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/categories")
+@Tag(name = "Tasty-Town API",description = "This Controller manages CRUD operations for food order")
 public class CategoryController {
     private final ICategoryService service;
 
+    @Operation(summary="Get all food Category",description = "Fetch all food category")
     @GetMapping("/")
     public List<Category> getCategories() {
         return service.getCategories();
@@ -36,6 +35,9 @@ public class CategoryController {
     }
 
     @PostMapping("/")
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary="Creates a new Food Category")
+    @ApiResponse(description = "Food Category validation failed",responseCode = "422")
     public Category addCategory(@RequestBody Category cat) {
         return service.addCategory(cat);
     }
@@ -46,6 +48,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{catId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteCategory(@PathVariable String catId) {
         service.deleteCategory(catId);
     }
