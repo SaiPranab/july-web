@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/categories")
-@Tag(name = "Tasty-Town API", description = "A web appllication for ordering food")
+@Tag(name = "Tasty-Town API", description = "A controller manages the CRUD operations for Food Categories ")
 public class CategoryController {
     private final ICategoryService service;
 
