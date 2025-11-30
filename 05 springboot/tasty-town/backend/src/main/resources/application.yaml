@@ -25,9 +25,3 @@ logging:
     
 #INFO is default
 
-#ACTUATORs
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
