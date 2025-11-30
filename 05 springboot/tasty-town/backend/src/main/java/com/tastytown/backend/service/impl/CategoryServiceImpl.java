@@ -1,6 +1,8 @@
 package com.tastytown.backend.service.impl;
 
 import java.util.List;
+
+import com.tastytown.backend.exception.CategoryNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.tastytown.backend.model.Category;
@@ -19,7 +21,7 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     public Category getCategoryById(String catId) {
-        return categoryRepository.findById(catId).orElseThrow();
+        return categoryRepository.findById(catId).orElseThrow(()-> new CategoryNotFoundException("category not found in this id" + catId));
     }
 
     public Category addCategory(Category cat) {
