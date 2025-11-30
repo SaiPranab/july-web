@@ -22,7 +22,7 @@ spring:
 logging:
   level:
     root: INFO
-    'com.jt.sms.controller.TeacherController': DEBUG
+    
 #INFO is default
 
 #ACTUATORs

@@ -19,11 +19,11 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/categories")
-@Tag(name = "Tasty-Town API",description = "This Controller manages CRUD operations for food order")
+@Tag(name = "Tasty-Town API", description = "A web appllication for ordering food")
 public class CategoryController {
     private final ICategoryService service;
 
-    @Operation(summary="Get all food Category",description = "Fetch all food category")
+    @Operation(summary = "Get all food Category", description = "Fetch all food category")
     @GetMapping("/")
     public List<Category> getCategories() {
         return service.getCategories();
@@ -36,8 +36,8 @@ public class CategoryController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary="Creates a new Food Category")
-    @ApiResponse(description = "Food Category validation failed",responseCode = "422")
+    @Operation(summary = "Creates a new Food Category")
+    @ApiResponse(description = "Food Category validation failed", responseCode = "422")
     public Category addCategory(@RequestBody Category cat) {
         return service.addCategory(cat);
     }
@@ -53,4 +53,3 @@ public class CategoryController {
         service.deleteCategory(catId);
     }
 }
-
