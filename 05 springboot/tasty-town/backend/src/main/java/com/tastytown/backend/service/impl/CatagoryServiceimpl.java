@@ -10,10 +10,13 @@ import com.tastytown.backend.model.Catagory;
 import com.tastytown.backend.repository.CatagoryRepo;
 import com.tastytown.backend.service.ICatagoryService;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class CatagoryServiceimpl implements ICatagoryService{
-    // @Autowired
-    private  CatagoryRepo repo ;
+   
+    private final CatagoryRepo repo ;
 
     public List<Catagory> getCatagories() {
         return repo.findAll();
@@ -23,12 +26,12 @@ public class CatagoryServiceimpl implements ICatagoryService{
         return repo.findById(catId).orElseThrow();
     }
 
-    public void addCatagory(Catagory cat) {
-        repo.save(cat);
+    public Catagory addCatagory(Catagory cat) {
+        return repo.save(cat);
     }
 
-    public void updateCatagory(Catagory updatedCatagory) {
-         repo.save(updatedCatagory);
+    public Catagory updateCatagory(Catagory updatedCatagory) {
+        return repo.save(updatedCatagory);
     }
 
     public void deleteCatagory(String catId) {

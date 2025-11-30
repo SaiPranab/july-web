@@ -11,7 +11,7 @@ public interface ICatagoryService {
     
     public List<Catagory> getCatagories();
     public Catagory getCatagoryById(@PathVariable String catId);
-    public void addCatagory(@RequestBody Catagory cat);
-    public void updateCatagory(@RequestBody Catagory updatedCatagory);
+    public Catagory addCatagory(@RequestBody Catagory cat);
+    public Catagory updateCatagory(@RequestBody Catagory updatedCatagory);
     public void deleteCatagory(@PathVariable String catId);
 }

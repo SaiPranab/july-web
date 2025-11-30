@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tastytown.backend.model.Catagory;
@@ -20,34 +21,35 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/catagories")
 public class CatagoryController {
     
     private final ICatagoryService service;
 
     
 
-    @GetMapping("/catagories")
+    @GetMapping("/get")
     public List<Catagory> getCatagories(){
         return service.getCatagories();
     }
 
-     @GetMapping("/catarories/{catId}")
+     @GetMapping("/{catId}")
     public Catagory getCatagoryById(@PathVariable String catId){
         return service.getCatagoryById(catId);
     }
 
-     @PostMapping("/catagories")
-    public void addCatagory(@RequestBody Catagory cat){
-        service.addCatagory(cat);
+     @PostMapping("/addNewCatagory")
+    public Catagory addCatagory(@RequestBody Catagory cat){
+        return service.addCatagory(cat);
     }
 
     
-    @PutMapping("/catagories")
-    public void updateCatagory(@RequestBody Catagory updatedCatagory){
-        service.updateCatagory(updatedCatagory);
+    @PutMapping("/addCatagory")
+    public Catagory updateCatagory(@RequestBody Catagory updatedCatagory){
+       return service.updateCatagory(updatedCatagory);
     }
 
-     @DeleteMapping("/catgories/{catId}")
+     @DeleteMapping("/delete/{catId}")
     public void deleteCatagory(@PathVariable String catId){
        service.deleteCatagory(catId);
     }
