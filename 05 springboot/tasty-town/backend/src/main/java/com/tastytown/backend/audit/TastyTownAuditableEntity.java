@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 @Setter
 @MappedSuperclass
 public class TastyTownAuditableEntity {
-
     @CreatedBy
     @Column(nullable = false, updatable = false)
     private String createdBy;
@@ -28,12 +27,10 @@ public class TastyTownAuditableEntity {
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdDate;
 
-    @JsonIgnore
     @LastModifiedBy
     @Column(nullable = false)
     private String updatedBy;
 
-    @JsonIgnore
     @LastModifiedDate
     @Column(nullable = false)
     private LocalDateTime updatedDate;

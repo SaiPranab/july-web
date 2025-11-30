@@ -1,9 +1,6 @@
 package com.tastytown.backend.service.impl;
 
 import java.util.List;
-
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tastytown.backend.model.Category;
@@ -15,29 +12,25 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements ICategoryService {
-   
-    private final CategoryRepository repo ;
+    private final CategoryRepository categoryRepository;
 
     public List<Category> getCategories() {
-        return repo.findAll();
+        return categoryRepository.findAll();
     }
 
     public Category getCategoryById(String catId) {
-        return repo.findById(catId).orElseThrow();
+        return categoryRepository.findById(catId).orElseThrow();
     }
 
     public Category addCategory(Category cat) {
-        return repo.save(cat);
+        return categoryRepository.save(cat);
     }
 
     public Category updateCategory(Category updatedCategory) {
-        return repo.save(updatedCategory);
+        return categoryRepository.save(updatedCategory);
     }
 
     public void deleteCategory(String catId) {
-        repo.deleteById(catId);
+        categoryRepository.deleteById(catId);
     }
-
-	
-
 }

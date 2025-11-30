@@ -18,7 +18,8 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String catagoryId;
-    private String catagoryName;
+    private String categoryId;
+
+    private String categoryName;
 
 }

@@ -21,37 +21,33 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/catagories")
+@RequestMapping("/api/v1/categories")
 public class CategoryController {
-    
     private final ICategoryService service;
 
-    
-
-    @GetMapping("/get")
-    public List<Category> getCatagories(){
-        return service.getCatagories();
+    @GetMapping("/")
+    public List<Category> getCategories() {
+        return service.getCategories();
     }
 
-     @GetMapping("/{catId}")
-    public Category getCatagoryById(@PathVariable String catId){
-        return service.getCatagoryById(catId);
+    @GetMapping("/{catId}")
+    public Category getCategoryById(@PathVariable String catId) {
+        return service.getCategoryById(catId);
     }
 
-     @PostMapping("/addNewCatagory")
-    public Category addCatagory(@RequestBody Category cat){
-        return service.addCatagory(cat);
+    @PostMapping("/")
+    public Category addCategory(@RequestBody Category cat) {
+        return service.addCategory(cat);
     }
 
-    
-    @PutMapping("/addCatagory")
-    public Category updateCatagory(@RequestBody Category updatedCategory){
-       return service.updateCatagory(updatedCategory);
+    @PutMapping("/")
+    public Category updateCategory(@RequestBody Category updatedCategory) {
+        return service.updateCategory(updatedCategory);
     }
 
-     @DeleteMapping("/delete/{catId}")
-    public void deleteCatagory(@PathVariable String catId){
-       service.deleteCatagory(catId);
+    @DeleteMapping("/{catId}")
+    public void deleteCategory(@PathVariable String catId) {
+        service.deleteCategory(catId);
     }
 }
 
