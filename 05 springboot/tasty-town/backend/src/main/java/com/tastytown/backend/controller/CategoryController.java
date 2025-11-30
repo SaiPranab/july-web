@@ -13,40 +13,40 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tastytown.backend.model.Catagory;
-import com.tastytown.backend.service.ICatagoryService;
-// import com.tastytown.backend.service.impl.CatagoryServiceimpl;
+import com.tastytown.backend.model.Category;
+import com.tastytown.backend.service.ICategoryService;
+// import com.tastytown.backend.service.impl.CategoryServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/catagories")
-public class CatagoryController {
+public class CategoryController {
     
-    private final ICatagoryService service;
+    private final ICategoryService service;
 
     
 
     @GetMapping("/get")
-    public List<Catagory> getCatagories(){
+    public List<Category> getCatagories(){
         return service.getCatagories();
     }
 
      @GetMapping("/{catId}")
-    public Catagory getCatagoryById(@PathVariable String catId){
+    public Category getCatagoryById(@PathVariable String catId){
         return service.getCatagoryById(catId);
     }
 
      @PostMapping("/addNewCatagory")
-    public Catagory addCatagory(@RequestBody Catagory cat){
+    public Category addCatagory(@RequestBody Category cat){
         return service.addCatagory(cat);
     }
 
     
     @PutMapping("/addCatagory")
-    public Catagory updateCatagory(@RequestBody Catagory updatedCatagory){
-       return service.updateCatagory(updatedCatagory);
+    public Category updateCatagory(@RequestBody Category updatedCategory){
+       return service.updateCatagory(updatedCategory);
     }
 
      @DeleteMapping("/delete/{catId}")

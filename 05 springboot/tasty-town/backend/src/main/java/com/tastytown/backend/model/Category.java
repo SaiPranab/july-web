@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Builder
-public class Catagory {
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
