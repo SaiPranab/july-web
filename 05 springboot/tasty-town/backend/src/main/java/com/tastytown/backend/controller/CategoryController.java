@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class CategoryController {
     private final ICategoryService service;
 
-    @Operation(summary = "Get all food Category", description = "Fetch all food category")
+    @Operation(summary = "Get all food Category")
     @GetMapping("/")
     public List<Category> getCategories() {
         return service.getCategories();
