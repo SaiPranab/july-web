@@ -22,6 +22,8 @@ spring:
 logging:
   level:
     root: INFO
-    
-#INFO is default
 
+
+upload:
+  image:
+    path: images
