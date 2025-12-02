@@ -2,8 +2,6 @@ package com.tastytown.backend.controller;
 
 import java.util.List;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.stereotype.Controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import com.tastytown.backend.model.Category;
 import com.tastytown.backend.service.ICategoryService;
-// import com.tastytown.backend.service.impl.CategoryServiceImpl;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,7 +21,7 @@ public class CategoryController {
     private final ICategoryService service;
 
     @Operation(summary = "Get all food Category")
-    @GetMapping("/")
+    @GetMapping
     public List<Category> getCategories() {
         return service.getCategories();
     }
@@ -34,7 +31,7 @@ public class CategoryController {
         return service.getCategoryById(catId);
     }
 
-    @PostMapping("/")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Creates a new Food Category")
     @ApiResponse(description = "Food Category validation failed", responseCode = "422")
@@ -42,7 +39,7 @@ public class CategoryController {
         return service.addCategory(cat);
     }
 
-    @PutMapping("/")
+    @PutMapping
     public Category updateCategory(@RequestBody Category updatedCategory) {
         return service.updateCategory(updatedCategory);
     }
