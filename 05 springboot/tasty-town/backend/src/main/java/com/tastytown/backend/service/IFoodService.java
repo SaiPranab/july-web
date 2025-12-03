@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public interface IFoodService {
 //    FoodResponseDTO createFood(FoodRequestDTO dto, MultipartFile foodImage) throws IOException;
@@ -16,4 +17,11 @@ public interface IFoodService {
     void createFoodImage(String foodId, MultipartFile foodImage) throws IOException;
 
     Page<FoodResponseDTO> getPaginatedFoods(String categoryId, String search, int pageNumber, int pageSize);
+
+//    full update a single food using put mapping
+    FoodResponseDTO updateFoodFull(String foodId, FoodRequestDTO dto);
+
+//    partial update a single food using patch mapping
+    FoodResponseDTO updateFoodPartial(String foodId, Map<String, Object> updates);
+
 }

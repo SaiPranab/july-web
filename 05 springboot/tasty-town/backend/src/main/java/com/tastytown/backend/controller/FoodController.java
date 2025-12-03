@@ -16,6 +16,7 @@ import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/foods")
@@ -67,4 +68,26 @@ public class FoodController {
     }
 
 //    extract a single food image
+
+
+//    full update a single food using put mapping
+    @PutMapping(value = "/{foodId}")
+    public ResponseEntity<FoodResponseDTO> updateFoodFull(
+            @PathVariable String foodId,
+            @RequestBody FoodRequestDTO dto
+    ){
+        FoodResponseDTO updated =foodService.updateFoodFull(foodId, dto);
+        return ResponseEntity.ok(updated);
+    }
+
+//      partial update a single food using patch mapping
+    @PatchMapping(value = "/{foodId}")
+    public ResponseEntity<FoodResponseDTO> updateFoodPartial(
+            @PathVariable String foodId,
+            @RequestBody Map<String, Object> updates
+    ) throws IOException{
+        FoodResponseDTO updated = foodService.updateFoodPartial(foodId, updates);
+        return ResponseEntity.ok(updated);
+    }
+
 }
