@@ -24,4 +24,11 @@ public interface IFoodService {
 //    partial update a single food using patch mapping
     FoodResponseDTO updateFoodPartial(String foodId, Map<String, Object> updates);
 
+// extract all foods
+    List<FoodResponseDTO> getAllFoods();
+
+// extract food by id
+    FoodResponseDTO getSingleFoodById(String foodId);
+
+
 }

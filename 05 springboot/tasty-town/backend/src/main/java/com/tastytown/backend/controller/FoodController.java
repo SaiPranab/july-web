@@ -90,4 +90,23 @@ public class FoodController {
         return ResponseEntity.ok(updated);
     }
 
+// extract all foods
+    @GetMapping
+    public ResponseEntity<List<FoodResponseDTO>> getAllFoods(){
+        return  ResponseEntity.ok(foodService.getAllFoods());
+    }
+// extract food by id
+
+    @GetMapping("/{foodId}")
+    public ResponseEntity<FoodResponseDTO> getSingleFoodById(@PathVariable String foodId){
+        return  ResponseEntity.ok(foodService.getSingleFoodById(foodId));
+    }
+
+
+
+
+
+
+
+
 }
