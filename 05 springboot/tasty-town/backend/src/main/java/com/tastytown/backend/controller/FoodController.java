@@ -64,7 +64,7 @@ public class FoodController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    //    extract all foods with pagination & filteration & searching
+
     @Operation(summary = "Retrieves all foods with pagination, filtering, and searching", description = "Returns a page of Food entities based on optional category, search term, page number, and page size.")
     @ApiResponse(description = "Successfully retrieved paginated foods", responseCode = "200")
     @GetMapping("/paginated-foods")
@@ -77,7 +77,7 @@ public class FoodController {
         return ResponseEntity.ok(foodService.getPaginatedFoods(categoryId, search, pageNumber, pageSize));
     }
 
-    //    full update a single food using put mapping
+
     @Operation(summary = "Performs a full update of a Food entity", description = "Replaces the entire Food entity with the new data provided in the request body.")
     @ApiResponse(description = "Food updated successfully", responseCode = "200")
     @ApiResponse(description = "Food not found", responseCode = "404")
@@ -90,7 +90,7 @@ public class FoodController {
         return ResponseEntity.ok(updated);
     }
 
-    //      partial update a single food using patch mapping
+
     @Operation(summary = "Performs a partial update of a Food entity", description = "Updates only the fields provided in the request body for the specified foodId.")
     @ApiResponse(description = "Food partially updated successfully", responseCode = "200")
     @ApiResponse(description = "Food not found", responseCode = "404")
@@ -103,7 +103,7 @@ public class FoodController {
         return ResponseEntity.ok(updated);
     }
 
-    // extract all foods
+
     @Operation(summary = "Retrieves all available foods", description = "Returns a list of all Food entities.")
     @ApiResponse(description = "Successfully retrieved all foods", responseCode = "200")
     @GetMapping
@@ -111,7 +111,7 @@ public class FoodController {
         return  ResponseEntity.ok(foodService.getAllFoods());
     }
 
-    // extract food by id
+
     @Operation(summary = "Retrieves a single food by ID", description = "Returns a specific Food entity identified by its ID.")
     @ApiResponse(description = "Food found successfully", responseCode = "200")
     @ApiResponse(description = "Food not found", responseCode = "404")
@@ -120,7 +120,6 @@ public class FoodController {
         return  ResponseEntity.ok(foodService.getSingleFoodById(foodId));
     }
 
-    // extract a single food image
     @Operation(summary = "Retrieves a food image by its name", description = "Returns the image file as a byte array for the given image name.")
     @ApiResponse(description = "Image retrieved successfully", responseCode = "200")
     @ApiResponse(description = "Image not found", responseCode = "404")
