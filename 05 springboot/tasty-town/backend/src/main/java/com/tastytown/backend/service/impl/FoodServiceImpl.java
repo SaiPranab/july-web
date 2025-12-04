@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
@@ -98,6 +99,40 @@ public class FoodServiceImpl implements IFoodService {
         return paginatedDTOs;
     }
 
+//    full update a single food using put mapping
+    @Override
+    public FoodResponseDTO updateFoodFull(String foodId, FoodRequestDTO dto) {
+        Food existingFood = foodRepository.findById(foodId)
+                .orElseThrow(() -> new NoSuchElementException("Food Not Found !!!"));
+
+        Category category = categoryService.getCategoryById(dto.categoryId());
+
+        existingFood.setFoodName(dto.foodName());
+        existingFood.setFoodDescription(dto.foodDescription());
+        existingFood.setFoodPrice(dto.foodPrice());
+
+        existingFood.setCategory(category);
+
+        Food updatedFood = foodRepository.save(existingFood);
+        return FoodMapper.convertToFoodResponseDTO(updatedFood);
+
+    }
+
+//    partial update a single food using patch mapping
+    @Override
+    public FoodResponseDTO updateFoodPartial(String foodId, Map<String, Object> updates) {
+       Food existingFood = getFoodById(foodId);
+
+       if (updates.containsKey("foodName")) existingFood.setFoodName(String.valueOf(updates.get("foodName")));
+       if (updates.containsKey("foodDescription")) existingFood.setFoodDescription(String.valueOf(updates.get("foodDescription")));
+       if (updates.containsKey("foodPrice")) existingFood.setFoodPrice(Double.parseDouble(updates.get("foodPrice").toString()));
+       if (updates.containsKey("categoryId")) {
+            String categoryId = String.valueOf(updates.get("categoryId"));
+            existingFood.setCategory(categoryService.getCategoryById(categoryId));
+       }
+        return FoodMapper.convertToFoodResponseDTO(foodRepository.save(existingFood));
+    }
+
     private String uploadImage(MultipartFile foodImage) throws IOException {
         if (foodImage == null || foodImage.isEmpty()) {
             throw new NoSuchElementException("Food image not found");
@@ -124,3 +159,4 @@ public class FoodServiceImpl implements IFoodService {
                 .orElseThrow(() -> new NoSuchElementException("Food not found"));
     }
 }
+
