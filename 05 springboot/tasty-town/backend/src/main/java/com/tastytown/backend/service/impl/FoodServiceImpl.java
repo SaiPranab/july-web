@@ -133,6 +133,23 @@ public class FoodServiceImpl implements IFoodService {
         return FoodMapper.convertToFoodResponseDTO(foodRepository.save(existingFood));
     }
 
+    @Override
+    public List<FoodResponseDTO> getAllFoods() {
+        return foodRepository.findAll()
+                .stream()
+                .map(FoodMapper::convertToFoodResponseDTO)
+                .toList();
+
+    }
+
+    @Override
+    public FoodResponseDTO getSingleFoodById(String foodId) {
+        Food food = getFoodById(foodId);
+        return FoodMapper.convertToFoodResponseDTO(food);
+
+
+    }
+
     private String uploadImage(MultipartFile foodImage) throws IOException {
         if (foodImage == null || foodImage.isEmpty()) {
             throw new NoSuchElementException("Food image not found");
