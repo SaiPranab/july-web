@@ -30,5 +30,5 @@ public interface IFoodService {
 // extract food by id
     FoodResponseDTO getSingleFoodById(String foodId);
 
-
+    byte[] getFoodImageByImageName(String imageName) throws IOException;
 }

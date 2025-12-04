@@ -102,11 +102,21 @@ public class FoodController {
         return  ResponseEntity.ok(foodService.getSingleFoodById(foodId));
     }
 
+    @GetMapping("/{imageName}/image")
+    public ResponseEntity<byte[]> getFoodImageByName(@PathVariable String imageName) throws IOException {
+        byte[] image = foodService.getFoodImageByImageName(imageName);
 
+        String contentType;
+        if(imageName.contains(".jpg") || imageName.contains(".jpeg")) {
+            contentType = MediaType.IMAGE_JPEG_VALUE;
+        } else if(imageName.contains(".png")) {
+            contentType = MediaType.IMAGE_PNG_VALUE;
+        } else {
+            contentType = MediaType.APPLICATION_OCTET_STREAM_VALUE;
+        }
 
-
-
-
-
-
+        return ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(contentType))
+                .body(image);
+    }
 }

@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -148,6 +149,18 @@ public class FoodServiceImpl implements IFoodService {
         return FoodMapper.convertToFoodResponseDTO(food);
 
 
+    }
+
+    @Override
+    public byte[] getFoodImageByImageName(String imageName) throws IOException {
+        if(imageName == null || imageName.isEmpty() || imageName.isBlank()) {
+            throw new RuntimeException("Image name missing");
+        }
+
+        FileInputStream inputStream = new FileInputStream(IMAGES_FOLDER_PATH + File.separator + imageName);
+        byte[] image = inputStream.readAllBytes();
+
+        return image;
     }
 
     private String uploadImage(MultipartFile foodImage) throws IOException {
