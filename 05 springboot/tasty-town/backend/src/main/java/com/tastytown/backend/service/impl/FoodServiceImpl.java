@@ -145,9 +145,7 @@ public class FoodServiceImpl implements IFoodService {
 
     @Override
     public FoodResponseDTO getSingleFoodById(String foodId) {
-        Food food = foodRepository.findById(foodId)
-                .orElseThrow(() -> new NoSuchElementException("Food not found with id" + foodId));
-
+        Food food = getFoodById(foodId);
         return FoodMapper.convertToFoodResponseDTO(food);
 
 
