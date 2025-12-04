@@ -5,9 +5,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.tastytown.backend.dto.FoodRequestDTO;
 import com.tastytown.backend.dto.FoodResponseDTO;
 import com.tastytown.backend.service.IFoodService;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -24,7 +21,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/foods")
 @RequiredArgsConstructor
-@Tag(name = "Tasty-Town Food API", description = "A controller manages the CRUD operations for Food entities.")
 public class FoodController {
     private final ObjectMapper objectMapper;
     private final IFoodService foodService;
@@ -41,10 +37,6 @@ public class FoodController {
 //        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
 //    }
 
-    @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Creates a new Food entity", description = "Creates a new food item with the provided data.")
-    @ApiResponse(description = "Food created successfully", responseCode = "201")
-    @ApiResponse(description = "Food validation failed", responseCode = "422")
     @PostMapping
     public ResponseEntity<FoodResponseDTO> createFood( @RequestBody FoodRequestDTO dto){
         FoodResponseDTO responseDTO = foodService.createFood(dto);
@@ -52,10 +44,6 @@ public class FoodController {
         return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @Operation(summary = "Uploads an image for a specific Food entity", description = "Uploads a new image for the food item identified by foodId.")
-    @ApiResponse(description = "Food image uploaded successfully", responseCode = "204")
-    @ApiResponse(description = "Food not found", responseCode = "404")
     @PostMapping(value = "/image/{foodId}/food", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> createFoodImage(@PathVariable String foodId,
                                                 @RequestPart MultipartFile foodImage) throws IOException{
@@ -64,9 +52,11 @@ public class FoodController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+//    extract a single food By Id
 
-    @Operation(summary = "Retrieves all foods with pagination, filtering, and searching", description = "Returns a page of Food entities based on optional category, search term, page number, and page size.")
-    @ApiResponse(description = "Successfully retrieved paginated foods", responseCode = "200")
+//    extract all the available foods
+
+//    extract all foods with pagination & filteration & searching
     @GetMapping("/paginated-foods")
     public ResponseEntity<Page<FoodResponseDTO>> getPaginatedFoods(
             @RequestParam(required = false, defaultValue = "all") String categoryId,
@@ -77,10 +67,10 @@ public class FoodController {
         return ResponseEntity.ok(foodService.getPaginatedFoods(categoryId, search, pageNumber, pageSize));
     }
 
+//    extract a single food image
 
-    @Operation(summary = "Performs a full update of a Food entity", description = "Replaces the entire Food entity with the new data provided in the request body.")
-    @ApiResponse(description = "Food updated successfully", responseCode = "200")
-    @ApiResponse(description = "Food not found", responseCode = "404")
+
+//    full update a single food using put mapping
     @PutMapping("/{foodId}")
     public ResponseEntity<FoodResponseDTO> updateFoodFull(
             @PathVariable String foodId,
@@ -90,10 +80,7 @@ public class FoodController {
         return ResponseEntity.ok(updated);
     }
 
-
-    @Operation(summary = "Performs a partial update of a Food entity", description = "Updates only the fields provided in the request body for the specified foodId.")
-    @ApiResponse(description = "Food partially updated successfully", responseCode = "200")
-    @ApiResponse(description = "Food not found", responseCode = "404")
+//      partial update a single food using patch mapping
     @PatchMapping("/{foodId}")
     public ResponseEntity<FoodResponseDTO> updateFoodPartial(
             @PathVariable String foodId,
@@ -103,26 +90,18 @@ public class FoodController {
         return ResponseEntity.ok(updated);
     }
 
-
-    @Operation(summary = "Retrieves all available foods", description = "Returns a list of all Food entities.")
-    @ApiResponse(description = "Successfully retrieved all foods", responseCode = "200")
+// extract all foods
     @GetMapping
     public ResponseEntity<List<FoodResponseDTO>> getAllFoods(){
         return  ResponseEntity.ok(foodService.getAllFoods());
     }
+// extract food by id
 
-
-    @Operation(summary = "Retrieves a single food by ID", description = "Returns a specific Food entity identified by its ID.")
-    @ApiResponse(description = "Food found successfully", responseCode = "200")
-    @ApiResponse(description = "Food not found", responseCode = "404")
     @GetMapping("/{foodId}")
     public ResponseEntity<FoodResponseDTO> getSingleFoodById(@PathVariable String foodId){
         return  ResponseEntity.ok(foodService.getSingleFoodById(foodId));
     }
 
-    @Operation(summary = "Retrieves a food image by its name", description = "Returns the image file as a byte array for the given image name.")
-    @ApiResponse(description = "Image retrieved successfully", responseCode = "200")
-    @ApiResponse(description = "Image not found", responseCode = "404")
     @GetMapping("/{imageName}/image")
     public ResponseEntity<byte[]> getFoodImageByName(@PathVariable String imageName) throws IOException {
         byte[] image = foodService.getFoodImageByImageName(imageName);
@@ -140,6 +119,4 @@ public class FoodController {
                 .contentType(MediaType.parseMediaType(contentType))
                 .body(image);
     }
-
-
 }
