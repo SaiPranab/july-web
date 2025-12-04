@@ -71,7 +71,7 @@ public class FoodController {
 
 
 //    full update a single food using put mapping
-    @PutMapping(value = "/{foodId}")
+    @PutMapping("/{foodId}")
     public ResponseEntity<FoodResponseDTO> updateFoodFull(
             @PathVariable String foodId,
             @RequestBody FoodRequestDTO dto
@@ -81,7 +81,7 @@ public class FoodController {
     }
 
 //      partial update a single food using patch mapping
-    @PatchMapping(value = "/{foodId}")
+    @PatchMapping("/{foodId}")
     public ResponseEntity<FoodResponseDTO> updateFoodPartial(
             @PathVariable String foodId,
             @RequestBody Map<String, Object> updates

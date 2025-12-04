@@ -121,8 +121,7 @@ public class FoodServiceImpl implements IFoodService {
 //    partial update a single food using patch mapping
     @Override
     public FoodResponseDTO updateFoodPartial(String foodId, Map<String, Object> updates) {
-       Food existingFood = foodRepository.findById(foodId)
-                .orElseThrow(() -> new NoSuchElementException("No Suchn Food Found !!!"));
+       Food existingFood = getFoodById(foodId);
 
        if (updates.containsKey("foodName")) existingFood.setFoodName(String.valueOf(updates.get("foodName")));
        if (updates.containsKey("foodDescription")) existingFood.setFoodDescription(String.valueOf(updates.get("foodDescription")));
@@ -160,3 +159,4 @@ public class FoodServiceImpl implements IFoodService {
                 .orElseThrow(() -> new NoSuchElementException("Food not found"));
     }
 }
+
