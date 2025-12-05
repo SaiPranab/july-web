@@ -42,7 +42,7 @@ public class FoodController {
 //    }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Creates a new Food entity", description = "Creates a new food item with the provided data.")
+    @Operation(summary = "Creates a new Food entity")
     @ApiResponse(description = "Food created successfully", responseCode = "201")
     @ApiResponse(description = "Food validation failed", responseCode = "422")
     @PostMapping
@@ -53,7 +53,7 @@ public class FoodController {
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @Operation(summary = "Uploads an image for a specific Food entity", description = "Uploads a new image for the food item identified by foodId.")
+    @Operation(summary = "Uploads an image for a specific Food entity")
     @ApiResponse(description = "Food image uploaded successfully", responseCode = "204")
     @ApiResponse(description = "Food not found", responseCode = "404")
     @PostMapping(value = "/image/{foodId}/food", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -65,7 +65,7 @@ public class FoodController {
     }
 
     //    extract all foods with pagination & filteration & searching
-    @Operation(summary = "Retrieves all foods with pagination, filtering, and searching", description = "Returns a page of Food entities based on optional category, search term, page number, and page size.")
+    @Operation(summary = "Retrieves all foods with pagination, filtering, and searching")
     @ApiResponse(description = "Successfully retrieved paginated foods", responseCode = "200")
     @GetMapping("/paginated-foods")
     public ResponseEntity<Page<FoodResponseDTO>> getPaginatedFoods(
@@ -78,7 +78,7 @@ public class FoodController {
     }
 
     //    full update a single food using put mapping
-    @Operation(summary = "Performs a full update of a Food entity", description = "Replaces the entire Food entity with the new data provided in the request body.")
+    @Operation(summary = "Performs a full update of a Food entity")
     @ApiResponse(description = "Food updated successfully", responseCode = "200")
     @ApiResponse(description = "Food not found", responseCode = "404")
     @PutMapping("/{foodId}")
@@ -91,7 +91,7 @@ public class FoodController {
     }
 
     //      partial update a single food using patch mapping
-    @Operation(summary = "Performs a partial update of a Food entity", description = "Updates only the fields provided in the request body for the specified foodId.")
+    @Operation(summary = "Performs a partial update of a Food entity")
     @ApiResponse(description = "Food partially updated successfully", responseCode = "200")
     @ApiResponse(description = "Food not found", responseCode = "404")
     @PatchMapping("/{foodId}")
@@ -104,7 +104,7 @@ public class FoodController {
     }
 
     // extract all foods
-    @Operation(summary = "Retrieves all available foods", description = "Returns a list of all Food entities.")
+    @Operation(summary = "Retrieves all available foods")
     @ApiResponse(description = "Successfully retrieved all foods", responseCode = "200")
     @GetMapping
     public ResponseEntity<List<FoodResponseDTO>> getAllFoods(){
@@ -112,7 +112,7 @@ public class FoodController {
     }
 
     // extract food by id
-    @Operation(summary = "Retrieves a single food by ID", description = "Returns a specific Food entity identified by its ID.")
+    @Operation(summary = "Retrieves a single food by ID")
     @ApiResponse(description = "Food found successfully", responseCode = "200")
     @ApiResponse(description = "Food not found", responseCode = "404")
     @GetMapping("/{foodId}")
@@ -121,7 +121,7 @@ public class FoodController {
     }
 
     // extract a single food image
-    @Operation(summary = "Retrieves a food image by its name", description = "Returns the image file as a byte array for the given image name.")
+    @Operation(summary = "Retrieves a food image by its name")
     @ApiResponse(description = "Image retrieved successfully", responseCode = "200")
     @ApiResponse(description = "Image not found", responseCode = "404")
     @GetMapping("/{imageName}/image")

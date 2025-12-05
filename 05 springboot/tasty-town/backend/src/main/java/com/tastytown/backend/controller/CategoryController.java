@@ -20,14 +20,14 @@ import lombok.RequiredArgsConstructor;
 public class CategoryController {
     private final ICategoryService service;
 
-    @Operation(summary = "Get all food Categories", description = "Retrieves a list of all food categories.")
+    @Operation(summary = "Get all food Categories")
     @ApiResponse(description = "Successfully retrieved categories", responseCode = "200")
     @GetMapping
     public List<Category> getCategories() {
         return service.getCategories();
     }
 
-    @Operation(summary = "Get a food Category by ID", description = "Retrieves a specific food category by its ID.")
+    @Operation(summary = "Get a food Category by ID")
     @ApiResponse(description = "Category found successfully", responseCode = "200")
     @ApiResponse(description = "Category not found", responseCode = "404")
     @GetMapping("/{catId}")
@@ -37,14 +37,14 @@ public class CategoryController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Creates a new Food Category", description = "Adds a new food category to the system.")
+    @Operation(summary = "Creates a new Food Category")
     @ApiResponse(description = "Food Category created successfully", responseCode = "201")
     @ApiResponse(description = "Food Category validation failed (e.g., missing data)", responseCode = "422")
     public Category addCategory(@RequestBody Category cat) {
         return service.addCategory(cat);
     }
 
-    @Operation(summary = "Updates an existing Food Category", description = "Performs a full update on the category identified in the request body.")
+    @Operation(summary = "Updates an existing Food Category")
     @ApiResponse(description = "Category updated successfully", responseCode = "200")
     @ApiResponse(description = "Category not found", responseCode = "404")
     @PutMapping
@@ -52,7 +52,7 @@ public class CategoryController {
         return service.updateCategory(updatedCategory);
     }
 
-    @Operation(summary = "Deletes a Food Category by ID", description = "Removes the food category identified by its ID.")
+    @Operation(summary = "Deletes a Food Category by ID")
     @ApiResponse(description = "Category deleted successfully (No Content)", responseCode = "204")
     @ApiResponse(description = "Category not found", responseCode = "404")
     @DeleteMapping("/{catId}")
