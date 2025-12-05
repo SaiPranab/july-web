@@ -1,0 +1,17 @@
+import styles from "./Header.module.css"
+
+export default function Header() {
+  return (
+    <div className={`p-5 mb-4 bg-light rounded-4 mt-1 ${styles.header}`}>
+      <div className="container-fluid py-5">
+        <h1 className="display-5 fw-bold">Order your favorite food here</h1>
+        <p className="col-md-8 fs-4">
+          Discover the best food and drinks in Town
+        </p>
+        <a href="/explore" className="btn btn-primary">
+          Explore
+        </a>
+      </div>
+    </div>
+  )
+}
