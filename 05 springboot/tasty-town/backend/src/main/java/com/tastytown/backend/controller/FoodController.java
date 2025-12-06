@@ -21,6 +21,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/foods")
 @RequiredArgsConstructor
+//@CrossOrigin("http://localhost:5173")
 public class FoodController {
     private final ObjectMapper objectMapper;
     private final IFoodService foodService;
@@ -59,10 +60,10 @@ public class FoodController {
 //    extract all foods with pagination & filteration & searching
     @GetMapping("/paginated-foods")
     public ResponseEntity<Page<FoodResponseDTO>> getPaginatedFoods(
-            @RequestParam(required = false, defaultValue = "all") String categoryId,
+            @RequestParam(required = false, defaultValue = "all", name = "catId") String categoryId,
             @RequestParam(required = false) String search,
-            @RequestParam(required = false, defaultValue = "0") int pageNumber,
-            @RequestParam(required = false, defaultValue = "12") int pageSize
+            @RequestParam(required = false, defaultValue = "0", name = "page") int pageNumber,
+            @RequestParam(required = false, defaultValue = "12", name = "size") int pageSize
     ) {
         return ResponseEntity.ok(foodService.getPaginatedFoods(categoryId, search, pageNumber, pageSize));
     }
