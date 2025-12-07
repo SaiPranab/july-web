@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="container">
+      <main className="container fade-slide-in">
         {/* Header */}
         <Header />
 
