@@ -34,13 +34,14 @@ export default function FoodItem({ food }) {
           />
         </a>
 
-        <a href="" className="card-body text-decoration-none">
+        <div className="card-body text-decoration-none">
           <h5 className="card-title">{food.foodName}</h5>
           <p className="card-text">{food.foodDescription}</p>
-          <div className="d-flex justify-content-between align-items-center">
-            <span className="h5 mb-0">&#8377; {food.foodPrice.toFixed(2)}</span>
+          <div className="d-flex justify-content-between align-items-center mt-2">
+            <span className="price-badge">&#8377; {food.foodPrice.toFixed(2)}</span>
+            <a href={`/food/${food.foodId}`} className="btn btn-sm btn-outline-primary">View</a>
           </div>
-        </a>
+        </div>
       </div>
     </div>
   );
