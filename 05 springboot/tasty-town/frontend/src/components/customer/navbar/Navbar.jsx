@@ -3,8 +3,7 @@ import logo from "@assets/images/logo.png"
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary">
-
+    <nav className="navbar navbar-expand-lg bg-body-tertiary premium-navbar premium-section">
       <div className="container">
         <a href="/">
           <img src={logo} alt="logo" className="mx-4" height={48} width={48} />
@@ -19,14 +18,10 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="" href="/">
-                Home
-              </a>
+              <a className="nav-link" href="/">Home</a>
             </li>
             <li className="nav-item">
-              <a className="" href="/explore">
-                Explore
-              </a>
+              <a className="nav-link" href="/explore">Explore</a>
             </li>
           </ul>
         </div>

@@ -14,9 +14,8 @@
 }
 
 .food-card:hover {
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 12px 30px rgba(222, 182, 182, 0.25);
 }
-
 
 /* Food Section styling */
 
@@ -29,15 +28,26 @@
 
 .food-card-section {
   width: 18.75rem;       
-  height: 21.875rem;     
-  border-radius: 0.5rem; 
+  height: auto;     
+  border-radius: 1rem; 
   overflow: hidden;
-  transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  background-color: #fff;
 }
 
 .food-card-section:hover {
+  transform: scale(1.05);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25); 
 }
+
+/* .................. */
+.food-image {
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 1rem 1rem 0 0;
+}
+/* ..................... */
 
 @media (min-width: 768px) {
   .food-image-section {
@@ -45,7 +55,6 @@
     height: 10rem;
   }
 }
-
 
 
 /* Image Loading */
@@ -62,6 +71,7 @@
 .card-body {
   display: flex;
   flex-direction: column;
+  padding: 0.8rem 1rem;
 }
 
 .card-text {
@@ -71,4 +81,21 @@
   -webkit-line-clamp: 3;
   line-clamp: 3;
   -webkit-box-orient: vertical;
+}
+
+.price-badge {
+  background-color: rgba(255, 140, 0, 0.15); 
+  color: #fe6c04;
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.4rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  border: 1px solid rgba(255, 140, 0, 0.35);
+  display: inline-block; /* FIXED */
+  transition: transform 0.25s ease;
+}
+
+.price-badge:hover {
+  transform: scale(1.08);
 }
