@@ -24,3 +24,9 @@ export const fetchFoodImage = async (foodImageName) => {
   })
   return response.data;
 }
+
+export const fetchFoodById = async(foodId) => {
+  const url = `${BASE_URL}/${foodId}`
+  const response = await axios.get(url)
+  return response.data
+} 

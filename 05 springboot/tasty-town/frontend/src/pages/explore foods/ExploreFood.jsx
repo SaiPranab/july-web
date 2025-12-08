@@ -1,7 +1,8 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import styles from "./explorefood.module.css"
 import { fetchPaginatedFoods } from "@/service/foodService"
 import { CategoryContext } from "@/context/CategoryContext"
+import FoodDisplay from "../../components/customer/food display/FoodDisplay"
 
 export default function ExploreFood() {
   const [foods, setFoods] = useState([])
@@ -12,7 +13,7 @@ export default function ExploreFood() {
 
   const categories = useContext(CategoryContext)
 
-  const pageSize = 12;
+  const pageSize = 2;
 
   const fetchFoods = async () => {
     try {
@@ -20,14 +21,38 @@ export default function ExploreFood() {
         categoryId: selectedCategory,
         search
       })
+
+      setFoods(fetchedFoods.content)
+      setTotalPages(fetchedFoods.totalPages)
     } catch (error) {
       console.log("Error fetching foods")
+      setFoods([])
+      setTotalPages(0)
     }
   }
 
   const handleChange = async (e) => {
-    console.log(e)
+    const { name, value } = e.target;
+
+    if (name === "categoryId") {
+      setSelectedCategory(value)
+      setCurrentPage(0)
+    }
+
+    if (name === "search") {
+      setSearch(value)
+      setCurrentPage(0)
+    }
   }
+
+  const handlePageClick = (e) => {
+    const { value } = e.target
+    setCurrentPage(value)
+  }
+
+  useEffect(() => {
+    fetchFoods();
+  }, [selectedCategory, search, currentPage])
 
   return (
     <div className={`${styles["page-container"]} container`}>
@@ -73,8 +98,7 @@ export default function ExploreFood() {
         {/* <!-- Food Display Section --> */}
         <div className="fade-slide-in">
           <div className="food-display">
-            {/* <!-- Food items dynamically inserted --> */}
-            <p>Food items will appear here...</p>
+            <FoodDisplay foods={foods} />
           </div>
         </div>
 
@@ -83,10 +107,18 @@ export default function ExploreFood() {
       {/* <!-- Pagination --> */}
       <div className="d-flex justify-content-center mt-5 mb-4">
         <div className="pagination">
-          {/* <!-- Example buttons --> */}
-          <button className="btn btn-sm mx-1 btn-primary">1</button>
-          <button className="btn btn-sm mx-1 btn-outline-primary">2</button>
-          <button className="btn btn-sm mx-1 btn-outline-primary">3</button>
+          {
+            Array.from({ length: totalPages }).map((_, idx) => {
+              return (
+                <button
+                  key={idx}
+                  onClick={handlePageClick}
+                  value={idx}
+                  className={`btn btn-sm mx-1 ${idx == currentPage ? 'btn-primary' : 'btn-outline-primary'}`}
+                >{idx + 1}</button>
+              )
+            })
+          }
         </div>
       </div>
 
