@@ -24,13 +24,18 @@ LOGO
 .brand-logo {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
-  padding: 10px 15px;
-  background-color: rgba(255, 255, 255, 0.6); /* subtle translucent */
+  justify-content: center;
+  align-items: center;
+  padding: 1px 0.5px;
+  /* background-color: rgba(255, 255, 255, 0.6);  */
   border-radius: 10px;
+  transform: translateX(-20px); 
   width: fit-content;
   margin: 10px auto;
+  margin-left: 5px; /* tasty town text logo to the center*/
+  top: 10%;
+  left: 50%;
+  position: absolute;
 }
 
 .logo-text {
@@ -53,7 +58,7 @@ LOGO
 .logo-text:hover {
   text-shadow: 0 0 12px #ff4b2b, 0 0 20px #ff7a50, 0 0 30px #ff9c70;
   transition: text-shadow 0.3s ease, color 0.3s ease;
-  color: #ff4b2b; /* keep the text color */
+  color: #ff4b2b; 
 }
 
 .logo-tagline:hover {
@@ -83,6 +88,11 @@ LOGO
   background: rgba(255, 255, 255, 0.25) !important;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+
+  margin-left: -200px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 
 .premium-navbar a {
@@ -103,6 +113,27 @@ LOGO
   backdrop-filter: blur(8px);
   border-radius: 1rem;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* Navbar links */
+.premium-navbar .nav-link {
+  color: #333 !important; /* default color */
+  font-weight: 600;
+  padding: 10px 18px;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+/* Hover */
+.premium-navbar .nav-link:hover {
+  color: #ff8800 !important; /* hover orange */
+  transform: translateY(-2px);
+}
+
+/* for active link */
+.premium-navbar .nav-link.active {
+  color: #ff8800 !important;  
+  font-weight: bold;
 }
 
 /* ..................................................... */

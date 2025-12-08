@@ -1,4 +1,6 @@
 .list:hover, .link:hover{
-  color: rgb(13, 110, 253) !important;
+  /* color: rgb(13, 110, 253) !important; */
+  /* color: rgb(253, 89, 13) !important; */
+  color: #ff880f !important;
   cursor: pointer;
 }
