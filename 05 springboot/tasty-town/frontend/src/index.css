@@ -18,24 +18,35 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: border-box;
+}
+
 /* -------------------------------------------
 LOGO 
 --------------------------------------------*/
 .brand-logo {
+  position: absolute;
+  /* top: 8px; */
+  top: -12%;
+  left: 42%;
+  transform: translate(-55%, -65%);  
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1px 0.5px;
+  padding: 2px 4px;
   /* background-color: rgba(255, 255, 255, 0.6);  */
+  /* background-color: lightcyan; */
+  background-color: floralwhite;
   border-radius: 10px;
-  transform: translateX(-20px); 
   width: fit-content;
-  margin: 10px auto;
-  margin-left: 5px; /* tasty town text logo to the center*/
-  top: 10%;
-  left: 50%;
-  position: absolute;
+  margin: 0;
+  margin-left: 5px;
 }
 
 .logo-text {
@@ -81,18 +92,22 @@ LOGO
   }
 }
 
+
 /* .................................................................... */
 
 .premium-navbar {
   backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.25) !important;
+  background: rgba(255, 255, 255, 0.85) !important;
+  /* background-color: bisque !important; */
+  /* background-color: floralwhite !important; */
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-
-  margin-left: -200px;
   position: sticky;
+  width: 100%;
   top: 0;
+  left: 0;
   z-index: 999;
+  padding: 10px 20px; 
 }
 
 .premium-navbar a {
@@ -135,6 +150,7 @@ LOGO
   color: #ff8800 !important;  
   font-weight: bold;
 }
+
 
 /* ..................................................... */
 
