@@ -1,0 +1,40 @@
+.header {
+  padding: 5rem;
+  margin-bottom: 1rem;
+  border-radius: 0.3rem;
+  margin-top: 0.25rem;
+  /* color: red; */
+  background-image: url("../../../assets/images/header.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-shadow: 1px 1px black;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark glass overlay */
+.header::before {
+  content: ""; 
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(3px);
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.header * {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+}
+
+.header h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+}
+
+.header p {
+  font-size: 1.5rem;
+  opacity: 0.85;
+}

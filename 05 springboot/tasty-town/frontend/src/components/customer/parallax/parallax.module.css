@@ -1,0 +1,10 @@
+.parallax {
+  background-image: url("../../../assets/images/header.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50vh;
+  color: white;
+  text-shadow: 1px 1px black;
+}
