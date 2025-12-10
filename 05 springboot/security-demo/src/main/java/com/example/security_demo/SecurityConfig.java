@@ -11,6 +11,7 @@ import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -36,6 +37,8 @@ public class SecurityConfig {
         .authorizeHttpRequests(auth -> auth
             .requestMatchers("/contact").authenticated()
             .anyRequest().permitAll())
+
+        // .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
         .formLogin(Customizer.withDefaults())
         .logout(Customizer.withDefaults())
@@ -78,7 +81,7 @@ public class SecurityConfig {
       if (optional.isEmpty()) {
         UserEntity entity = new UserEntity();
         entity.setUserEmail("s@gmail.com");
-        entity.setUserPassword("sai");
+        entity.setUserPassword(encoder().encode("sai"));
 
         repository.save(entity);
       }

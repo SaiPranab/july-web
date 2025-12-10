@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
   @GetMapping("/")
   public String home() {
+    System.out.println("Within home controller");
     return "Home works";
   }
 
@@ -20,5 +21,3 @@ public class HelloController {
     return "Contact Works";
   }
 }
-
-
