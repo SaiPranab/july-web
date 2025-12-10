@@ -10,7 +10,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost/sb_oct
     username: postgres
-    password: root
+    password: pass2903
 
   jpa:
     hibernate:

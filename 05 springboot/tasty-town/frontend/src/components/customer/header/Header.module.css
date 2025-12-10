@@ -1,12 +1,127 @@
-.header {
-  padding: 5rem;
-  margin-bottom: 1rem;
-  border-radius: 0.3rem;
-  margin-top: 0.25rem;
-  color: white;
-  background-image: url("../../../assets/images/header.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  text-shadow: 1px 1px black;
+.headerContainer {
+    padding: 0 !important; 
+    
+    margin-bottom: 1rem;
+    border-radius: 0.3rem;
+    margin-top: 0.25rem;
+    
+    height: 350px; 
+    overflow: hidden; 
+    
+    position: relative; 
+    text-shadow: 1px 1px black; 
+}
+
+.slideContent {
+    height: 350px; 
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    padding: 5rem; 
+    
+    display: flex !important; 
+    flex-direction: column;
+    justify-content: center;
+    
+    position: relative;
+    z-index: 2; 
+    color: white; 
+}
+
+/* 3. Dark Glass Overlay (z-index: 1) */
+.slideContent::before {
+    content: ""; 
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45); 
+    z-index: 1; /* Sits below the text/button content */
+}
+
+
+.slideContent :global(.container-fluid) {
+    position: relative; /* REQUIRED for z-index to work */
+    z-index: 2; 
+}
+
+/* 5. Text Styling */
+.slideContent h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    position: relative; 
+    z-index: 3; 
+}
+
+.slideContent p {
+    font-size: 1.5rem;
+    opacity: 0.85;
+    position: relative;
+    z-index: 3;
+}
+
+/* 6. Custom Navigation Buttons
+
+/* Styling for both custom buttons */
+.prevButton, .nextButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); 
+    z-index: 100; 
+    background: rgba(0, 0, 0, 0.4); 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.prevButton:hover, .nextButton:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.prevButton {
+    left: 40px; 
+}
+
+.nextButton {
+    right: 40px; 
+}
+
+/* 7. Global Styles for Slick Dots (if you keep them) */
+:global(.slick-dots li button:before) {
+    color: white !important; 
+    opacity: 0.75;
+}
+
+:global(.slick-dots) {
+    bottom: 20px; 
+}
+
+
+/* Style for the custom dot element itself */
+.customDot {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  margin: 0 5px;
+  transition: background-color 0.3s;
+}
+
+/* Style for the active dot */
+:global(.slick-dots li.slick-active .customDot) {
+  background-color: #ffffff; 
+  transform: scale(1.2);
+}
+
+:global(.slick-dots) {
+
+  list-style: none;
+  padding: 0;
+  margin: 0; 
+  display: flex !important; /* Forces row layout */
+  justify-content: center;
 }
