@@ -9,7 +9,7 @@ const Navbar = () => {
         <p className="logo-tagline">Deliciousness Delivered</p>
       </div>
 
-      <div className="container">
+      <div className="container d-flex align-items-center nav-left-shift">
         <a href="/">
           <img src={logo} alt="logo" className="mx-4" height={48} width={48} />
         </a>

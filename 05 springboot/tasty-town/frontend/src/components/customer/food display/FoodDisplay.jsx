@@ -11,7 +11,7 @@ export default ({ foods }) => {
             <h4>No food available</h4>
           </div>
         )
-        }
+      }
       </div>
     </div>
   )
