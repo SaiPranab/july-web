@@ -1,0 +1,31 @@
+<!-- Put this code after showing price, instead of view button -->
+
+<!-- handle If Cart does not conatins this food item -->
+              <button
+                className="btn btn-sm btn-outline-primary rounded-pill px-3"
+                onClick={alert('Adding Item to Cart')}
+              >
+                Add
+              </button>
+        
+<!-- Handle increase & decrease of quantity, if item already exists in cart -->
+              <div className="d-flex align-items-center gap-2 bg-light rounded-pill p-1 border">
+                <button
+                  className="btn btn-sm btn-light rounded-circle p-0 d-flex align-items-center justify-content-center text-primary"
+                  style={{ width: '24px', height: '24px' }}
+                  onClick={alert("Decreasing quantity")}
+                >
+                  <i className="bi bi-dash"></i>
+                </button>
+                <span className="fw-bold small px-1">
+                    <!-- Show Quantity here -->
+                </span>
+                <button
+                  className="btn btn-sm btn-primary rounded-circle p-0 d-flex align-items-center justify-content-center text-white"
+                  style={{ width: '24px', height: '24px' }}
+                  onClick={alert("Increasing quantity")}
+                >
+                  <i className="bi bi-plus"></i>
+                </button>
+              </div>
+            )}
