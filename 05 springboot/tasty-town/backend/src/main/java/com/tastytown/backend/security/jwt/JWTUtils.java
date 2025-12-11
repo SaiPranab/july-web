@@ -1,6 +1,7 @@
 package com.tastytown.backend.security.jwt;
 
 import com.tastytown.backend.constants.Role;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
@@ -45,35 +46,23 @@ public class JWTUtils {
         return token;
     }
 
-    public String extractUsername(String token) {
-        String username = Jwts.parser()
+    public String extractUserId(String token) {
+        String userId = parseToken(token).getSubject();
+
+        log.info("Extract userId: ", userId);
+        return userId;
+    }
+
+    public boolean validateToken(String token) {
+        parseToken(token);
+        return true;
+    }
+
+    private Claims parseToken(String token) {
+        return Jwts.parser()
                 .verifyWith(getKey())
                 .build()
                 .parseSignedClaims(token)
-                .getPayload()
-                .getSubject();
-
-        log.info("Extract Username: ", username);
-        return username;
-    }
-
-    public boolean validateToken(String token, UserDetails userDetails) {
-        String username = userDetails.getUsername();
-        boolean isValidToken = username.equals(extractUsername(token)) && !isTokenExpired(token);
-
-        return isValidToken;
-    }
-
-    private boolean isTokenExpired(String token) {
-        Instant expirationTime = Jwts.parser()
-                .verifyWith(getKey())
-                .build()
-                .parseSignedClaims(token)
-                .getPayload()
-                .getExpiration()
-                .toInstant();
-
-        boolean isExpired = expirationTime.isBefore(Instant.now());
-        return isExpired;
+                .getPayload();
     }
 }
