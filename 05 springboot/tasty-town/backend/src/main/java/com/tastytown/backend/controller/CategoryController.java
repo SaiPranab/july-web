@@ -21,7 +21,7 @@ import tools.jackson.databind.ObjectMapper;
 @Tag(name = "Tasty-Town Food Category API", description = "A controller manages the CRUD operations for Food Categories.")
 public class CategoryController {
     private final ICategoryService service;
-    private final ObjectMapper objectMapper;
+
 
     @Operation(summary = "Get all food Categories", description = "Retrieves a list of all food categories.")
     @ApiResponse(description = "Successfully retrieved categories", responseCode = "200")
