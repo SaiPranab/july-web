@@ -1,40 +1,138 @@
-.header {
-  padding: 5rem;
-  margin-bottom: 1rem;
-  border-radius: 0.3rem;
-  margin-top: 0.25rem;
-  /* color: red; */
-  background-image: url("../../../assets/images/header.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  text-shadow: 1px 1px black;
-  position: relative;
-  overflow: hidden;
+/* 1. Outer Container for the entire Carousel */
+/* Remove padding here; slideContent handles the 5rem padding */
+.headerContainer {
+    
+    padding: 0 !important; 
+    
+    margin-bottom: 1rem;
+    border-radius: 0.3rem;
+    margin-top: 0.25rem;
+    
+    /* CRITICAL: Define a fixed height for the carousel container */
+    height: 350px; /* Adjust this height to match your visual design */
+    overflow: hidden; 
+    
+    position: relative; /* CRITICAL for button and z-index positioning */
+    text-shadow: 1px 1px black; 
 }
 
-/* Dark glass overlay */
-.header::before {
-  content: ""; 
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(3px);
-  background: rgba(0, 0, 0, 0.45);
+/* 2. Style for the Individual Slide Content (Handles Background/Overlay) */
+.slideContent {
+    height: 350px; /* CRITICAL: Must match container height */
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    padding: 5rem; /* Apply the original 5rem padding here */
+    
+    display: flex !important; 
+    flex-direction: column;
+    justify-content: center; /* Vertically center content */
+    
+    position: relative;
+    z-index: 2; /* Ensures slide content is above the slick framework */
+    color: white; 
 }
 
-.header * {
-  position: relative;
-  z-index: 2;
-  color: white;
-  text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+/* 3. Dark Glass Overlay (z-index: 1) */
+.slideContent::before {
+    content: ""; 
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45); 
+    z-index: 1; /* Sits below the text/button content */
 }
 
-.header h1 {
-  font-size: 3.2rem;
-  font-weight: 800;
+/* 4. FIX: Elevate the Bootstrap Content Container (z-index: 2) */
+/* This ensures the H1, P, and especially the BUTTON are clickable 
+   and sit above the z-index: 1 overlay. */
+.slideContent :global(.container-fluid) {
+    position: relative; /* REQUIRED for z-index to work */
+    z-index: 2; 
 }
 
-.header p {
-  font-size: 1.5rem;
-  opacity: 0.85;
+/* 5. Text Styling */
+.slideContent h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    position: relative; 
+    z-index: 3; /* Slightly higher than container for safety */
+}
+
+.slideContent p {
+    font-size: 1.5rem;
+    opacity: 0.85;
+    position: relative;
+    z-index: 3;
+}
+
+/* 6. Custom Navigation Buttons (Manual Slide Control) */
+
+/* Styling for both custom buttons */
+.prevButton, .nextButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Center vertically */
+    z-index: 100; /* Highest z-index for visibility */
+    background: rgba(0, 0, 0, 0.4); 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.prevButton:hover, .nextButton:hover {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* Positioning the Left Button (Moved further inward) */
+.prevButton {
+    left: 40px; 
+}
+
+/* Positioning the Right Button (Moved further inward) */
+.nextButton {
+    right: 40px; 
+}
+
+/* 7. Global Styles for Slick Dots (if you keep them) */
+:global(.slick-dots li button:before) {
+    color: white !important; 
+    opacity: 0.75;
+}
+
+:global(.slick-dots) {
+    bottom: 20px; 
+}
+
+
+/* Style for the custom dot element itself */
+.customDot {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+  border-radius: 50%;
+  margin: 0 5px;
+  transition: background-color 0.3s;
+}
+
+/* Style for the active dot */
+/* react-slick adds the 'slick-active' class to the <li> parent of the active dot */
+:global(.slick-dots li.slick-active .customDot) {
+  background-color: #ffffff; /* Solid white for the active dot */
+  transform: scale(1.2);
+}
+
+/* Optional: Override default list styling for the dots container */
+:global(.slick-dots) {
+  /* This is handled by the inline style in appendDots, but is good practice */
+  list-style: none;
+  padding: 0;
+  margin: 0; 
+  display: flex !important; /* Forces row layout */
+  justify-content: center;
 }
