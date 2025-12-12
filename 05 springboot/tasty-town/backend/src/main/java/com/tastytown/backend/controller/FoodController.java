@@ -30,18 +30,6 @@ public class FoodController {
     private final ObjectMapper objectMapper;
     private final IFoodService foodService;
 
-//    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-//    public ResponseEntity<FoodResponseDTO> createFood( @RequestPart String foodData,
-//                                                       @RequestPart MultipartFile foodImage)
-//            throws JsonProcessingException, IOException {
-//
-//        FoodRequestDTO dto = objectMapper.readValue(foodData, FoodRequestDTO.class);
-//
-//        FoodResponseDTO responseDTO = foodService.createFood(dto, foodImage);
-//
-//        return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
-//    }
-
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Creates a new Food entity", description = "Creates a new food item with the provided data.")
     @ApiResponse(description = "Food created successfully", responseCode = "201")
