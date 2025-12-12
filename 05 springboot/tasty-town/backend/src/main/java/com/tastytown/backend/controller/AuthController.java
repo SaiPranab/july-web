@@ -34,13 +34,13 @@ public class AuthController {
             responses = {
                     @ApiResponse(
                             responseCode = "200",
-                            description = "Authentication successful. Returns JWT token.",
-                            content = @Content(schema = @Schema(implementation = AuthResponseDTO.class))
+                            description = "Authentication successful. Returns JWT token."
+
                     ),
                     @ApiResponse(
                             responseCode = "401",
-                            description = "Invalid credentials.",
-                            content = @Content(schema = @Schema(hidden = true))
+                            description = "Invalid credentials."
+
                     ),
                     @ApiResponse(
                             responseCode = "400",
@@ -61,8 +61,7 @@ public class AuthController {
             responses = {
                     @ApiResponse(
                             responseCode = "201",
-                            description = "User successfully registered.",
-                            content = @Content(schema = @Schema(hidden = true))
+                            description = "User successfully registered."
                     ),
                     @ApiResponse(
                             responseCode = "400",
@@ -83,8 +82,7 @@ public class AuthController {
             responses = {
                     @ApiResponse(
                             responseCode = "201",
-                            description = "Admin successfully registered.",
-                            content = @Content(schema = @Schema(hidden = true))
+                            description = "Admin successfully registered."
                     ),
                     @ApiResponse(
                             responseCode = "400",
