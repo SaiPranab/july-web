@@ -46,6 +46,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/v1/foods/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/v1/categories/**").permitAll()
 
+                        .requestMatchers(HttpMethod.POST, "/api/v1/auth/login", "/api/v1/auth/register").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/v1/auth/register-admin").hasRole("ADMIN")
+
                         .requestMatchers(HttpMethod.POST, "/api/v1/foods/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/v1/foods/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/foods/**").hasRole("ADMIN")

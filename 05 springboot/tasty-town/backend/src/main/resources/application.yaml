@@ -8,7 +8,7 @@ spring:
     name: Tasty Town Backend
 
   datasource:
-    url: jdbc:postgresql://localhost/sb_oct
+    url: jdbc:postgresql://localhost/tasty-town
     username: postgres
     password: root
 
