@@ -12,8 +12,7 @@ public record RegisterRequestDTO(
         String username,
 
         @NotBlank(message = "Email is required")
-
-        @Email(message = "Email should be a valid email address structure")
+        @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$", message = "Email should be a valid email address")
         String userEmail,
 
         @NotBlank(message = "Password is required")

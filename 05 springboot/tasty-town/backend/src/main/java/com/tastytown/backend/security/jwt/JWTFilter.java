@@ -57,7 +57,7 @@ public class JWTFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authToken);
 
 //                Send the User Id to controller
-            request.setAttribute("user", user);
+            request.setAttribute("userId", userId);
         }
 
         filterChain.doFilter(request, response);

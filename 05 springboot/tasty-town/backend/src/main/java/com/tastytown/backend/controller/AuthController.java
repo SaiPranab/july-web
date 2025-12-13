@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid; // Assuming you've added validation to your DTOs
 
-// 1. Tag annotation to group and describe the controller in Swagger UI
 @Tag(name = "Authentication", description = "Endpoints for user registration and login")
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -27,7 +26,6 @@ import jakarta.validation.Valid; // Assuming you've added validation to your DTO
 public class AuthController {
     private final IAuthService authService;
 
-    // --- Login Endpoint ---
     @Operation(
             summary = "User Login",
             description = "Authenticates a user and returns a JWT token.",
@@ -49,12 +47,10 @@ public class AuthController {
             }
     )
     @PostMapping("/login")
-    // Use @Valid here to ensure validation is executed (as requested in previous questions)
     public ResponseEntity<AuthResponseDTO> login(@Valid @RequestBody AuthRequestDTO dto) {
         return ResponseEntity.ok(authService.login(dto));
     }
 
-    // --- Register User Endpoint ---
     @Operation(
             summary = "Register Standard User",
             description = "Creates a new user account with the default 'ROLE_USER' role.",
@@ -75,7 +71,6 @@ public class AuthController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    // --- Register Admin Endpoint ---
     @Operation(
             summary = "Register Admin User",
             description = "Creates a new user account with the 'ROLE_ADMIN' role. **Requires existing admin privileges for a real application.**",

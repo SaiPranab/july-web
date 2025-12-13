@@ -10,7 +10,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost/tasty-town
     username: postgres
-    password: root
+    password: tiger
 
   jpa:
     hibernate:
