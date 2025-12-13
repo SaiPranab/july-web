@@ -21,7 +21,6 @@ public class UserEntity {
 
     private String username;
 
-    @Email
     @Column(nullable = false, unique = true)
     private String userEmail;
 
