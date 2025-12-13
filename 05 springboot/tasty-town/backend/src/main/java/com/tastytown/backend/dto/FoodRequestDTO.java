@@ -10,7 +10,7 @@ public record FoodRequestDTO(
         String foodName,
 
         @NotBlank(message = "Food description is required")
-        @Size(max = 100, message = "Food description must be less than 500 characters")
+        @Size(max = 100, message = "Food description must be less than 100 characters")
         String foodDescription,
 
 
