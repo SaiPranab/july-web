@@ -109,23 +109,38 @@ export default function ExploreFood() {
           </div>
         </div>
 
-        {/* <!-- Pagination --> */}
+       {/* pagination */}
         <div className="d-flex justify-content-center mt-5 mb-4">
-          <div className="pagination">
-            {Array.from({ length: totalPages }).map((_, idx) => {
-              return (
-                <button
-                  key={idx}
-                  onClick={handlePageClick}
-                  value={idx}
-                  className={`btn btn-sm mx-1 ${
-                    idx == currentPage ? "btn-primary" : "btn-outline-primary"
-                  }`}
-                >
-                  {idx + 1}
-                </button>
-              );
-            })}
+          <div className={`pagination ${styles.pagination}`}>
+            <button
+              className="btn btn-sm mx-1 btn-outline-primary"
+              disabled={currentPage <= 0}
+              onClick={() => setCurrentPage((prev) => prev - 1)}
+            >
+              Back
+            </button>
+
+            {Array.from({ length: totalPages }, (_, idx) => (
+              <button
+                key={idx}
+                className={`btn btn-sm mx-1 ${
+                  idx === currentPage
+                    ? "btn-primary active"
+                    : "btn-outline-primary"
+                }`}
+                onClick={() => setCurrentPage(idx)}
+              >
+                {idx + 1} 
+              </button>
+            ))}
+
+            <button
+              className="btn btn-sm mx-1 btn-outline-primary"
+              disabled={currentPage >= totalPages-1}
+              onClick={() => setCurrentPage((prev) => prev + 1)}
+            >
+              Next
+            </button>
           </div>
         </div>
       </div>
