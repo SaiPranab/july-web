@@ -2,6 +2,7 @@ package com.tastytown.backend.controller;
 
 import java.util.List;
 
+import com.tastytown.backend.dto.CategoryRequestDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -12,6 +13,7 @@ import com.tastytown.backend.model.Category;
 import com.tastytown.backend.service.ICategoryService;
 
 import lombok.RequiredArgsConstructor;
+import tools.jackson.databind.ObjectMapper;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 @Tag(name = "Tasty-Town Food Category API", description = "A controller manages the CRUD operations for Food Categories.")
 public class CategoryController {
     private final ICategoryService service;
+
 
     @Operation(summary = "Get all food Categories", description = "Retrieves a list of all food categories.")
     @ApiResponse(description = "Successfully retrieved categories", responseCode = "200")
@@ -40,7 +43,7 @@ public class CategoryController {
     @Operation(summary = "Creates a new Food Category", description = "Adds a new food category to the system.")
     @ApiResponse(description = "Food Category created successfully", responseCode = "201")
     @ApiResponse(description = "Food Category validation failed (e.g., missing data)", responseCode = "422")
-    public Category addCategory(@RequestBody Category cat) {
+    public Category addCategory(@RequestBody CategoryRequestDTO cat) {
         return service.addCategory(cat);
     }
 

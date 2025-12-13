@@ -1,0 +1,39 @@
+/* --- ErrorPage.css --- */
+
+.error-page {
+  /* Positioning and Layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  /* text-align: center; */
+  padding: 20px;
+
+  /* Background and Colors */
+  background-color: floralwhite; 
+  
+font-family: "Madimi One", cursive;
+}
+
+.error-page h1 {
+  /* Style for the main heading */
+  font-size: 2.5em;
+  color: #dc3545; /*#673bbe */
+  margin-bottom: 10px;
+}
+
+.error-page p {
+  /* Style for the paragraph text */
+  font-size: 1.1em;
+  color: #6c757d;
+  margin-bottom: 30px;
+}
+
+.redirection{
+  text-decoration: none;
+}
+
+.error{
+  text-align: center;
+}

@@ -2,11 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import ExploreFood from "./pages/explore foods/ExploreFood";
 import FoodDetails from "./pages/food details/FoodDetails";
+import ErrorPage from "./common/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    errorElement: <h1>Error Page Works</h1>,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
