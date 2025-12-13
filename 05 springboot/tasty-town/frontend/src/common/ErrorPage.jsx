@@ -1,25 +1,26 @@
 import React from 'react';
 import { NavLink, useRouteError } from 'react-router-dom';
-import "./ErrorPage.css";
+import styles from "./ErrorPage.module.css";
 
 const ErrorPage = () => {
     
     const error = useRouteError();
 
     return (
-        <div className='error-page'>
+        <div className={`${styles["error-page"]}`}>
            
-            <h1>Oops! Something went wrong 😥</h1>
+            <h1>Oops!</h1>
+            <h1>Something went wrong</h1>
             <p>Sorry, an unexpected error has occurred.</p>
             
             {/* Displaying Error Details */}
             <div className='error-details'>
               
-                <p>
-                    **Error Status:** {error.status || 'N/A'}
+                <p className= {`${styles["error"]}`}>
+                    {error.status || 'N/A'}
                 </p>
                 <p>
-                    **Details:** **_{error.statusText|| error.data || error.message || 'No specific error message available.'}_**
+                    {error.statusText|| error.data || error.message || 'No specific error message available.'}
                 </p>
             </div>
             
@@ -27,7 +28,7 @@ const ErrorPage = () => {
             <p className='navigation-prompt'>
                 Please try again or navigate back to the home page.
             </p>
-            <NavLink to="/" className="btn btn-primary">   
+            <NavLink to="/" className={`${styles["redirection"]}`}>   
                   Go Back To Home Page
             </NavLink>
             {/* btn btn-warning, btn btn-info, btn btn-dark, btn btn-success */}

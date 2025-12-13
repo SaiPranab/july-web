@@ -13,7 +13,7 @@
   /* Background and Colors */
   background-color: floralwhite; 
   
-font-family: Madimi One", cursive;
+font-family: "Madimi One", cursive;
 }
 
 .error-page h1 {
@@ -28,4 +28,12 @@ font-family: Madimi One", cursive;
   font-size: 1.1em;
   color: #6c757d;
   margin-bottom: 30px;
+}
+
+.redirection{
+  text-decoration: none;
+}
+
+.error{
+  text-align: center;
 }
