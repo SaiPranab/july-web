@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -90,6 +91,7 @@ public class AuthController {
             }
     )
     @PostMapping("/register-admin")
+    @SecurityRequirement(name = "bearerAuth")
     public ResponseEntity<Void> registerAdmin(@Valid @RequestBody RegisterRequestDTO dto) {
         authService.register(dto, Role.ROLE_ADMIN);
         return ResponseEntity.status(HttpStatus.CREATED).build();

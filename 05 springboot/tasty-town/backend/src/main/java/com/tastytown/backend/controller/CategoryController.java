@@ -5,6 +5,7 @@ import java.util.List;
 import com.tastytown.backend.dto.CategoryRequestDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -38,6 +39,7 @@ public class CategoryController {
         return service.getCategoryById(catId);
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Creates a new Food Category", description = "Adds a new food category to the system.")
@@ -47,6 +49,7 @@ public class CategoryController {
         return service.addCategory(cat);
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @Operation(summary = "Updates an existing Food Category", description = "Performs a full update on the category identified in the request body.")
     @ApiResponse(description = "Category updated successfully", responseCode = "200")
     @ApiResponse(description = "Category not found", responseCode = "404")
@@ -55,6 +58,7 @@ public class CategoryController {
         return service.updateCategory(updatedCategory);
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @Operation(summary = "Deletes a Food Category by ID", description = "Removes the food category identified by its ID.")
     @ApiResponse(description = "Category deleted successfully (No Content)", responseCode = "204")
     @ApiResponse(description = "Category not found", responseCode = "404")

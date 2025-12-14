@@ -7,6 +7,7 @@ import com.tastytown.backend.dto.FoodResponseDTO;
 import com.tastytown.backend.service.IFoodService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -30,6 +31,7 @@ public class FoodController {
     private final ObjectMapper objectMapper;
     private final IFoodService foodService;
 
+    @SecurityRequirement(name = "bearerAuth")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Creates a new Food entity", description = "Creates a new food item with the provided data.")
     @ApiResponse(description = "Food created successfully", responseCode = "201")
@@ -41,6 +43,7 @@ public class FoodController {
         return new ResponseEntity<>(responseDTO, HttpStatus.CREATED);
     }
 
+    @SecurityRequirement(name = "bearerAuth")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Uploads an image for a specific Food entity", description = "Uploads a new image for the food item identified by foodId.")
     @ApiResponse(description = "Food image uploaded successfully", responseCode = "204")
@@ -67,6 +70,7 @@ public class FoodController {
     }
 
 
+    @SecurityRequirement(name = "bearerAuth")
     @Operation(summary = "Performs a full update of a Food entity", description = "Replaces the entire Food entity with the new data provided in the request body.")
     @ApiResponse(description = "Food updated successfully", responseCode = "200")
     @ApiResponse(description = "Food not found", responseCode = "404")
@@ -80,6 +84,7 @@ public class FoodController {
     }
 
 
+    @SecurityRequirement(name = "bearerAuth")
     @Operation(summary = "Performs a partial update of a Food entity", description = "Updates only the fields provided in the request body for the specified foodId.")
     @ApiResponse(description = "Food partially updated successfully", responseCode = "200")
     @ApiResponse(description = "Food not found", responseCode = "404")
