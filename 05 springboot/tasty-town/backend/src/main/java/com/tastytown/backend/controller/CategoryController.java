@@ -19,19 +19,19 @@ import tools.jackson.databind.ObjectMapper;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/categories")
-@Tag(name = "Tasty-Town Food Category API", description = "A controller manages the CRUD operations for Food Categories.")
+@Tag(name = "Category API", description = "A controller manages the CRUD operations for Categories.")
 public class CategoryController {
     private final ICategoryService service;
 
 
-    @Operation(summary = "Get all food Categories", description = "Retrieves a list of all food categories.")
+    @Operation(summary = "Get all Categories", description = "Retrieves a list of all categories.")
     @ApiResponse(description = "Successfully retrieved categories", responseCode = "200")
     @GetMapping
     public List<Category> getCategories() {
         return service.getCategories();
     }
 
-    @Operation(summary = "Get a food Category by ID", description = "Retrieves a specific food category by its ID.")
+    @Operation(summary = "Get a Category by ID", description = "Retrieves a specific category by its ID.")
     @ApiResponse(description = "Category found successfully", responseCode = "200")
     @ApiResponse(description = "Category not found", responseCode = "404")
     @GetMapping("/{catId}")
@@ -42,15 +42,15 @@ public class CategoryController {
     @SecurityRequirement(name = "bearerAuth")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Creates a new Food Category", description = "Adds a new food category to the system.")
-    @ApiResponse(description = "Food Category created successfully", responseCode = "201")
-    @ApiResponse(description = "Food Category validation failed (e.g., missing data)", responseCode = "422")
+    @Operation(summary = "Creates a new Category", description = "Adds a new category to the system.")
+    @ApiResponse(description = "Category created successfully", responseCode = "201")
+    @ApiResponse(description = "Category validation failed (e.g., missing data)", responseCode = "422")
     public Category addCategory(@RequestBody CategoryRequestDTO cat) {
         return service.addCategory(cat);
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @Operation(summary = "Updates an existing Food Category", description = "Performs a full update on the category identified in the request body.")
+    @Operation(summary = "Updates an existing Category", description = "Performs a full update on the category identified in the request body.")
     @ApiResponse(description = "Category updated successfully", responseCode = "200")
     @ApiResponse(description = "Category not found", responseCode = "404")
     @PutMapping
@@ -59,11 +59,11 @@ public class CategoryController {
     }
 
     @SecurityRequirement(name = "bearerAuth")
-    @Operation(summary = "Deletes a Food Category by ID", description = "Removes the food category identified by its ID.")
+    @Operation(summary = "Deletes a Category by ID", description = "Removes the category identified by its ID.")
     @ApiResponse(description = "Category deleted successfully (No Content)", responseCode = "204")
     @ApiResponse(description = "Category not found", responseCode = "404")
     @DeleteMapping("/{catId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT) // Changed from ACCEPTED to NO_CONTENT for common REST practice
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCategory(@PathVariable String catId) {
         service.deleteCategory(catId);
     }

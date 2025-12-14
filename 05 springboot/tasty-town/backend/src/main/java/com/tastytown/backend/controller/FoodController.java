@@ -25,7 +25,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/foods")
 @RequiredArgsConstructor
-@Tag(name = "Tasty-Town Food API", description = "A controller manages the CRUD operations for Food entities.")
+@Tag(name = "Food API", description = "A controller manages the CRUD operations for Food entities.")
 //@CrossOrigin("http://localhost:5173")
 public class FoodController {
     private final ObjectMapper objectMapper;
