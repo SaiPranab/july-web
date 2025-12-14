@@ -2,6 +2,7 @@ package com.tastytown.backend.service;
 
 import com.tastytown.backend.dto.FoodRequestDTO;
 import com.tastytown.backend.dto.FoodResponseDTO;
+import com.tastytown.backend.model.Food;
 import org.jspecify.annotations.Nullable;
 import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,4 +32,11 @@ public interface IFoodService {
     FoodResponseDTO getSingleFoodById(String foodId);
 
     byte[] getFoodImageByImageName(String imageName) throws IOException;
+
+    /**
+     * This method find a Food object by the foodId
+     * @param foodId
+     * @return Food
+     */
+    Food getFoodById(String foodId);
 }

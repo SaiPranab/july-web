@@ -29,7 +29,7 @@ public class CartController {
     }
 
     @PutMapping
-    public ResponseEntity<CartItemResponseDTO> updateItemQuantity(
+    public ResponseEntity<CartResponseDTO> updateItemQuantity(
             @RequestAttribute String userId,
             @RequestBody CartItemRequestDTO cartItemRequestDTO ) {
         return ResponseEntity.ok(cartService.updateItemQuantity(userId, cartItemRequestDTO));

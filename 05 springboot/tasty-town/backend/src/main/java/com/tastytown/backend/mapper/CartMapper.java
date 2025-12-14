@@ -9,7 +9,7 @@ import java.util.List;
 public class CartMapper {
     private CartMapper(){}
 
-    public CartResponseDTO convertToDTO(Cart cart) {
+    public static CartResponseDTO convertToDTO(Cart cart) {
         List<CartItemResponseDTO> items = cart.getItems().stream()
                 .map(cartItem -> new CartItemResponseDTO(
                         cartItem.getFood().getFoodId(),
