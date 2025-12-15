@@ -38,7 +38,7 @@ public class CartServiceImpl implements ICartService {
         Food food = foodService.getFoodById(cartItemRequestDTO.foodId());
 
 //        Check if cart exists, if not create a new cart
-        Cart cart = getCartOfAnUserByUser(user);
+        Cart cart = getCartOfAnUser(user);
 
 //        Check if item already exists in the cart
         Optional<CartItem> existingItemOpt = cart.getItems().stream()
@@ -71,7 +71,7 @@ public class CartServiceImpl implements ICartService {
         UserEntity user = userService.getUserById(userId);
 
 //        extract the Cart for that user ( check if the cart exists for that user)
-        Cart existingCartOfAnUser = getCartOfAnUserByUser(user);
+        Cart existingCartOfAnUser = getCartOfAnUser(user);
 
 //        Convert Cart To CartResponseDTO & return
         return CartMapper.convertToDTO(existingCartOfAnUser);
@@ -83,7 +83,7 @@ public class CartServiceImpl implements ICartService {
         UserEntity user = userService.getUserById(userId);
 
 //        Check if cart exists for that user
-        Cart cartOfAnUser = getCartOfAnUserByUser(user);
+        Cart cartOfAnUser = getCartOfAnUser(user);
 
 //        Find the item in the cart to update teh quantity (if the item not exists generate exception)
         CartItem existingCartItem = cartOfAnUser.getItems().stream()
@@ -113,7 +113,7 @@ public class CartServiceImpl implements ICartService {
         UserEntity user = userService.getUserById(userId);
 
 //        Check if the cart exists for that user
-        Cart cartOfAnUser = getCartOfAnUserByUser(user);
+        Cart cartOfAnUser = getCartOfAnUser(user);
 
 //        check if food exists
         Food food = foodService.getFoodById(foodId);
@@ -140,7 +140,7 @@ public class CartServiceImpl implements ICartService {
         UserEntity user = userService.getUserById(userId);
 
 //        Check if the cart exists for that user
-        Cart cartOfAnUser = getCartOfAnUserByUser(user);
+        Cart cartOfAnUser = getCartOfAnUser(user);
 
 //        Clear Cart Items
         cartOfAnUser.getItems().clear();
@@ -149,7 +149,7 @@ public class CartServiceImpl implements ICartService {
         cartRepository.save(cartOfAnUser);
     }
 
-    private Cart getCartOfAnUserByUser(UserEntity user) {
+    public Cart getCartOfAnUser(UserEntity user) {
         return cartRepository.findByUser(user).orElseGet(() -> {
             Cart newCart = new Cart();
             newCart.setUser(user);
