@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cart extends TastyTownAuditableEntity {
+public class Cart extends TastyTownAuditableEntity { 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String cartId;
