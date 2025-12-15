@@ -69,7 +69,7 @@ export default function ExploreFood() {
                   <select
                     onChange={handleChange}
                     name="categoryId"
-                    className="form-select mt-2"
+                    className={`form-select mt-2 ${styles["select-clean"]}`}
                     style={{ maxWidth: "150px" }}
                   >
                     <option value="all">All</option>
@@ -89,11 +89,14 @@ export default function ExploreFood() {
                     value={search}
                     onChange={handleChange}
                     type="text"
-                    className="form-control mt-2"
+                    className={`form-control mt-2 ${styles.searchInput}`}
                     placeholder="Search your favorite dish..."
                   />
 
-                  <button className="btn btn-primary mt-2" type="submit">
+                  <button
+                    className={`btn btn-primary mt-2 ${styles.searchButton}`}
+                    type="submit"
+                  >
                     <i className="bi bi-search"></i>
                   </button>
                 </div>
@@ -109,7 +112,7 @@ export default function ExploreFood() {
           </div>
         </div>
 
-       {/* pagination */}
+        {/* <!-- Pagination --> */}
         <div className="d-flex justify-content-center mt-5 mb-4">
           <div className={`pagination ${styles.pagination}`}>
             <button
@@ -130,13 +133,13 @@ export default function ExploreFood() {
                 }`}
                 onClick={() => setCurrentPage(idx)}
               >
-                {idx + 1} 
+                {idx + 1}
               </button>
             ))}
 
             <button
               className="btn btn-sm mx-1 btn-outline-primary"
-              disabled={currentPage >= totalPages-1}
+              disabled={currentPage >= totalPages - 1}
               onClick={() => setCurrentPage((prev) => prev + 1)}
             >
               Next
