@@ -1,5 +1,5 @@
 server:
-  port: 1201
+  port: 1200
   servlet:
     context-path: "/tasty-town"
 
