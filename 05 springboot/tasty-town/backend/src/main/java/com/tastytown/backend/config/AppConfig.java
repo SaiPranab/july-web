@@ -46,6 +46,7 @@ public class AppConfig {
 
             if(!userOpt.isPresent()) {
                 UserEntity defaultAdmin = new UserEntity();
+                defaultAdmin.setUsername("Super Admin");
                 defaultAdmin.setUserEmail(DEFAULT_ADMIN_EMAIL);
                 defaultAdmin.setUserPassword(passwordEncoder.encode(DEFAULT_ADMIN_PASSWORD));
                 defaultAdmin.setRole(Role.ROLE_ADMIN);

@@ -11,10 +11,13 @@ import com.tastytown.backend.service.ICartService;
 import com.tastytown.backend.service.IOrderService;
 import com.tastytown.backend.service.IUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.StringJoiner;
 
 @Service
@@ -66,18 +69,34 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     @Override
-    public OrderDTO getOrdersOfAnUser(String userId) {
-        return null;
+    public List<OrderDTO> getOrdersOfAnUser(String userId) {
+        UserEntity user = userService.getUserById(userId);
+
+        List<OrderEntity> orders = orderRepository.
+                findAllByUser(user, Sort.by(Direction.DESC, "orderDate"));
+
+        return orders
+                .stream()
+                .map(OrderMapper :: convertToDTO)
+                .toList();
     }
 
     @Override
     public List<OrderDTO> getAllOrders(String userId) {
-        return List.of();
+        List<OrderEntity> orders = orderRepository.findAll(Sort.by(Direction.DESC, "orderDate"));
+
+        return orders.stream().map(OrderMapper :: convertToDTO).toList();
     }
 
     @Override
     public OrderDTO updateOrderStatus(String orderId, OrderStatus status) {
-        return null;
+        OrderEntity existingOrder = orderRepository.findById(orderId)
+                .orElseThrow(() -> new NoSuchElementException("Order Not Found"));
+
+        existingOrder.setOrderStatus(status);
+        OrderEntity updatedOrder = orderRepository.save(existingOrder);
+
+        return OrderMapper.convertToDTO(updatedOrder);
     }
 
     private String getAddressInfo(BillingInfoDTO billingInfo) {

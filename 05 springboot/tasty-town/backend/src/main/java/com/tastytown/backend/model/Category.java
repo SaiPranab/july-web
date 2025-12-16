@@ -1,5 +1,6 @@
 package com.tastytown.backend.model;
 
+import com.tastytown.backend.audit.AuditableEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Builder
-public class Category {
+public class Category extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

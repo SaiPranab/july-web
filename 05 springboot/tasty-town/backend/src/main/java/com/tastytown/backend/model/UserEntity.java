@@ -1,5 +1,6 @@
 package com.tastytown.backend.model;
 
+import com.tastytown.backend.audit.AuditableEntity;
 import com.tastytown.backend.constants.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Builder
 @Table(name = "users")
-public class UserEntity {
+public class UserEntity extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String userId;

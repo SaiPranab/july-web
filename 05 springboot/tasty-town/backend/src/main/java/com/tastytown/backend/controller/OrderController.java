@@ -27,7 +27,7 @@ public class OrderController {
 
     //    Get Order of an user
     @GetMapping("/user")
-    public ResponseEntity<OrderDTO> getOrdersOfAnUser(@RequestAttribute String userId) {
+    public ResponseEntity<List<OrderDTO>> getOrdersOfAnUser(@RequestAttribute String userId) {
         return ResponseEntity.ok(orderService.getOrdersOfAnUser(userId));
     }
 

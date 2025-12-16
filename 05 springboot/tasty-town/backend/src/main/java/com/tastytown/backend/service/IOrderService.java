@@ -10,7 +10,7 @@ import java.util.List;
 public interface IOrderService {
     OrderDTO createOrder(String userId, BillingInfoDTO billingInfo);
 
-    OrderDTO getOrdersOfAnUser(String userId);
+    List<OrderDTO> getOrdersOfAnUser(String userId);
 
     List<OrderDTO> getAllOrders(String userId);
 

@@ -1,5 +1,6 @@
 package com.tastytown.backend.model;
 
+import com.tastytown.backend.audit.AuditableEntity;
 import com.tastytown.backend.constants.OrderStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "orders")
-public class OrderEntity {
+public class OrderEntity extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String orderId;

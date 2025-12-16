@@ -1,6 +1,6 @@
 package com.tastytown.backend.model;
 
-import com.tastytown.backend.audit.TastyTownAuditableEntity;
+import com.tastytown.backend.audit.AuditableEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cart extends TastyTownAuditableEntity { 
+public class Cart extends AuditableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String cartId;

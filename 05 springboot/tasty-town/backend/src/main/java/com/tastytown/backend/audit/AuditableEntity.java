@@ -1,6 +1,5 @@
 package com.tastytown.backend.audit;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
@@ -18,7 +17,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @MappedSuperclass
-public class TastyTownAuditableEntity {
+public class AuditableEntity {
     @CreatedBy
     @Column(nullable = false, updatable = false)
     private String createdBy;

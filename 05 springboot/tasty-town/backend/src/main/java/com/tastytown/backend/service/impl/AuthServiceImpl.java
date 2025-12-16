@@ -40,27 +40,26 @@ public class AuthServiceImpl implements IAuthService {
 
     @Override
     public void register(RegisterRequestDTO dto, Role role) {
-        if(dto.username() == null || dto.username().isEmpty() || dto.username().isBlank() ||
-            dto.userEmail() == null || dto.userEmail().isEmpty() || dto.userEmail().isBlank() ||
-                dto.userPassword() == null || dto.userPassword().isEmpty() ||dto.userPassword().isBlank()
+        if (dto.username() == null || dto.username().isEmpty() || dto.username().isBlank() ||
+                dto.userEmail() == null || dto.userEmail().isEmpty() || dto.userEmail().isBlank() ||
+                dto.userPassword() == null || dto.userPassword().isEmpty() || dto.userPassword().isBlank()
         ) {
             throw new RuntimeException("Missing Required Details");
         }
 
         Optional<UserEntity> existingUserOpt = userRepository.findByUserEmail(dto.userEmail());
-        if(!existingUserOpt.isPresent()) {
-            UserEntity newUser = UserEntity.builder()
-                    .username(dto.username())
-                    .userEmail(dto.userEmail())
-                    .userPassword(passwordEncoder.encode(dto.userPassword()))
-                    .role(role)
-                    .build();
-
-            userRepository.save(newUser);
+        if (existingUserOpt.isPresent()) {
+            throw new RuntimeException("Email already exists");
         }
 
-        throw new RuntimeException("Email already exists");
-    }
+        UserEntity newUser = UserEntity.builder()
+                .username(dto.username())
+                .userEmail(dto.userEmail())
+                .userPassword(passwordEncoder.encode(dto.userPassword()))
+                .role(role)
+                .build();
 
+        userRepository.save(newUser);
+    }
 
 }
