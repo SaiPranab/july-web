@@ -57,8 +57,6 @@ export default function ExploreFood() {
 
   return (
     <>
-      {/* Navbar added here */}
-      <Navbar />
       <div className={`${styles["page-container"]} container`}>
         <div className={`${styles["content-wrapper"]}`}>
           {/* <!-- Search + Category Filter --> */}

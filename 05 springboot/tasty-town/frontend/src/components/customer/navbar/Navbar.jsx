@@ -1,5 +1,6 @@
 // import logo from "../../../assets/images/logo.png"
 import logo from "@assets/images/logo.png";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -10,9 +11,9 @@ const Navbar = () => {
       </div>
 
       <div className="container d-flex align-items-center nav-left-shift">
-        <a href="/">
+        <Link to={"/"}>
           <img src={logo} alt="logo" className="mx-4" height={48} width={48} />
-        </a>
+        </Link>
 
         <button
           className="navbar-toggler"
@@ -29,24 +30,20 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a
-                className={`nav-link ${
-                  window.location.pathname === "/" ? "active" : ""
-                }`}
-                href="/"
+              <NavLink
+                className={"nav-link"}
+                to={"/"}
               >
                 Home
-              </a>
+              </NavLink>
             </li>
             <li className="nav-item">
-              <a
-                className={`nav-link ${
-                  window.location.pathname === "/explore" ? "active" : ""
-                }`}
-                href="/explore"
+              <NavLink
+                className={"nav-link"}
+                to={"/explore"}
               >
                 Explore
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>

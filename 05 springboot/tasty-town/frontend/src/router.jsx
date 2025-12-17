@@ -3,6 +3,9 @@ import App from "./App";
 import ExploreFood from "./pages/explore foods/ExploreFood";
 import FoodDetails from "./pages/food details/FoodDetails";
 import ErrorPage from "./common/ErrorPage";
+import Login from "./pages/login/Login";
+import CustomerLayout from "./layout/CustomerLayout";
+import Home from "./pages/home/Home";
 
 const router = createBrowserRouter([
   {
@@ -10,16 +13,13 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
-        element: <App />
-      },
-      {
-        path: "explore",
-        element: <ExploreFood />
-      },
-      {
-        path: "food/:foodId",
-        element: <FoodDetails />
+        element: <CustomerLayout />,
+        children: [
+          { index: true, element: <Home /> },
+          { path: "explore", element: <ExploreFood /> },
+          { path: "food/:foodId", element: <FoodDetails /> },
+          { path: "login", element: <Login /> },
+        ]
       }
     ]
   }

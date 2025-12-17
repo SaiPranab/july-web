@@ -4,6 +4,7 @@ import Parallax from "@/components/customer/parallax/PArallax";
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import Footer from "@/components/customer/footer/Footer";
 
 export default function Home() {
 
@@ -41,6 +42,9 @@ export default function Home() {
 
         {/* Food Section */}
         <FoodSection />
+
+        {/* Footer */}
+        <Footer />
       </main>
     </>
   )
