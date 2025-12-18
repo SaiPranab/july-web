@@ -1,9 +1,15 @@
-import React, { useRef } from "react";
-import styles from "./Login.module.css";
-import { Link } from "react-router-dom";
+import React, { useContext, useRef } from "react";
+import styles from "./Auth.module.css";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "@/service/authService";
+import { jwtDecode } from "jwt-decode";
+import { AuthContext } from "@/context/AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const navigate = useNavigate()
+  const { setToken, setRole } = useContext(AuthContext)
+
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -17,10 +23,23 @@ const Login = () => {
 
     try {
       const response = await login(postData)
-      console.log("//////////", response)
+
+      if (response.status == 200) {
+        const { token } = response.data;
+        const { role } = jwtDecode(token)
+
+        localStorage.setItem('token', token)
+        setToken(token)
+        setRole(role)
+
+        toast.success("Login successfull")
+        navigate("/")
+      } else {
+        toast.error("Something went wrong")
+      }
 
     } catch (error) {
-
+      toast.error("Username or Password does not match")
     }
   };
 

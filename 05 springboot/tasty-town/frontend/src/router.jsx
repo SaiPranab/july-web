@@ -3,9 +3,10 @@ import App from "./App";
 import ExploreFood from "./pages/explore foods/ExploreFood";
 import FoodDetails from "./pages/food details/FoodDetails";
 import ErrorPage from "./common/ErrorPage";
-import Login from "./pages/login/Login";
+import Login from "./pages/auth/Login";
 import CustomerLayout from "./layout/CustomerLayout";
 import Home from "./pages/home/Home";
+import Register from "./pages/auth/Register";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
           { path: "explore", element: <ExploreFood /> },
           { path: "food/:foodId", element: <FoodDetails /> },
           { path: "login", element: <Login /> },
+          { path: "register", element: <Register /> },
         ]
       }
     ]
