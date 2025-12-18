@@ -57,8 +57,6 @@ export default function ExploreFood() {
 
   return (
     <>
-      {/* Navbar added here */}
-      <Navbar />
       <div className={`${styles["page-container"]} container`}>
         <div className={`${styles["content-wrapper"]}`}>
           {/* <!-- Search + Category Filter --> */}
@@ -123,19 +121,39 @@ export default function ExploreFood() {
               Back
             </button>
 
-            {Array.from({ length: totalPages }, (_, idx) => (
-              <button
-                key={idx}
-                className={`btn btn-sm mx-1 ${
-                  idx === currentPage
-                    ? "btn-primary active"
-                    : "btn-outline-primary"
-                }`}
-                onClick={() => setCurrentPage(idx)}
-              >
-                {idx + 1}
-              </button>
-            ))}
+            {Array.from({ length: totalPages }, (_, idx) => {
+              if (
+                idx < 3 ||
+                idx >= totalPages - 3 ||
+                (idx >= currentPage - 1 && idx <= currentPage + 1)
+              ) {
+                return (
+                  <button
+                    key={idx}
+                    className={`btn btn-sm mx-1 ${
+                      idx === currentPage
+                        ? "btn-primary active"
+                        : "btn-outline-primary"
+                    }`}
+                    onClick={() => setCurrentPage(idx)}
+                  >
+                    {idx + 1}
+                  </button>
+                );
+              }
+              if (
+                (idx === 3 && currentPage > 3) ||
+                (idx === totalPages - 4 && currentPage < totalPages - 4)
+              ) {
+                return (
+                  <span key={idx} className="mx-1">
+                    ...
+                  </span>
+                );
+              }
+
+              return null;
+            })}
 
             <button
               className="btn btn-sm mx-1 btn-outline-primary"
