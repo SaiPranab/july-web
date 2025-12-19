@@ -1,8 +1,23 @@
 // import logo from "../../../assets/images/logo.png"
+import { AuthContext } from "@/context/AuthContext";
 import logo from "@assets/images/logo.png";
-import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+  const navigate = useNavigate()
+
+  const { token, role, setToken, setRole } = useContext(AuthContext)
+
+  const handleLogout = (e) => {
+    localStorage.removeItem("token")
+    setToken("")
+    setRole("")
+    toast.success("Logout successfull")
+    navigate("/")
+  }
+
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary premium-navbar premium-section sticky-top">
       <div className="brand-logo text-center my-3 fade-slide-in">
@@ -46,6 +61,56 @@ const Navbar = () => {
               </NavLink>
             </li>
           </ul>
+
+          <div class="d-flex align-items-center gap-4">
+            <Link to={"/cart"}>
+              <div class="position-relative">
+                <img
+                  src="/cart.png"
+                  alt="Cart"
+                  height="28"
+                  width="28"
+                  class="position-relative"
+                />
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                  0
+                </span>
+              </div>
+            </Link>
+
+            { !token ? (
+              <>
+                <Link to={"/login"} class="btn btn-outline-primary btn-sm">Login</Link>
+                <Link to={"/register"} class="btn btn-outline-success btn-sm">Register</Link>
+              </>
+            ) : (
+              <div class="dropdown text-end">
+                <a
+                  href="#"
+                  class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <img
+                    src="/user.png"
+                    alt=""
+                    width="32"
+                    height="32"
+                    class="rounded-circle"
+                  />
+                </a>
+
+                <ul class="dropdown-menu text-small">
+                  { role === "ROLE_ADMIN" && (
+                    <Link to={""} class="dropdown-item">Admin Dashboard</Link>
+                  )}
+
+                  <Link to={"/myorders"} class="dropdown-item">Orders</Link>
+                  <Link onClick={handleLogout} class="dropdown-item">Logout</Link>
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </nav>

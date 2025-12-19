@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import styles from "./Auth.module.css"
 import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
@@ -11,8 +11,54 @@ export default function Register() {
   const emailRef = useRef()
   const passwordRef = useRef()
 
+  const [errors, setErrors] = useState({})
+
+  const validateForm = () => {
+    const newErrors = {}
+
+    const name = nameRef.current.value.trim()
+    const email = emailRef.current.value.trim()
+    const password = passwordRef.current.value.trim()
+
+    if(!name){
+      newErrors.name = "Name is required"
+    } else if(name.length < 3) {
+      newErrors.name = "Name must be atleast 3 characters"
+    } else if(name.lngth > 50) {
+      newErrors.name = "Name cannot be greater than 50 chracters"
+    }
+      
+    const emailRegex = /^[^@]+@[^@]+\.[^@]+$/
+    if(!email) {
+      newErrors.email = "Email is required"
+    } else if(!emailRegex.test(email)) {
+      newErrors.email = "Invalid email address"
+    } 
+    
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/;
+    if(!password) {
+      newErrors.password = "Password is required"
+    } else if(password.length < 8) { 
+      newErrors.password = "Password must be at least 8 characters"
+    } else if (! passwordRegex.test(password)) {
+      newErrors.password = "Password must contain uppercase, lowercase and number"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const clearFieldError = (field) => {
+    setErrors((prev) => ({
+      ...prev,
+      [field]: ""
+    }))
+  }
+
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+
+    if(!validateForm()) return;
 
     const postData = {
       username: nameRef.current.value,
@@ -31,6 +77,10 @@ export default function Register() {
     } catch( err ) {
       toast.error("unable to register. Please try again")
     }
+  }
+
+  const onResetHandler = async (e) => {
+    setErrors({})
   }
 
   return (
@@ -53,8 +103,12 @@ export default function Register() {
                     name="name"
                     required
                     ref={nameRef}
+                    onChange={() => clearFieldError("name")}
                   />
                   <label for="floatingName">Full Name</label>
+                  { errors.name && (
+                    <p className="invalid-feedback d-block">{errors.name}</p>
+                  )}
                 </div>
 
                 <div class="form-floating mb-3">
@@ -66,8 +120,12 @@ export default function Register() {
                     name="email"
                     required
                     ref={emailRef}
+                    onChange={() => clearFieldError("email")}
                   />
                   <label for="floatingInput">Email</label>
+                  { errors.email && (
+                    <p className="invalid-feedback d-block">{errors.email}</p>
+                  )}
                 </div>
 
                 <div class="form-floating mb-3">
@@ -79,8 +137,12 @@ export default function Register() {
                     name="password"
                     required
                     ref={passwordRef}
+                    onChange={() => clearFieldError("password")}
                   />
                   <label for="floatingPassword">Password</label>
+                  { errors.password && (
+                    <p className="invalid-feedback d-block">{errors.password}</p>
+                  )}
                 </div>
 
                 <div class="d-grid">
@@ -94,6 +156,7 @@ export default function Register() {
                   <button
                     class="btn btn-outline-danger btn-login text-uppercase mt-2"
                     type="reset"
+                    onClick={onResetHandler}
                   >
                     Reset
                   </button>
@@ -101,7 +164,7 @@ export default function Register() {
 
                 <div class="mt-4">
                   Already have an account?
-                  <Link href="/login">Sign In</Link>
+                  <Link to={"/login"}>Sign In</Link>
                 </div>
               </form>
 
