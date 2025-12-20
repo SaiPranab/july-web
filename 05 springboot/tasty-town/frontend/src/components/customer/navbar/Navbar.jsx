@@ -1,5 +1,6 @@
 // import logo from "../../../assets/images/logo.png"
 import { AuthContext } from "@/context/AuthContext";
+import { CartContext } from "@/context/CartContext";
 import logo from "@assets/images/logo.png";
 import { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -9,6 +10,8 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   const { token, role, setToken, setRole } = useContext(AuthContext)
+  const { cart } = useContext(CartContext)
+  const uniqueItemsInCart = cart?.items?.length || 0
 
   const handleLogout = (e) => {
     localStorage.removeItem("token")
@@ -62,32 +65,32 @@ const Navbar = () => {
             </li>
           </ul>
 
-          <div class="d-flex align-items-center gap-4">
+          <div className="d-flex align-items-center gap-4">
             <Link to={"/cart"}>
-              <div class="position-relative">
+              <div className="position-relative">
                 <img
                   src="/cart.png"
                   alt="Cart"
                   height="28"
                   width="28"
-                  class="position-relative"
+                  className="position-relative"
                 />
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-                  0
+                <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+                  { uniqueItemsInCart }
                 </span>
               </div>
             </Link>
 
             { !token ? (
               <>
-                <Link to={"/login"} class="btn btn-outline-primary btn-sm">Login</Link>
-                <Link to={"/register"} class="btn btn-outline-success btn-sm">Register</Link>
+                <Link to={"/login"} className="btn btn-outline-primary btn-sm">Login</Link>
+                <Link to={"/register"} className="btn btn-outline-success btn-sm">Register</Link>
               </>
             ) : (
-              <div class="dropdown text-end">
+              <div className="dropdown text-end">
                 <a
                   href="#"
-                  class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                  className="d-block link-body-emphasis text-decoration-none dropdown-toggle"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
@@ -96,17 +99,17 @@ const Navbar = () => {
                     alt=""
                     width="32"
                     height="32"
-                    class="rounded-circle"
+                    className="rounded-circle"
                   />
                 </a>
 
-                <ul class="dropdown-menu text-small">
+                <ul className="dropdown-menu text-small">
                   { role === "ROLE_ADMIN" && (
-                    <Link to={""} class="dropdown-item">Admin Dashboard</Link>
+                    <Link to={""} className="dropdown-item">Admin Dashboard</Link>
                   )}
 
-                  <Link to={"/myorders"} class="dropdown-item">Orders</Link>
-                  <Link onClick={handleLogout} class="dropdown-item">Logout</Link>
+                  <Link to={"/myorders"} className="dropdown-item">Orders</Link>
+                  <Link onClick={handleLogout} className="dropdown-item">Logout</Link>
                 </ul>
               </div>
             )}

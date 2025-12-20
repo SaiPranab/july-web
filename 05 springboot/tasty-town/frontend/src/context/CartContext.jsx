@@ -8,7 +8,7 @@ export const CartProvider = ({ children }) => {
     const { token } = useContext(AuthContext)
     const [cart, setCart] = useState([])
 
-    useEffect(async () => {
+    useEffect(() => {
         if (!token) return
         initializeCart();
     }, [token])

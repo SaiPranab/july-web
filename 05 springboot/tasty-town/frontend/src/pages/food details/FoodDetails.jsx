@@ -1,14 +1,54 @@
 import { fetchFoodById, fetchFoodImage } from "@service/foodService";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./foodDetails.module.css"
+import { AuthContext } from "@/context/AuthContext";
+import { toast } from "react-toastify";
+import { addToCart } from "@/service/cartService";
+import { CartContext } from "@/context/CartContext";
 
 export default function FoodDetails() {
   const { foodId } = useParams()
+  const { token } = useContext(AuthContext)
+  const { setCart } = useContext(CartContext)
 
   const [food, setFood] = useState(null)
   const [image, setImage] = useState(null)
   const [loading, setLoading] = useState(true);
+
+  const [quantity, setQuantity] = useState(1)
+
+  const handleQuantityChange = (e) => {
+    const updatedQuantity = parseInt(e.target.value)
+    setQuantity(updatedQuantity)
+  }
+
+  const handleAddItemToCart = async (e) => {
+    if(!food.foodId) {
+      toast.info("Please select a food")
+      return
+    }
+
+    if(!quantity) {
+      toast.info("Please add atleast one quantity")
+      return
+    }
+
+    const postData = {
+      foodId: food.foodId,
+      quantity
+    }
+
+    try {
+      const response = await addToCart(postData, token)
+      if(response.status === 200) {
+        toast.success("Item added to cart")
+        setCart(response.data)
+      }
+    } catch (error) {
+      toast.error("Something went wrong")
+    }
+  }
 
   const getFood = async () => {
     try {
@@ -28,8 +68,6 @@ export default function FoodDetails() {
   useEffect(() => {
     getFood()
   }, [foodId])
-
-  console.log("/////////////")
 
   return (
     <section className="py-5">
@@ -60,8 +98,8 @@ export default function FoodDetails() {
               <input
                 type="number"
                 min="1"
-                value=""
-                onChange=""
+                value={ quantity }
+                onChange={ handleQuantityChange }
                 className="form-control w-auto"
               />
             </div>
@@ -69,7 +107,7 @@ export default function FoodDetails() {
             <button
               className="btn btn-outline-dark flex-shrink-0"
               type="button"
-              onClick={(e) => alert("Item added to cart")}
+              onClick={handleAddItemToCart}
             >
               <i className="bi-cart-fill me-1"></i>
               Add to cart
