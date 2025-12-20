@@ -16,7 +16,7 @@ import header5 from "@assets/images/image5.png";
 
 
 
-// --- Define Slide Data (No Change) ---
+// --- Define Slide Data ---
 const slidesData = [
   { 
     headline: 'Order your favorite food here', 
@@ -46,44 +46,32 @@ const slidesData = [
    
 ];
 
-// --- Define Settings for the Carousel (Updated) ---
 const settings = {
-  dots: true,
-  infinite: true,
-  speed: 800,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 5000,
-  arrows: false,
-    
-  // 👇 ADDED: Custom indicator/paging logic
-  customPaging: function(i) {
-    return (
-      <div className={styles.customDot}>
-        
-      </div>
-    );
-  },
-  appendDots: dots => (
-    <div
-      style={{
-        position: "absolute",
-        bottom: "20px", // Position the dots 20px from the bottom
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        zIndex: 5, // Ensure dots are above other elements
-      }}
-    >
-      <ul style={{ margin: "0px" }}> {dots} </ul>
-    </div>
-  )
+  dots: true,
+  infinite: true,
+  speed: 800,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 5000,
+  arrows: false,
+  
+  // Custom indicator logic
+  customPaging: function(i) {
+    return (
+      <div className={styles.customDot}></div>
+    );
+  },
+
+  appendDots: dots => (
+    <div className={styles.dotsContainer}>
+      <ul className={styles.dotsList}> {dots} </ul>
+    </div>
+  )
 };
 
 
 export default function Header() {
-  // Create a ref to attach to the Slider component
   const sliderRef = useRef(null); 
 
   // Function to move to the next slide
@@ -100,7 +88,6 @@ export default function Header() {
     }
   };
   
-  // Custom Slide Component (remains the same)
   const CarouselSlide = ({ headline, subtext, image }) => (
     <div 
       className={styles.slideContent} 
@@ -155,3 +142,5 @@ export default function Header() {
     </div>
   );
 }
+
+
