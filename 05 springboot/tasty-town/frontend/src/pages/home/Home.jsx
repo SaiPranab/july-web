@@ -11,7 +11,7 @@ export default function Home() {
   useEffect(() => {
     const lenis = new Lenis({
       // infinite: true,
-      duration: 1.2,
+      duration: 2.5,
     });
 
     function raf(time) {
