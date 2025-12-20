@@ -70,7 +70,9 @@ export default function ExploreFood() {
                     className={`form-select mt-2 ${styles["select-clean"]}`}
                     style={{ maxWidth: "150px" }}
                   >
-                    <option value="all">All</option>
+                    <option value="all" className="drop-btn">
+                      All
+                    </option>
                     {/* <!-- More categories dynamically inserted --> */}
                     {categories.map((category) => (
                       <option
@@ -115,52 +117,42 @@ export default function ExploreFood() {
           <div className={`pagination ${styles.pagination}`}>
             <button
               className="btn btn-sm mx-1 btn-outline-primary"
-              disabled={currentPage <= 0}
+              disabled={currentPage === 0}
               onClick={() => setCurrentPage((prev) => prev - 1)}
             >
-              Back
+              {"<"}
             </button>
 
-            {Array.from({ length: totalPages }, (_, idx) => {
-              if (
-                idx < 3 ||
-                idx >= totalPages - 3 ||
-                (idx >= currentPage - 1 && idx <= currentPage + 1)
-              ) {
-                return (
+            {(() => {
+              const windowSize = 5;
+              const start = Math.floor(currentPage / windowSize) * windowSize;
+              const end = Math.min(start + windowSize, totalPages);
+
+              const pages = [];
+              for (let p = start; p < end; p++) {
+                pages.push(
                   <button
-                    key={idx}
+                    key={p}
                     className={`btn btn-sm mx-1 ${
-                      idx === currentPage
+                      currentPage === p
                         ? "btn-primary active"
                         : "btn-outline-primary"
                     }`}
-                    onClick={() => setCurrentPage(idx)}
+                    onClick={() => setCurrentPage(p)}
                   >
-                    {idx + 1}
+                    {p + 1}
                   </button>
                 );
               }
-              if (
-                (idx === 3 && currentPage > 3) ||
-                (idx === totalPages - 4 && currentPage < totalPages - 4)
-              ) {
-                return (
-                  <span key={idx} className="mx-1">
-                    ...
-                  </span>
-                );
-              }
-
-              return null;
-            })}
+              return pages;
+            })()}
 
             <button
               className="btn btn-sm mx-1 btn-outline-primary"
-              disabled={currentPage >= totalPages - 1}
+              disabled={currentPage === totalPages - 1}
               onClick={() => setCurrentPage((prev) => prev + 1)}
             >
-              Next
+              {">"}
             </button>
           </div>
         </div>

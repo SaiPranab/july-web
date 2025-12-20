@@ -24,24 +24,30 @@
 .select-clean option:active,
 .select-clean:focus {
   -webkit-appearance: none;
-  background-color: #ffb366 !important;
-  color: #fff !important;
+  background-color: floralwhite !important;
+
+  color: #000 !important;
 }
 
 /* Dropdown hover */
 .select-clean option:hover {
+  color: floralwhite;
   background-color: #ffd699 !important;
   color: #fff !important;
 }
 
+/* ----------------------------------------------------------------------------- */
+
+/* search button */
 .searchButton {
-  background-color: #ffb366 !important;
+  background-color: transparent !important;
+  color: #000;
   border-color: #ffb366 !important;
 }
 
 /* Hover */
 .searchButton:hover {
-  background-color: #ffcc99 !important;
+  color: #000 !important;
   border-color: #ffcc99 !important;
 }
 
@@ -53,7 +59,11 @@
   box-shadow: none !important;
 }
 
-/* Filled Orange Button */
+
+
+/* ------------------------------------------------------------------------- */
+
+
 .btn-primary {
   background-color: #ffb366 !important;
   border-color: #ffb366 !important;
@@ -76,68 +86,60 @@
   border-color: #ff8800 !important;
 }
 
-/* Pagination container */
+
+/* ------------------------------Pagination------------------------------ */
 .pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  margin: 20px 0;
-}
-
-/* Default pagination button */
-.pagination button {
+  gap: 10px;
   padding: 8px 16px;
-  border-radius: 6px;
-  border-color: #ff8800;
-  border: 1px solid #ff8800;
-  background: #ffffff;
-  color: #ff8800;
-  font-size: 16px;
+}
+
+.pagination button {
+  min-width: 36px;
+  height: 36px;
+  border-radius: 20px; 
+  border: none;
+  background-color: #000;
+  color: #fff;
+  font-weight: 500;
+  font-size: 14px;
   cursor: pointer;
-  transition: 0.2s ease-in-out;
+  padding: 0 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  transition: all 0.2s ease-in-out;
 }
 
-/* Hover */
-/* .pagination button:hover {
-  background: #ffe6cc;
-  color: #ff8800;
-  border-color: #ff8800;
-} */
-
-.pagination button:hover {
-    background-color: #ffb366; /* Lighter orange */
-    border-color: #ff8800;
-    color: #ffffff;
+.pagination button:hover:not(:disabled) {
+  background-color: #000;
+  background-color: #ff8800;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  transform: translateY(-1px);
 }
 
-/* Active page button (custom orange) */
-/* .pagination button.active,
-.pagination .btn-primary {
-  background: #cc6600 !important;
-  color: #ffffff !important;
-  border-color: #cc6600 !important;
-  font-weight: bold;
-} */
-
-.pagination button.active {
-    background-color: #ff8800; /* Orange */
-    border-color: #ff8800;     /* Orange border */
-    color: #ffffff;            /* White text */
-    font-weight: bold;
-}
-
-/* Special case: bootstrap .btn-primary.active */
+.pagination button.active,
 .pagination .btn-primary.active {
   background-color: #ff8800 !important;
-  border-color: #ff8800 !important;
   color: #fff !important;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(255,136,0,0.45);
+  transform: translateY(-2px);
 }
 
-/* Disabled button */
 .pagination button:disabled {
-  background: #f2f2f2;
-  color: #aaa;
-  border-color: #ddd;
+  background-color: #f5f5f5;
+  color: #bdbdbd;
+  box-shadow: none;
   cursor: not-allowed;
+  transform: none;
+}
+
+.pagination span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #9e9e9e;
 }
