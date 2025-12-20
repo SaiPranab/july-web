@@ -1,0 +1,77 @@
+ <div class="mx-2 mt-2 fade-slide-in">
+    <div class="row">
+      <div class="card col-md-4">
+        <div class="card-body">
+
+          <h2 class="mb-4">Add Food</h2>
+
+          <form>
+
+            <!-- Image Upload -->
+            <div class="mb-3">
+              <label for="image" class="form-label">
+                <img src="https://via.placeholder.com/98" alt="Upload" width="98">
+              </label>
+              <input 
+                type="file" 
+                class="form-control" 
+                id="image" 
+                hidden
+              >
+            </div>
+
+            <!-- Name -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="name" 
+                placeholder="Chicken Biryani"
+                required
+              >
+            </div>
+
+            <!-- Description -->
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <textarea 
+                class="form-control" 
+                id="description" 
+                rows="5"
+                placeholder="Write description here..."
+                required
+              ></textarea>
+            </div>
+
+            <!-- Category -->
+            <div class="mb-3">
+              <label for="category" class="form-label">Category</label>
+              <select id="category" class="form-control" required>
+                <option value="">Fast Food</option>
+                <option value="">Italian</option>
+                <option value="">Beverages</option>
+              </select>
+            </div>
+
+            <!-- Price -->
+            <div class="mb-3">
+              <label for="price" class="form-label">Price</label>
+              <input 
+                type="number" 
+                id="price" 
+                class="form-control" 
+                placeholder="₹200"
+              >
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Save
+            </button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
