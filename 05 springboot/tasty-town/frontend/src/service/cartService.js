@@ -22,3 +22,23 @@ export const addToCart = async (data, token) => {
 
     return response
 }
+
+export const updateItemQuantity = async (data, token) => {
+    const response = await axios.put(BASE_URL, data, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+
+    return response
+}
+
+export const removeItem = async (foodId, token) => {
+    const response = await axios.delete(`${BASE_URL}/${foodId}/food`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+
+    return response
+}

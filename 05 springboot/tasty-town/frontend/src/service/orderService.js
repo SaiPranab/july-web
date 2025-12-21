@@ -1,0 +1,23 @@
+import axios from "axios"
+
+const BASE_URL = `http://localhost:1200/tasty-town/api/v1/orders`
+
+export const placeOrder = async(data, token) => {
+  const response = await axios.post(BASE_URL, data, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+
+  return response;
+}
+
+export const fetchOrders = async(token) => {
+  const response = await axios.get(`${BASE_URL}/user`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+
+  return response;
+}

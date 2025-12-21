@@ -8,6 +8,7 @@ import CustomerLayout from "./layout/CustomerLayout";
 import Home from "./pages/home/Home";
 import Register from "./pages/auth/Register";
 import Cart from "./pages/cart/Cart";
+import PlaceOrder from "./pages/place order/PlaceOrder";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,8 @@ const router = createBrowserRouter([
           { path: "food/:foodId", element: <FoodDetails /> },
           { path: "login", element: <Login /> },
           { path: "register", element: <Register /> },
-          { path: "cart", Component: Cart}
+          { path: "cart", Component: Cart },
+          { path: "place-order", Component: PlaceOrder}
         ]
       }
     ]

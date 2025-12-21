@@ -17,7 +17,7 @@
 }
 
 .cart-item:hover {
-  transform: translateY(-3px) ;
+  transform: translateY(-3px);
 }
 
 .quantity-input {
@@ -43,7 +43,7 @@
 }
 
 .qty-btn {
-  background-color: #ff8800 !important; 
+  background-color: #ff8800 !important;
   border: none !important;
   color: white !important;
   padding: 5px 10px;
@@ -58,17 +58,21 @@
 }
 
 .qty-btn.focus {
-  background-color: #cc6f00 !important; 
+  background-color: #cc6f00 !important;
   color: white !important;
-  box-shadow: none !important; 
+  box-shadow: none !important;
   outline: none !important;
 }
 
 .cart-title {
   text-align: center;
-  border: 2px solid #ff8800; 
-  padding: 10px 20px;         
-  border-radius: 8px;         
-  display: inline-block;      
-  background-color: #fff3e0;  
+  border: 2px solid #ff8800;
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: inline-block;
+  background-color: #fff3e0;
+}
+
+.for-dustbin-icon {
+  padding: 5px
 }

@@ -10,13 +10,14 @@ const Navbar = () => {
   const navigate = useNavigate()
 
   const { token, role, setToken, setRole } = useContext(AuthContext)
-  const { cart } = useContext(CartContext)
+  const { cart, setCart } = useContext(CartContext)
   const uniqueItemsInCart = cart?.items?.length || 0
 
   const handleLogout = (e) => {
     localStorage.removeItem("token")
     setToken("")
     setRole("")
+    setCart([])
     toast.success("Logout successfull")
     navigate("/")
   }
@@ -76,12 +77,12 @@ const Navbar = () => {
                   className="position-relative"
                 />
                 <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
-                  { uniqueItemsInCart }
+                  {uniqueItemsInCart}
                 </span>
               </div>
             </Link>
 
-            { !token ? (
+            {!token ? (
               <>
                 <Link to={"/login"} className="btn btn-outline-primary btn-sm">Login</Link>
                 <Link to={"/register"} className="btn btn-outline-success btn-sm">Register</Link>
@@ -104,7 +105,7 @@ const Navbar = () => {
                 </a>
 
                 <ul className="dropdown-menu text-small">
-                  { role === "ROLE_ADMIN" && (
+                  {role === "ROLE_ADMIN" && (
                     <Link to={""} className="dropdown-item">Admin Dashboard</Link>
                   )}
 
