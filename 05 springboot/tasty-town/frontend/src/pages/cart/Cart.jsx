@@ -9,7 +9,7 @@ export default function Cart() {
 
   return (
     <div className="container py-5 fade-slide-in">
-      <h1 className="mb-5">Your Shopping Cart</h1>
+      <h1 className="mb-5 cart-title">Your Shopping Cart</h1>
 
       <div className="row">
         <div className="col-lg-8">
@@ -28,19 +28,19 @@ export default function Cart() {
                         <p>{ item.foodPrice.toFixed(2) }</p>
 
                         <div className="input-group mb-2" style={{ maxWidth: "120px"}}>
-                          <button className="btn btn-outline-secondary btn-sm">-</button>
+                          <button className="btn btn-outline-secondary btn-sm qty-btn">-</button>
                           <input
                             type="text"
-                            className="form-control form-control-sm text-center"
+                            className="form-control form-control-sm text-center cart-ring"
                             readOnly
                             value={item.quantity}
                           />
-                          <button className="btn btn-outline-secondary btn-sm">+</button>
+                          <button className="btn btn-outline-secondary btn-sm qty-btn">+</button>
                         </div>
                       </div>
 
                       <div className="col-md-4 text-end">
-                        <p className="fw-bold">{(item.foodPrice * item.quantity).toFixed(2)}</p>
+                        <p className="fw-bold">₹{(item.foodPrice * item.quantity).toFixed(2)}</p>
                         <button className="btn btn-sm btn-outline-danger">
                           <i className="bi bi-trash"></i> Remove
                         </button>
@@ -93,7 +93,6 @@ export default function Cart() {
           </Link>
         </div>
 
-        {/* <!-- Right Summary Card --> */}
         <div className="col-lg-4">
           <div className="card cart-summary">
             <div className="card-body">
