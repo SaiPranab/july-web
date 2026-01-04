@@ -159,7 +159,7 @@ export default function Cart() {
                 <strong>Total</strong><strong>₹{total.toFixed(2)}</strong>
               </div>
 
-              <Link to={"/place-order"} className="btn btn-primary w-100">
+              <Link to={"/place-order"} className={`btn btn-primary w-100 ${!cartItems.length && 'disabled'}`}>
                 Proceed to Checkout
               </Link>
 

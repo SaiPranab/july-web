@@ -61,7 +61,7 @@ export default function PlaceOrder() {
           </h4>
           <ul className="list-group mb-3">
             {/* Show Cart Items dynamically here in the below format */}
-            {cartItems.length &&
+            { !!cartItems.length &&
               cartItems.map(item => (
                 <li className="list-group-item d-flex justify-content-between lh-sm">
                   <div>
@@ -133,7 +133,7 @@ export default function PlaceOrder() {
 
             {/* <hr className="my-4" /> */}
 
-            <button className="mt-4 w-100 btn btn-primary btn-lg" type="submit">
+            <button className={`mt-4 w-100 btn btn-primary btn-lg ${!cartItems.length && 'disabled'}`} type="submit">
               Place Order
             </button>
           </form>

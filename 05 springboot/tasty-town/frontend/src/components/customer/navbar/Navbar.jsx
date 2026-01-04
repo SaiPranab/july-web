@@ -109,7 +109,7 @@ const Navbar = () => {
                     <Link to={""} className="dropdown-item">Admin Dashboard</Link>
                   )}
 
-                  <Link to={"/myorders"} className="dropdown-item">Orders</Link>
+                  <Link to={"/orders"} className="dropdown-item">Orders</Link>
                   <Link onClick={handleLogout} className="dropdown-item">Logout</Link>
                 </ul>
               </div>

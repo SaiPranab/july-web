@@ -9,6 +9,7 @@ import Home from "./pages/home/Home";
 import Register from "./pages/auth/Register";
 import Cart from "./pages/cart/Cart";
 import PlaceOrder from "./pages/place order/PlaceOrder";
+import Orders from "./pages/ordes/Orders";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,8 @@ const router = createBrowserRouter([
           { path: "login", element: <Login /> },
           { path: "register", element: <Register /> },
           { path: "cart", Component: Cart },
-          { path: "place-order", Component: PlaceOrder}
+          { path: "place-order", Component: PlaceOrder },
+          { path: "orders", Component: Orders }
         ]
       }
     ]
