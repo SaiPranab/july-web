@@ -106,7 +106,7 @@ const Navbar = () => {
 
                 <ul className="dropdown-menu text-small">
                   {role === "ROLE_ADMIN" && (
-                    <Link to={""} className="dropdown-item">Admin Dashboard</Link>
+                    <Link to={"/admin/orders"} className="dropdown-item">Admin Dashboard</Link>
                   )}
 
                   <Link to={"/orders"} className="dropdown-item">Orders</Link>

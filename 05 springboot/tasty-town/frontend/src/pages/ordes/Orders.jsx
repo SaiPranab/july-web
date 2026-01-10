@@ -11,7 +11,6 @@ export default function Orders() {
     try {
       const response = await fetchOrders(token)
       if (response.status === 200) {
-        console.log('............', response)
         setOrders(response.data)
       }
     } catch (err) {

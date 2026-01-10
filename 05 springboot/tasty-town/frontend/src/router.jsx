@@ -10,6 +10,8 @@ import Register from "./pages/auth/Register";
 import Cart from "./pages/cart/Cart";
 import PlaceOrder from "./pages/place order/PlaceOrder";
 import Orders from "./pages/ordes/Orders";
+import AdminLayout from "./layout/AdminLayout";
+import OrdersList from "./pages/admin/orders-list/OrdersList";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +31,14 @@ const router = createBrowserRouter([
           { path: "orders", Component: Orders }
         ]
       }
+    ]
+  },
+  {
+    path: "/admin",
+    element: <AdminLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      { path: "orders", element: <OrdersList />}
     ]
   }
 ])
