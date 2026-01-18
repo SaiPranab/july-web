@@ -69,9 +69,7 @@ export default function OrdersList() {
                           <strong>Items: </strong>
                           {
                             order.orderItems.map((item, idx) => (
-                              <span key={idx}>
-                                {item.foodName} x {item.quantity}
-                              </span>
+                              <span key={idx}>{item.foodName} x {item.quantity}, </span>
                             ))
                           }
                         </div>

@@ -12,7 +12,7 @@ export default function ExploreFood() {
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
 
-  const categories = useContext(CategoryContext);
+  const { categories } = useContext(CategoryContext);
 
   const pageSize = 2;
 

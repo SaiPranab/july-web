@@ -5,6 +5,8 @@ import java.util.List;
 import com.tastytown.backend.dto.CategoryRequestDTO;
 import com.tastytown.backend.exception.CategoryNotFoundException;
 import com.tastytown.backend.mapper.CategoryMapper;
+import com.tastytown.backend.repository.FoodRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.tastytown.backend.model.Category;
@@ -16,8 +18,8 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class CategoryServiceImpl implements ICategoryService {
-
     private final CategoryRepository categoryRepository;
+    private final FoodRepository foodRepository;
 
     public List<Category> getCategories() {
         return categoryRepository.findAll();
@@ -36,7 +38,10 @@ public class CategoryServiceImpl implements ICategoryService {
         return categoryRepository.save(updatedCategory);
     }
 
+    @Transactional
     public void deleteCategory(String catId) {
-        categoryRepository.deleteById(catId);
+        Category existingCategory = getCategoryById(catId);
+        foodRepository.deleteByCategory(existingCategory);
+        categoryRepository.delete(existingCategory);
     }
 }

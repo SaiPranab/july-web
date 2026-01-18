@@ -14,25 +14,25 @@ export default function Sidebar() {
                     <i className="bi bi-cart me-2"></i> Orders
                 </NavLink>
 
-                <Link to={"/admin/add-food"} className="list-group-item list-group-item-action list-group-item-light p-3">
+                <NavLink to={"/admin/add-food"} className="list-group-item list-group-item-action list-group-item-light p-3">
                     <i className="bi bi-plus-circle me-2"></i> Add Food
-                </Link>
+                </NavLink>
 
-                <Link to={"/admin/add-category"} className="list-group-item list-group-item-action list-group-item-light p-3">
+                <NavLink to={"/admin/add-category"} className="list-group-item list-group-item-action list-group-item-light p-3">
                     <i className="bi bi-plus-circle me-2"></i> Add Category
-                </Link>
+                </NavLink>
 
-                <Link to={"/admin/list-food"} className="list-group-item list-group-item-action list-group-item-light p-3">
+                <NavLink to={"/admin/foods"} className="list-group-item list-group-item-action list-group-item-light p-3">
                     <i className="bi bi-list-ul me-2"></i> List Food
-                </Link>
+                </NavLink>
 
-                <Link to={"/admin/list-category"} className="list-group-item list-group-item-action list-group-item-light p-3">
+                <NavLink to={"/admin/categories"} className="list-group-item list-group-item-action list-group-item-light p-3">
                     <i className="bi bi-list-ul me-2"></i> List Category
-                </Link>
+                </NavLink>
 
-                <Link to={"/"} className="list-group-item list-group-item-action list-group-item-light p-3">
+                <NavLink to={"/"} className="list-group-item list-group-item-action list-group-item-light p-3">
                     <i className="bi bi-box-arrow-right me-2"></i> Exit
-                </Link>
+                </NavLink>
             </div>
         </div>
     )

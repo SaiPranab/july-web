@@ -21,7 +21,7 @@ const CategoryProvider = ({ children }) => {
   }, [])
   
   return (
-    <CategoryContext.Provider value={categories}>
+    <CategoryContext.Provider value={{ categories, setCategories } }>
       {children}
     </CategoryContext.Provider>
   )

@@ -30,3 +30,9 @@ export const fetchFoodById = async(foodId) => {
   const response = await axios.get(url)
   return response.data
 } 
+
+export const fetchFoods = async () => {
+  let url = `${BASE_URL}`;
+  const response = await axios.get(url);
+  return response;
+}
