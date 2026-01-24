@@ -36,3 +36,13 @@ export const fetchFoods = async () => {
   const response = await axios.get(url);
   return response;
 }
+
+
+export const createFood = async(food, foodImage) {
+  //  API call to create food without image
+
+  //  API call to upload the image after successfull food creation
+
+  // incase of any API failure, rollback the process
+}
+
